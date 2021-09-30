@@ -164,9 +164,52 @@ INSERT INTO BESTELLUNGZUTAT(BESTELLNR, ZUTATENNR, MENGE) VALUES (11, 1012, 5);
 
 INSERT INTO BESTELLUNGZUTAT(BESTELLNR, ZUTATENNR, MENGE) VALUES (12, 1010, 15);
 
+/* ------------------------------------ */
+/* REZEPTE */
+/* ------------------------------------ */
 
+INSERT INTO REZEPTE(REZEPTNR, REZEPTNAME) VALUES (1, 'Test Rezept');
+
+/* ------------------------------------ */
+/* REZEPTEZUTAT (Hilfstabelle) */
+/* ------------------------------------ */
+
+INSERT INTO REZEPTEZUTAT(REZEPTNR, ZUTATENNR, MENGE, EINHEIT) VALUES (1, 6300, 2.5, 'x');
+
+/* ------------------------------------ */
+/* DIET */
+/* ------------------------------------ */
+
+INSERT INTO DIET(DIETNR, DIETNAME) VALUES (1, 'Test Diet');
+
+/* ------------------------------------ */
+/* DIETREZEPTE (Hilfstabelle) */
+/* ------------------------------------ */
+
+INSERT INTO DIETREZEPTE(DIETNR, REZEPTNR) VALUES (1, 1);
+
+/* ------------------------------------ */
+/* DIETZUTAT (Hilfstabelle) */
+/* ------------------------------------ */
+
+INSERT INTO DIETZUTAT(DIETNR, ZUTATENNR) VALUES (1, 6300);
+
+/* ------------------------------------ */
+/* ALLERGIE */
+/* ------------------------------------ */
+
+INSERT INTO ALLERGIE(ALLERGIENR, ALLERGIENAME) VALUES (1, 'Test Allergie');
+
+/* ------------------------------------ */
+/* ALLERGIEREZEPTE (Hilfstabelle) */
+/* ------------------------------------ */
+
+INSERT INTO ALLERGIEREZEPTE(ALLERGIENR, REZEPTNR) VALUES (1, 1);
+
+/* ------------------------------------ */
+/* ALLERGIEZUTAT (Hilfstabelle) */
+/* ------------------------------------ */
+
+INSERT INTO ALLERGIEZUTAT(ALLERGIENR, ZUTATENNR) VALUES (1, 6300);
 
 COMMIT WORK;
-
-
-
