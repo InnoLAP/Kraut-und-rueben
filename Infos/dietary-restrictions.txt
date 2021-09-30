@@ -12,15 +12,9 @@ Ketogenic diet:
     - it allows the body to burn fat as a fuel, rather than carbohydrates
 
 Vegetarian diet:
-    - There are various types of vegetarian: 
-        lacto-vegetarian, fruitarian vegetarian, lacto-ovo vegetarian, living food diet vegetarian, 
-        ovo-vegetarian, pesco-vegetarian, and semi-vegetarian
     - The majority of vegetarians are lacto-ovo vegetarians, in other words, they do not eat animal-based foods, 
     except for eggs, dairy, and honey
 
 Vegan diet:
     - A vegan does not eat anything that is animal-based, including eggs, dairy, and honey
     - Vegans believe that modern intensive farming methods are bad for our environment and unsustainable in the long-term
-
-Weight Watchers diet:
-    - Weight Watchers focuses on losing weight through diet, exercise, and a support network
