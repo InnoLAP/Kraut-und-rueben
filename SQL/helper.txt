@@ -1,0 +1,11 @@
+Rezept 1-3 &&  Zutat 1-8: Vegetarisch
+Rezept 2-5 &&  Zutat 4-10: Vegan
+Rezept 4-8 &&  Zutat 6-18: Atkins
+Rezept 4-10 && Zutat 1-20: The Zone
+
+Rezept 1-5 &&  Zutat 1-3: Allergie 1
+Rezept 8-10 && Zutat 9-20: Allergie 2
+
+SELECT * FROM ALLERGIEZUTAT
+INNER JOIN ZUTAT ON ALLERGIEZUTAT.ALLERGIENR != 1 AND ZUTAT.ZUTATENNR = ALLERGIEZUTAT.ZUTATENNR;
+<-- Select all zutaten without allergie restriction XY -->
