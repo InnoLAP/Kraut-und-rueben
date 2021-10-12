@@ -211,7 +211,7 @@ INSERT INTO REZEPTE(REZEPTNR, REZEPTNAME, REZEPTLINK) VALUES (6, 'VEGETARISCHE O
 
 
 /* ------------------------------------ */
-/* REZEPTEZUTAT (Hilfstabelle) */
+/* REZEPTEZUTAT (Hilfstabelle) - include the ingredients that match the recipe */
 /* ------------------------------------ */
 
 INSERT INTO REZEPTEZUTAT(REZEPTNR, ZUTATENNR, MENGE) VALUES (1, 1051, 3);
@@ -269,7 +269,7 @@ INSERT INTO DIET(DIETNR, DIETNAME) VALUES (5, 'Vegetarisch');
 
 
 /* ------------------------------------ */
-/* DIETREZEPTE (Hilfstabelle - exclude the recipes that do not match the diet) */
+/* DIETREZEPTE (Hilfstabelle - exclude the recipes that do not match the diet */
 /* ------------------------------------ */
 
 INSERT INTO DIETREZEPTE(DIETNR, REZEPTNR) VALUES (1, 2);
@@ -286,7 +286,7 @@ INSERT INTO DIETREZEPTE(DIETNR, REZEPTNR) VALUES (5, 6);
 
 
 /* ------------------------------------ */
-/* DIETZUTAT (Hilfstabelle) */
+/* DIETZUTAT (Hilfstabelle) - exclude the ingredients that do not match the diet */
 /* ------------------------------------ */
 
 INSERT INTO DIETZUTAT(DIETNR, ZUTATENNR) VALUES (1, 5001);
@@ -321,7 +321,7 @@ INSERT INTO ALLERGIE(ALLERGIENR, ALLERGIENAME) VALUES (5, 'Eier');
 INSERT INTO ALLERGIE(ALLERGIENR, ALLERGIENAME) VALUES (6, 'Sellerie');
 
 /* ------------------------------------ */
-/* ALLERGIEREZEPTE (Hilfstabelle) */
+/* ALLERGIEREZEPTE (Hilfstabelle) - exclude the recipes that do not match the allergie */
 /* ------------------------------------ */
 
 INSERT INTO ALLERGIEREZEPTE(ALLERGIENR, REZEPTNR) VALUES (1, 1);
@@ -331,7 +331,7 @@ INSERT INTO ALLERGIEREZEPTE(ALLERGIENR, REZEPTNR) VALUES (3, 6);
 INSERT INTO ALLERGIEREZEPTE(ALLERGIENR, REZEPTNR) VALUES (5, 5);
 
 /* ------------------------------------ */
-/* ALLERGIEZUTAT (Hilfstabelle) */
+/* ALLERGIEZUTAT (Hilfstabelle) - exclude the ingredients that do not match the allergie */
 /* ------------------------------------ */
 
 INSERT INTO ALLERGIEZUTAT(ALLERGIENR, ZUTATENNR) VALUES (1, 1050);
