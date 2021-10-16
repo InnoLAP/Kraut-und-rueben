@@ -7,7 +7,8 @@ Rezept 4-10 && Zutat 1-20: The Zone
 Rezept 1-5 &&  Zutat 1-3: Allergie 1
 Rezept 8-10 && Zutat 9-20: Allergie 2
 
-<-- Select all ZUTATEN allowed for ALLERGIE restriction XY -->
+-------------------------------------------------------------------
+<-- Select all ZUTATEN allowed for ALLERGIE restriction XY [WORKS WITH REAL DATA]-->
 SELECT
 	ZUTAT.ZUTATENNR,
 	ZUTAT.BEZEICHNUNG,
@@ -26,7 +27,8 @@ LEFT JOIN
 ON ZUTAT.ZUTATENNR = tTemp.ZUTATENNR
 WHERE tTemp.ZUTATENNR IS null
 
-<-- Select all REZEPTE allowed for ALLERGIE restriction XY -->
+-------------------------------------------------------------------
+<-- Select all REZEPTE allowed for ALLERGIE restriction XY [WORKS WITH REAL DATA]-->
 SELECT
 	REZEPTE.REZEPTNR,
 	REZEPTE.REZEPTNAME,
@@ -39,7 +41,8 @@ LEFT JOIN
 ON REZEPTE.REZEPTNR = tTemp.REZEPTNR
 WHERE tTemp.REZEPTNR IS null
 
-<-- Select all ZUTATEN allowed for DIET restriction XY -->
+-------------------------------------------------------------------
+<-- Select all ZUTATEN allowed for DIET restriction XY [WORKS WITH REAL DATA]-->
 SELECT
 	ZUTAT.ZUTATENNR,
 	ZUTAT.BEZEICHNUNG,
@@ -58,7 +61,8 @@ LEFT JOIN
 ON ZUTAT.ZUTATENNR = tTemp.ZUTATENNR
 WHERE tTemp.ZUTATENNR IS null
 
-<-- Select all REZEPTE allowed for DIET restriction XY -->
+-------------------------------------------------------------------
+<-- Select all REZEPTE allowed for DIET restriction XY [WORKS WITH REAL DATA]-->
 SELECT
 	REZEPTE.REZEPTNR,
 	REZEPTE.REZEPTNAME,
@@ -72,7 +76,7 @@ ON REZEPTE.REZEPTNR = tTemp.REZEPTNR
 WHERE tTemp.REZEPTNR IS null
 
 -------------------------------------------------------------------
-<-- Select all ZUTATEN allowed for DIET restriction XY AND ALLERGIE restriction XY -->
+<-- Select all ZUTATEN allowed for DIET restriction XY AND ALLERGIE restriction XY [WORKS WITH REAL DATA]-->
 SELECT * from
 	(SELECT
 		ZUTAT.ZUTATENNR,
@@ -113,7 +117,7 @@ ON t2Temp.BEZEICHNUNG = t3Temp.BEZEICHNUNG
 WHERE t2Temp.BEZEICHNUNG IS NOT null AND t3Temp.BEZEICHNUNG IS NOT null
 
 -------------------------------------------------------------------
-<-- Select all ZUTATEN allowed for DIET restriction XY AND ALLERGIE restriction XY -->
+<-- Select all REZEPTE allowed for DIET restriction XY AND ALLERGIE restriction XY [WORKS WITH REAL DATA]-->
 SELECT * from
 	(SELECT
 		REZEPTE.REZEPTNR,
@@ -142,33 +146,36 @@ ON t2Temp.REZEPTNAME = t3Temp.REZEPTNAME
 WHERE t2Temp.REZEPTNAME IS NOT null AND t3Temp.REZEPTNAME IS NOT null
 
 ---------------------------------------------------------------------
-//* = Zusätzliche vorraussetzungen können geschaffen werden indem hier 'AND {additional argument}' angehängt wird
-
-<--Zwischen notes-->
-
-<------- join tables REZEPTEZUTAT, ZUTAT and REZEPTE (no Filter)----->
+<------- join tables REZEPTEZUTAT, ZUTAT and REZEPTE (no Filter) [NEEDED?]----->
 SELECT
-ZUTAT.BEZEICHNUNG,
-ZUTAT.NETTOPREIS,
-ZUTAT.KALORIEN,
-ZUTAT.KOHLENHYDRATE,
-ZUTAT.PROTEIN,
-REZEPTEZUTAT.REZEPTNR,
-REZEPTEZUTAT.MENGE,
-REZEPTE.REZEPTNAME,
-REZEPTE.REZEPTLINK
-FROM REZEPTEZUTAT JOIN ZUTAT on REZEPTEZUTAT.ZUTATENNR = ZUTAT.ZUTATENNR JOIN REZEPTE on REZEPTEZUTAT.REZEPTNR = REZEPTE.REZEPTNR;
+	ZUTAT.BEZEICHNUNG,
+	ZUTAT.NETTOPREIS,
+	ZUTAT.KALORIEN,
+	ZUTAT.KOHLENHYDRATE,
+	ZUTAT.PROTEIN,
+	REZEPTEZUTAT.REZEPTNR,
+	REZEPTEZUTAT.MENGE,
+	REZEPTE.REZEPTNAME,
+	REZEPTE.REZEPTLINK
+FROM REZEPTEZUTAT 
+JOIN ZUTAT 
+	ON REZEPTEZUTAT.ZUTATENNR = ZUTAT.ZUTATENNR 
+JOIN REZEPTE 
+	ON REZEPTEZUTAT.REZEPTNR = REZEPTE.REZEPTNR;
 
-
-<------- join tables REZEPTEZUTAT, ZUTAT and REZEPTE (with Filter)----->
-
+---------------------------------------------------------------------
+<------- join tables REZEPTEZUTAT, ZUTAT and REZEPTE (with Filter) [WORKS WITH REAL DATA]----->
 SELECT
+	ZUTAT.ZUTATENNR,
     ZUTAT.BEZEICHNUNG,
     ZUTAT.KALORIEN,
     ZUTAT.KOHLENHYDRATE,
     ZUTAT.PROTEIN,
-    REZEPTEZUTAT.MENGE,
-    REZEPTEZUTAT.REZEPTNR
+    REZEPTEZUTAT.MENGE
 FROM ZUTAT
 JOIN REZEPTEZUTAT 
-ON ZUTAT.ZUTATENNR = REZEPTEZUTAT.ZUTATENNR AND REZEPTEZUTAT.REZEPTNR = 4
+	ON ZUTAT.ZUTATENNR = REZEPTEZUTAT.ZUTATENNR AND REZEPTEZUTAT.REZEPTNR = 1
+
+---------------------------------------------------------------------
+//* = Zusätzliche vorraussetzungen können geschaffen werden indem hier 'OR {additional argument}' angehängt wird
+---------------------------------------------------------------------
