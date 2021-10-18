@@ -8,12 +8,13 @@ CREATE TABLE KUNDE (
     NACHNAME        VARCHAR(50),
     VORNAME         VARCHAR(50),
     GEBURTSDATUM	DATE,
+    PASSWORT        VARCHAR(255),
 	STRASSE         VARCHAR(50),
 	HAUSNR			VARCHAR(6),
     PLZ             VARCHAR(5),
     ORT             VARCHAR(50),
     TELEFON         VARCHAR(25),
-    EMAIL           VARCHAR(50),
+    EMAIL           VARCHAR(50) UNIQUE,
     PRIMARY KEY (KUNDENNR)
 );
 
