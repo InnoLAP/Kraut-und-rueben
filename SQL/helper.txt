@@ -157,10 +157,10 @@ SELECT
 	REZEPTEZUTAT.MENGE,
 	REZEPTE.REZEPTNAME,
 	REZEPTE.REZEPTLINK
-FROM REZEPTEZUTAT 
-JOIN ZUTAT 
-	ON REZEPTEZUTAT.ZUTATENNR = ZUTAT.ZUTATENNR 
-JOIN REZEPTE 
+FROM REZEPTEZUTAT
+JOIN ZUTAT
+	ON REZEPTEZUTAT.ZUTATENNR = ZUTAT.ZUTATENNR
+JOIN REZEPTE
 	ON REZEPTEZUTAT.REZEPTNR = REZEPTE.REZEPTNR;
 
 ---------------------------------------------------------------------
@@ -173,8 +173,13 @@ SELECT
     ZUTAT.PROTEIN,
     REZEPTEZUTAT.MENGE
 FROM ZUTAT
-JOIN REZEPTEZUTAT 
+JOIN REZEPTEZUTAT
 	ON ZUTAT.ZUTATENNR = REZEPTEZUTAT.ZUTATENNR AND REZEPTEZUTAT.REZEPTNR = 1
+
+---------------------------------------------------------------------
+<------- delete from KUNDE ----->
+DELETE FROM KUNDE WHERE KUNDE.KUNDENNR = 2010
+
 
 ---------------------------------------------------------------------
 //* = Zusätzliche vorraussetzungen können geschaffen werden indem hier 'OR {additional argument}' angehängt wird
