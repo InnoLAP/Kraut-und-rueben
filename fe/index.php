@@ -10,9 +10,7 @@
     <body>
 
          <div class="main-header">
-             <button class="button-profile">Profile Settings</button>
              <div class="logo">KRAUT U<br> RÜBEN</div>
-             <button class="button-profile">Shopping Cart</button>
         </div>
         <div class="main">
         
