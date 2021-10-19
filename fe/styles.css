@@ -1,0 +1,73 @@
+body {
+    background-color: #fffff;
+    font-family: 'Oswald', sans-serif;
+}
+
+.main-header {
+    width: auto;
+    height: 50px;
+    box-shadow: 0 5px 5px -5px #ff0000;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.button-profile {
+    padding: 0;
+    border: none;
+    background-color: white;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    color: #F8636C;
+    text-shadow: 0.5px 0.5px #ff0000;
+    font-size: x-large;
+}
+
+.logo {
+    color: #F8636C;
+    font-family: 'Oswald', sans-serif;
+    font-size: small;
+    border-color: #F8636C;
+    border-style: solid;
+    height: 40px;
+    width: 50px;
+    box-shadow: 0.5px 0.5px 0.5px #ff0000;
+    text-shadow: 0.5px 0.5px #ff0000;
+    padding-left: 1.5px;
+}
+
+
+.header {
+    background-image: url("https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1464&q=80");
+    height: 650px;
+    width: auto;
+    position: relative;
+    display: flex;
+}
+
+/*.logo2 {
+    color: #F8636C;
+    font-family: 'Oswald', sans-serif;
+    font-size: xxx-large;
+    border-color: #F8636C;
+    border-style: solid;
+    height: 205px;
+    width: 180px;
+    box-shadow: 2px 2px 2px #ff0000;
+    text-shadow: 2px 2px #ff0000;
+    margin-left: 600px;
+    margin-top: 200px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+} */
+
+.register {
+    border: #F8636C;
+    height: auto;
+    width: auto;
+    border-style: solid;
+}
