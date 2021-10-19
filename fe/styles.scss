@@ -43,10 +43,10 @@ body {
 
 .header {
     background-image: url("https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1464&q=80");
-    height: 650px;
+    height: 800px;
     width: auto;
     position: relative;
-    display: flex;
+    margin-top: 3px;
 }
 
 /*.logo2 {
@@ -66,8 +66,72 @@ body {
 } */
 
 .register {
-    border: #F8636C;
-    height: auto;
-    width: auto;
-    border-style: solid;
+    font-family: 'Oswald', sans-serif;
+    font-size: xx-large;
+    color: white;
+    text-align: center;
+    text-shadow: 0.5px 0.5px gainsboro;
+    position: absolute;
+    background-color: #F8636C;
+    box-shadow: 2px 2px 2px gainsboro;
+    height: 470px;
+    width: 500px;
+    margin-left: 700px;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border-radius: 30px;
+}
+
+.login-button {
+    background-color: white;
+    width: 180px;
+    height: 70px;
+    align-self: center;
+    order: 2;
+    font-family: 'Oswald', sans-serif;
+    font-size: xx-large;
+    color: #F8636C;
+    border-radius: 8px;
+    text-shadow: 0.5px 0.5px #ff0000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.login-button:hover span {
+    display:none
+}
+
+.login-button:hover {
+    background-color: lightgray;
+    color: #ff0000;
+}
+
+.register-button {
+    background-color: yellowgreen;
+    width: 180px;
+    height: 70px;
+    align-self: center;
+    order: 3;
+    font-family: 'Oswald', sans-serif;
+    font-size: xx-large;
+    color: white;
+    border-radius: 8px;
+    text-shadow: 0.5px 0.5px gainsboro;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.register-button:hover span {
+    display:none
+}
+
+.register-button:hover {
+    background-color: forestgreen;
+    color: white;
 }

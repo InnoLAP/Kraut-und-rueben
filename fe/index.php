@@ -2,22 +2,27 @@
 <html lang="en">
     <head>
         <title>Kraut und Rüben</title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="styles.scss">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
     </head>
     <body>
 
-        <div class="main-header">
-            <button class="button-profile">Profile Settings</button>
-            <div class="logo">KRAUT U<br> RÜBEN</div>
-            <button class="button-profile">Shopping Cart</button>
+         <div class="main-header">
+             <button class="button-profile">Profile Settings</button>
+             <div class="logo">KRAUT U<br> RÜBEN</div>
+             <button class="button-profile">Shopping Cart</button>
         </div>
-
         <div class="main">
-        <div class="header">
-            <div class="register"></div>
+        
+            <div class="header">
+            <div class="register">
+                <br>Willkommen bei Kraut und Rüben!
+                <br><br>Haben Sie bereits einen Account oder<br> möchten Sie sich neu anmelden?
+                <div class="login-button">Sign in</div>
+                <div class="register-button">Sign up</div>
+            </div>
         </div>
 
         <?php
