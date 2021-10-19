@@ -68,7 +68,7 @@
         return $sql;
     }
 
-    //Retrun every ZUTAT
+    //Return every ZUTAT
     function ZutatAlle(){
         return "SELECT * FROM ZUTAT";
     }
@@ -172,7 +172,7 @@
     }
 
     //This will delete everything regarding a costomer except for his name for tax reasons
-    function DeleteCustomer($customerId) {
+    function DeleteKunde($customerId) {
         $sql= 
             "UPDATE KUNDE
                 SET EMAIL=null,
@@ -184,6 +184,89 @@
                     STRASSE=null,
                     HAUSNR=null
                 WHERE KUNDENNR={$customerId}";
+        return $sql;
+    }
+
+    //Returns all DIET
+    function DietAlle() {
+        $sql="SELECT * FROM DIET";
+
+        return $sql;
+    }
+
+    //Returns all ALLERGIE
+    function AllergieAlle() {
+        $sql="SELECT * FROM ALLERGIE";
+
+        return $sql;
+    }
+
+    //Returns the data of a customer
+    function DatenKunde($customerId){
+        $sql="SELECT * FROM KUNDE WHERE KUNDENNR={$customerId}";
+        return $sql;
+    }
+
+    //Returns the diets of a customer
+    function DietKunde($customerId){
+        $sql="SELECT * FROM KUNDEDIET WHERE KUNDENNR={$customerId}";
+        return $sql;
+    }
+
+    //Returns the allergies of a customer
+    function AllergieKunde($customerId){
+        $sql="SELECT * FROM KUNDEALLERGIE WHERE KUNDENNR={$customerId}";
+        return $sql;
+    }
+
+    //Checks if a email & password exist and returning true/false
+    function CheckLogin($email, $password, $db) {
+
+        $sql=
+            "SELECT EXISTS (
+                SELECT * FROM KUNDE WHERE EMAIL = '{$email}' AND PASSWORT = SHA1('{$password}'))";
+
+        echo $sql;
+
+        $sql=contactDb($db, $sql);
+
+        if(!$sql){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //Adds a customer to the KUNDE table (returns false if email already exists, birthday HAS to be "YYYY-MM-DD")
+    function AddKunde($name, $surname, $birthday, $password, $street, $house, $zip, $city, $phone, $email) {
+        $sql=
+            "INSERT INTO KUNDE
+                (NACHNAME, VORNAME, GEBURTSDATUM, PASSWORT, STRASSE, HAUSNR, PLZ, ORT, TELEFON, EMAIL) VALUE
+                ('{$surname}', '{$name}', '{$birthday}', SHA1('{$password}'), '{$street}', '{$house}', '{$zip}', '{$city}', '{$phone}', '{$email}')";
+        
+        return $sql;
+    }
+
+    //Updates a customer in the KUNDE table (returns false if the KUNDENNR doesnt exist or the new email already exists)
+    function UpdateKunde($customerId, $name, $surname, $password, $street, $house, $zip, $city, $phone, $email) {
+
+        $args="";
+
+        $args.="VORNAME='{$name}',";
+        $args.="NACHNAME='{$surname}',";
+        $args.="PASSWORT=SHA1('{$password}'),";
+        $args.="STRASSE='{$street}',";
+        $args.="HAUSNR='{$house}',";
+        $args.="PLZ='{$zip}',";
+        $args.="ORT='{$city}',";
+        $args.="TELEFON='{$phone}',";
+        $args.="EMAIL='{$email}'";
+
+        $sql=
+            "UPDATE KUNDE
+                SET {$args}
+                WHERE KUNDENNR={$customerId}";
+
         return $sql;
     }
 ?>

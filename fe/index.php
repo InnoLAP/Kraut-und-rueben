@@ -29,6 +29,8 @@
             
             //$command=ZutatAlle();
             //$command=RezeptAlle();
+            //$command=DietAlle();
+            //$command=AllergieAlle();
             
             $diets=[1,2];
             $allergies=[1,2];
@@ -39,14 +41,35 @@
             //$command=ZutatenID($zutaten);
 
             $customerId=2001;
-            //$command=DeleteCustomer($customerId);
+            //$command=DeleteKunde($customerId);
+            //$command=DatenKunde($customerId);
+            //$command=DietKunde($customerId);
+            //$command=AllergieKunde($customerId);
 
             $rezeptId=1;
             //$command=ZutatenRezept($rezeptId);
 
-            $result=contactDb($db, $command);
+            $email="d.foede@web.de";
+            $password="123";
+            //$loginResult=CheckCredentials($email, $password, $db);
+            //$loginResult = $loginResult ? 'true' : 'false';
+
+            $email="pauawdl@web.de";
+            $name="test";
+            $surname="tester";
+            $birthday="2001-01-01";
+            $street="yeet street";
+            $house="69";
+            $zip="420";
+            $city="Legoland";
+            $phone="420/6969696";
+            //$command=AddKunde($name, $surname, $birthday, $password, $street, $house, $zip, $city, $phone, $email);
+            //$command=UpdateKunde("2001", $name, $surname, $password, $street, $house, $zip, $city, $phone, $email);
+
+            //$result=contactDb($db, $command);
             echo "<br><br><br>";
             echo $command;
+            //echo $loginResult;
         ?>
     </body>
 </html>
