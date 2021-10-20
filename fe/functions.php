@@ -1,4 +1,6 @@
 <?php
+    //All passwords for customers are SHA1('123')
+
     //Return every ZUTAT allowed for selected ALLERGIES & DIÄTEN
     function ZutatFilter($diets, $allergies) {
 
@@ -69,7 +71,7 @@
     }
 
     //Return every ZUTAT
-    function ZutatAlle(){
+    function ZutatAlle() {
         return "SELECT * FROM ZUTAT";
     }
 
@@ -154,7 +156,7 @@
     }
 
     //Return evry ZUTAT within a REZEPT
-    function ZutatenRezept($rezeptId){
+    function ZutatenRezept($rezeptId) {
 
         $sql=
             "SELECT
@@ -172,18 +174,25 @@
     }
 
     //This will delete everything regarding a costomer except for his name for tax reasons
-    function DeleteKunde($customerId) {
-        $sql= 
-            "UPDATE KUNDE
-                SET EMAIL=null,
-                    ORT=null,
-                    PLZ=null,
-                    GEBURTSDATUM=null,
-                    TELEFON=null,
-                    PASSWORT=null,
-                    STRASSE=null,
-                    HAUSNR=null
-                WHERE KUNDENNR={$customerId}";
+    function DeleteKunde($customerId, $db) {
+        $sqlCheck = "SELECT * FROM BESTELLUNG WHERE KUNDENNR = {$customerId}";
+
+        $checkResult = contactDb($db, $sqlCheck);
+
+        if($checkResult -> num_rows == 0){
+            $sql = "DELETE FROM KUNDE WHERE KUNDENNR = {$customerId}";
+        } else {
+            $sql = 
+                "UPDATE KUNDE
+                    SET EMAIL=null,
+                        GEBURTSDATUM=null,
+                        TELEFON=null,
+                        PASSWORT=null
+                    WHERE KUNDENNR={$customerId}";
+        }
+
+        echo $sql;
+        
         return $sql;
     }
 
@@ -202,19 +211,19 @@
     }
 
     //Returns the data of a customer
-    function DatenKunde($customerId){
+    function DatenKunde($customerId) {
         $sql="SELECT * FROM KUNDE WHERE KUNDENNR={$customerId}";
         return $sql;
     }
 
     //Returns the diets of a customer
-    function DietKunde($customerId){
+    function DietKunde($customerId) {
         $sql="SELECT * FROM KUNDEDIET WHERE KUNDENNR={$customerId}";
         return $sql;
     }
 
     //Returns the allergies of a customer
-    function AllergieKunde($customerId){
+    function AllergieKunde($customerId) {
         $sql="SELECT * FROM KUNDEALLERGIE WHERE KUNDENNR={$customerId}";
         return $sql;
     }
@@ -222,15 +231,13 @@
     //Checks if a email & password exist and returning true/false
     function CheckLogin($email, $password, $db) {
 
-        $sql=
-            "SELECT EXISTS (
-                SELECT * FROM KUNDE WHERE EMAIL = '{$email}' AND PASSWORT = SHA1('{$password}'))";
+        $sql = "SELECT * FROM KUNDE WHERE EMAIL = '{$email}' AND PASSWORT = SHA1('{$password}')";
 
         echo $sql;
 
         $sql=contactDb($db, $sql);
 
-        if(!$sql){
+        if($sql -> num_rows == 0){
             return false;
         } else {
             return true;
@@ -267,6 +274,34 @@
                 SET {$args}
                 WHERE KUNDENNR={$customerId}";
 
+        return $sql;
+    }
+
+    //Update the selected diets for a customer
+    function AddDiet($customerId, $arrayDiet, $db) {
+        $sql="DELETE FROM KUNDEDIET WHERE KUNDENNR = {$customerId}";
+
+        contactDb($db, $sql);
+
+        $sql="";
+
+        for($i=0;$i<count($arrayDiet);$i++){
+            $sql .= "INSERT IGNORE INTO KUNDEDIET (KUNDENNR, DIETNR) VALUES ({$customerId}, {$arrayDiet[$i]});";
+        }
+        return $sql;
+    }
+
+    //Update the selected allergies for a customer
+    function AddAllergie($customerId, $arrayAllergie, $db) {
+        $sql="DELETE FROM KUNDEALLERGIE WHERE KUNDENNR = {$customerId}";
+
+        contactDb($db, $sql);
+
+        $sql="";
+
+        for($i=0;$i<count($arrayAllergie);$i++){
+            $sql .= "INSERT IGNORE INTO KUNDEALLERGIE (KUNDENNR, ALLERGIENR) VALUES ({$customerId}, {$arrayAllergie[$i]});";
+        }
         return $sql;
     }
 ?>

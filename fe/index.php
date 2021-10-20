@@ -32,26 +32,29 @@
             //$command=DietAlle();
             //$command=AllergieAlle();
             
-            $diets=[1,2];
-            $allergies=[1,2];
+            $diets=[1,2,3,4];
+            $allergies=[1,2,3,4];
             //$command=ZutatFilter($diets, $allergies);
             //$command=RezeptFilter($diets, $allergies);
+
 
             $zutaten=[5001, 5002];
             //$command=ZutatenID($zutaten);
 
-            $customerId=2001;
-            //$command=DeleteKunde($customerId);
+            $customerId=2008;
+            //$command=DeleteKunde($customerId, $db);
             //$command=DatenKunde($customerId);
             //$command=DietKunde($customerId);
             //$command=AllergieKunde($customerId);
+            //$command=AddDiet($customerId, $diets, $db);
+            //$command=AddAllergie($customerId, $allergies, $db);
 
             $rezeptId=1;
             //$command=ZutatenRezept($rezeptId);
 
-            $email="d.foede@web.de";
+            $email="sigrid@leberer.de";
             $password="123";
-            //$loginResult=CheckCredentials($email, $password, $db);
+            //$loginResult=CheckLogin($email, $password, $db);
             //$loginResult = $loginResult ? 'true' : 'false';
 
             $email="pauawdl@web.de";
@@ -67,8 +70,8 @@
             //$command=UpdateKunde("2001", $name, $surname, $password, $street, $house, $zip, $city, $phone, $email);
 
             //$result=contactDb($db, $command);
-            echo "<br><br><br>";
-            echo $command;
+            //echo "<br><br><br>";
+            //echo $command;
             //echo $loginResult;
         ?>
     </body>
