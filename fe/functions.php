@@ -304,4 +304,11 @@
         }
         return $sql;
     }
+
+    //Returns all REZEPTE where there is X or less ZUTATEN needed
+    function RezepteZutatenCount($zutatenAnzahl) {
+        $sql = "SELECT * FROM REZEPTE WHERE REZEPTZUTATENANZAHL <= {$zutatenAnzahl}";
+
+        return $sql;
+    }
 ?>

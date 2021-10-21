@@ -69,9 +69,12 @@
             //$command=AddKunde($name, $surname, $birthday, $password, $street, $house, $zip, $city, $phone, $email);
             //$command=UpdateKunde("2001", $name, $surname, $password, $street, $house, $zip, $city, $phone, $email);
 
+            $zutatenAnzahl = 5;
+            $command = RezepteZutatenCount($zutatenAnzahl);
+
             //$result=contactDb($db, $command);
             //echo "<br><br><br>";
-            //echo $command;
+            echo $command;
             //echo $loginResult;
         ?>
     </body>
