@@ -1,4 +1,6 @@
 <?php
+    //All passwords for customers are SHA1('123')
+
     //Return every ZUTAT allowed for selected ALLERGIES & DIÄTEN
     function ZutatFilter($diets, $allergies) {
 
@@ -68,8 +70,8 @@
         return $sql;
     }
 
-    //Retrun every ZUTAT
-    function ZutatAlle(){
+    //Return every ZUTAT
+    function ZutatAlle() {
         return "SELECT * FROM ZUTAT";
     }
 
@@ -154,7 +156,7 @@
     }
 
     //Return evry ZUTAT within a REZEPT
-    function ZutatenRezept($rezeptId){
+    function ZutatenRezept($rezeptId) {
 
         $sql=
             "SELECT
@@ -172,18 +174,141 @@
     }
 
     //This will delete everything regarding a costomer except for his name for tax reasons
-    function DeleteCustomer($customerId) {
-        $sql= 
+    function DeleteKunde($customerId, $db) {
+        $sqlCheck = "SELECT * FROM BESTELLUNG WHERE KUNDENNR = {$customerId}";
+
+        $checkResult = contactDb($db, $sqlCheck);
+
+        if($checkResult -> num_rows == 0){
+            $sql = "DELETE FROM KUNDE WHERE KUNDENNR = {$customerId}";
+        } else {
+            $sql = 
+                "UPDATE KUNDE
+                    SET EMAIL=null,
+                        GEBURTSDATUM=null,
+                        TELEFON=null,
+                        PASSWORT=null
+                    WHERE KUNDENNR={$customerId}";
+        }
+
+        echo $sql;
+        
+        return $sql;
+    }
+
+    //Returns all DIET
+    function DietAlle() {
+        $sql="SELECT * FROM DIET";
+
+        return $sql;
+    }
+
+    //Returns all ALLERGIE
+    function AllergieAlle() {
+        $sql="SELECT * FROM ALLERGIE";
+
+        return $sql;
+    }
+
+    //Returns the data of a customer
+    function DatenKunde($customerId) {
+        $sql="SELECT * FROM KUNDE WHERE KUNDENNR={$customerId}";
+        return $sql;
+    }
+
+    //Returns the diets of a customer
+    function DietKunde($customerId) {
+        $sql="SELECT * FROM KUNDEDIET WHERE KUNDENNR={$customerId}";
+        return $sql;
+    }
+
+    //Returns the allergies of a customer
+    function AllergieKunde($customerId) {
+        $sql="SELECT * FROM KUNDEALLERGIE WHERE KUNDENNR={$customerId}";
+        return $sql;
+    }
+
+    //Checks if a email & password exist and returning true/false
+    function CheckLogin($email, $password, $db) {
+
+        $sql = "SELECT * FROM KUNDE WHERE EMAIL = '{$email}' AND PASSWORT = SHA1('{$password}')";
+
+        echo $sql;
+
+        $sql=contactDb($db, $sql);
+
+        if($sql -> num_rows == 0){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //Adds a customer to the KUNDE table (returns false if email already exists, birthday HAS to be "YYYY-MM-DD")
+    function AddKunde($name, $surname, $birthday, $password, $street, $house, $zip, $city, $phone, $email) {
+        $sql=
+            "INSERT INTO KUNDE
+                (NACHNAME, VORNAME, GEBURTSDATUM, PASSWORT, STRASSE, HAUSNR, PLZ, ORT, TELEFON, EMAIL) VALUE
+                ('{$surname}', '{$name}', '{$birthday}', SHA1('{$password}'), '{$street}', '{$house}', '{$zip}', '{$city}', '{$phone}', '{$email}')";
+        
+        return $sql;
+    }
+
+    //Updates a customer in the KUNDE table (returns false if the KUNDENNR doesnt exist or the new email already exists)
+    function UpdateKunde($customerId, $name, $surname, $password, $street, $house, $zip, $city, $phone, $email) {
+
+        $args="";
+
+        $args.="VORNAME='{$name}',";
+        $args.="NACHNAME='{$surname}',";
+        $args.="PASSWORT=SHA1('{$password}'),";
+        $args.="STRASSE='{$street}',";
+        $args.="HAUSNR='{$house}',";
+        $args.="PLZ='{$zip}',";
+        $args.="ORT='{$city}',";
+        $args.="TELEFON='{$phone}',";
+        $args.="EMAIL='{$email}'";
+
+        $sql=
             "UPDATE KUNDE
-                SET EMAIL=null,
-                    ORT=null,
-                    PLZ=null,
-                    GEBURTSDATUM=null,
-                    TELEFON=null,
-                    PASSWORT=null,
-                    STRASSE=null,
-                    HAUSNR=null
+                SET {$args}
                 WHERE KUNDENNR={$customerId}";
+
+        return $sql;
+    }
+
+    //Update the selected diets for a customer
+    function AddDiet($customerId, $arrayDiet, $db) {
+        $sql="DELETE FROM KUNDEDIET WHERE KUNDENNR = {$customerId}";
+
+        contactDb($db, $sql);
+
+        $sql="";
+
+        for($i=0;$i<count($arrayDiet);$i++){
+            $sql .= "INSERT IGNORE INTO KUNDEDIET (KUNDENNR, DIETNR) VALUES ({$customerId}, {$arrayDiet[$i]});";
+        }
+        return $sql;
+    }
+
+    //Update the selected allergies for a customer
+    function AddAllergie($customerId, $arrayAllergie, $db) {
+        $sql="DELETE FROM KUNDEALLERGIE WHERE KUNDENNR = {$customerId}";
+
+        contactDb($db, $sql);
+
+        $sql="";
+
+        for($i=0;$i<count($arrayAllergie);$i++){
+            $sql .= "INSERT IGNORE INTO KUNDEALLERGIE (KUNDENNR, ALLERGIENR) VALUES ({$customerId}, {$arrayAllergie[$i]});";
+        }
+        return $sql;
+    }
+
+    //Returns all REZEPTE where there is X or less ZUTATEN needed
+    function RezepteZutatenCount($zutatenAnzahl) {
+        $sql = "SELECT * FROM REZEPTE WHERE REZEPTZUTATENANZAHL <= {$zutatenAnzahl}";
+
         return $sql;
     }
 ?>

@@ -201,12 +201,12 @@ INSERT INTO BESTELLUNGZUTAT(BESTELLNR, ZUTATENNR, MENGE) VALUES (12, 1010, 15);
 /* REZEPTE */
 /* ------------------------------------ */
 
-INSERT INTO REZEPTE(REZEPTNR, REZEPTNAME, REZEPTLINK) VALUES (1, 'Hering Schichtsalat', 'https://www.chefkoch.de/rezepte/1343691239180492/Hering-Schichtsalat.html');
-INSERT INTO REZEPTE(REZEPTNR, REZEPTNAME, REZEPTLINK) VALUES (2, 'Zwiebelwürstchen', 'https://www.chefkoch.de/rezepte/2271501362610200/Zwiebelwuerstchen.html');
-INSERT INTO REZEPTE(REZEPTNR, REZEPTNAME, REZEPTLINK) VALUES (3, 'Gebratene Kartoffeln mit Reis', 'https://eatsmarter.de/rezepte/gebratene-kartoffeln-mit-reis');
-INSERT INTO REZEPTE(REZEPTNR, REZEPTNAME, REZEPTLINK) VALUES (4, 'Low Carb Bauerntopf', 'https://www.chefkoch.de/rezepte/3033411456059781/Low-Carb-Bauerntopf.html');
-INSERT INTO REZEPTE(REZEPTNR, REZEPTNAME, REZEPTLINK) VALUES (5, 'Tagliatelle mit Spinat-Frischkäse-Sauce', 'https://www.lidl-kochen.de/rezeptwelt/tagliatelle-mit-spinat-frischkaese-sauce-144716?ref=search');
-INSERT INTO REZEPTE(REZEPTNR, REZEPTNAME, REZEPTLINK) VALUES (6, 'VEGETARISCHE ONE POT PASTA', 'https://www.gutekueche.at/vegetarische-one-pot-pasta-rezept-31565');
+INSERT INTO REZEPTE(REZEPTNR, REZEPTNAME, REZEPTLINK, REZEPTZUTATENANZAHL) VALUES (1, 'Hering Schichtsalat', 'https://www.chefkoch.de/rezepte/1343691239180492/Hering-Schichtsalat.html', 5);
+INSERT INTO REZEPTE(REZEPTNR, REZEPTNAME, REZEPTLINK, REZEPTZUTATENANZAHL) VALUES (2, 'Zwiebelwürstchen', 'https://www.chefkoch.de/rezepte/2271501362610200/Zwiebelwuerstchen.html', 7);
+INSERT INTO REZEPTE(REZEPTNR, REZEPTNAME, REZEPTLINK, REZEPTZUTATENANZAHL) VALUES (3, 'Gebratene Kartoffeln mit Reis', 'https://eatsmarter.de/rezepte/gebratene-kartoffeln-mit-reis', 4);
+INSERT INTO REZEPTE(REZEPTNR, REZEPTNAME, REZEPTLINK, REZEPTZUTATENANZAHL) VALUES (4, 'Low Carb Bauerntopf', 'https://www.chefkoch.de/rezepte/3033411456059781/Low-Carb-Bauerntopf.html', 9);
+INSERT INTO REZEPTE(REZEPTNR, REZEPTNAME, REZEPTLINK, REZEPTZUTATENANZAHL) VALUES (5, 'Tagliatelle mit Spinat-Frischkäse-Sauce', 'https://www.lidl-kochen.de/rezeptwelt/tagliatelle-mit-spinat-frischkaese-sauce-144716?ref=search', 8);
+INSERT INTO REZEPTE(REZEPTNR, REZEPTNAME, REZEPTLINK, REZEPTZUTATENANZAHL) VALUES (6, 'VEGETARISCHE ONE POT PASTA', 'https://www.gutekueche.at/vegetarische-one-pot-pasta-rezept-31565', 8);
 
 
 
@@ -340,5 +340,19 @@ INSERT INTO ALLERGIEZUTAT(ALLERGIENR, ZUTATENNR) VALUES (1, 1051);
 INSERT INTO ALLERGIEZUTAT(ALLERGIENR, ZUTATENNR) VALUES (2, 3001);
 INSERT INTO ALLERGIEZUTAT(ALLERGIENR, ZUTATENNR) VALUES (5, 1057);
 INSERT INTO ALLERGIEZUTAT(ALLERGIENR, ZUTATENNR) VALUES (2, 1059);
+
+/* ------------------------------------ */
+/* KUNDEDIET (Hilfstabelle) */
+/* ------------------------------------ */
+
+INSERT INTO KUNDEDIET(DIETNR, KUNDENNR) VALUES (1,2008);
+INSERT INTO KUNDEDIET(DIETNR, KUNDENNR) VALUES (2,2008);
+
+/* ------------------------------------ */
+/* KUNDEALLERGIE (Hilfstabelle) */
+/* ------------------------------------ */
+
+INSERT INTO KUNDEALLERGIE(ALLERGIENR, KUNDENNR) VALUES (1,2008);
+INSERT INTO KUNDEALLERGIE(ALLERGIENR, KUNDENNR) VALUES (2,2008);
 
 COMMIT WORK;

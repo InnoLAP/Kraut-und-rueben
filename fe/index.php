@@ -29,24 +29,53 @@
             
             //$command=ZutatAlle();
             //$command=RezeptAlle();
+            //$command=DietAlle();
+            //$command=AllergieAlle();
             
-            $diets=[1,2];
-            $allergies=[1,2];
+            $diets=[1,2,3,4];
+            $allergies=[1,2,3,4];
             //$command=ZutatFilter($diets, $allergies);
             //$command=RezeptFilter($diets, $allergies);
+
 
             $zutaten=[5001, 5002];
             //$command=ZutatenID($zutaten);
 
-            $customerId=2001;
-            //$command=DeleteCustomer($customerId);
+            $customerId=2008;
+            //$command=DeleteKunde($customerId, $db);
+            //$command=DatenKunde($customerId);
+            //$command=DietKunde($customerId);
+            //$command=AllergieKunde($customerId);
+            //$command=AddDiet($customerId, $diets, $db);
+            //$command=AddAllergie($customerId, $allergies, $db);
 
             $rezeptId=1;
             //$command=ZutatenRezept($rezeptId);
 
-            $result=contactDb($db, $command);
-            echo "<br><br><br>";
+            $email="sigrid@leberer.de";
+            $password="123";
+            //$loginResult=CheckLogin($email, $password, $db);
+            //$loginResult = $loginResult ? 'true' : 'false';
+
+            $email="pauawdl@web.de";
+            $name="test";
+            $surname="tester";
+            $birthday="2001-01-01";
+            $street="yeet street";
+            $house="69";
+            $zip="420";
+            $city="Legoland";
+            $phone="420/6969696";
+            //$command=AddKunde($name, $surname, $birthday, $password, $street, $house, $zip, $city, $phone, $email);
+            //$command=UpdateKunde("2001", $name, $surname, $password, $street, $house, $zip, $city, $phone, $email);
+
+            $zutatenAnzahl = 5;
+            $command = RezepteZutatenCount($zutatenAnzahl);
+
+            //$result=contactDb($db, $command);
+            //echo "<br><br><br>";
             echo $command;
+            //echo $loginResult;
         ?>
     </body>
 </html>
