@@ -250,3 +250,64 @@ body {
     margin-top: 45px;
     border-radius: 30px;
 }
+
+
+.email {
+  font-size: 14px;
+  width: 210px;
+  height: 100px;
+  justify-content: flex-start;
+}
+.passwort {
+  font-size: 14px;
+  width: 210px;
+  height: 100px;
+  justify-content: flex-start;
+}
+
+.confirm-button {
+    background-color: white;
+    width: 180px;
+    height: 70px;
+    align-self: center;
+    order: 2;
+    font-family: 'Oswald', sans-serif;
+    font-size: xx-large;
+    color: #F8636C;
+    border-radius: 8px;
+    text-shadow: 0.5px 0.5px #ff0000;
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.confirm-button:hover span {
+    display:none
+}
+
+.confirm-button:hover {
+    background-color: lightgray;
+    color: #ff0000;
+}
+
+.cancel-button {
+    background-color: yellowgreen;
+    width: 180px;
+    height: 70px;
+    align-self: center;
+    order: 3;
+    font-family: 'Oswald', sans-serif;
+    font-size: xx-large;
+    color: white;
+    border-radius: 8px;
+    text-shadow: 0.5px 0.5px gainsboro;
+    cursor: pointer;
+}
+
+.cancel-button:hover span {
+    display:none
+}
+
+.cancel-button:hover {
+    background-color: forestgreen;
+    color: white;
+}
