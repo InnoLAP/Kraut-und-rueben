@@ -1,17 +1,8 @@
+@media screen e (min-width: 1024px) => Desktop
+
 body {
     background-color: #fffff;
     font-family: 'Oswald', sans-serif;
-}
-
-.main-header {
-    width: auto;
-    height: 50px;
-    box-shadow: 0 5px 5px -5px #ff0000;
-    padding-bottom: 5px;
-    display: flex;
-    justify-content: center;
-    margin-left: 4px;
-    margin-right: 4px;
 }
 
 .button-profile {
@@ -27,22 +18,45 @@ body {
     font-size: x-large;
 }
 
-.logo {
+.header {
+    width: auto;
+    height: 50px;
+    box-shadow: 0 5px 5px -5px #ff0000;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.header-logo {
     color: #F8636C;
     font-family: 'Oswald', sans-serif;
     font-size: small;
     border-color: #F8636C;
     border-style: solid;
-    height: 40px;
+    height: 45px;
     width: 50px;
     box-shadow: 0.5px 0.5px 0.5px #ff0000;
     text-shadow: 0.5px 0.5px #ff0000;
     padding-left: 1.5px;
 }
 
+.index-header {
+    width: auto;
+    height: 50px;
+    box-shadow: 0 5px 5px -5px #ff0000;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    margin-left: 4px;
+    margin-right: 4px;
+}
 
-.header {
-    background-image: url("https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1464&q=80");
+/* Index */
+
+.index-image {
+    /* background-image: url("https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1464&q=80"); */
     height: 800px;
     width: auto;
     position: relative;
@@ -65,9 +79,9 @@ body {
     padding-bottom: 5px;
 } */
 
-.register {
+.register-box {
     font-family: 'Oswald', sans-serif;
-    font-size: xx-large;
+    font-size: 30px;
     color: white;
     text-align: center;
     text-shadow: 0.5px 0.5px gainsboro;
@@ -134,4 +148,105 @@ body {
 .register-button:hover {
     background-color: forestgreen;
     color: white;
+}
+
+/* Main Page */
+
+.mainpage-div {
+    background-color: white;
+    height: 800px;
+    width: auto;
+    position: relative;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    column-gap: 50px;
+}
+
+.choose-recipes-ingredients-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: xx-large;
+    color: #F8636C;
+    text-align: center;
+}
+
+.recipes-image {
+    /* background-image: url("https://images.unsplash.com/photo-1604152135912-04a022e23696?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80");*/
+    background-position: center;
+    background-size: contain;
+    width: 454px;
+    height: 741px;
+    border-radius: 30px;
+}
+
+.ingredients-image {
+    /* background-image: url("https://images.unsplash.com/photo-1560179524-382d0d0f27f9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80");*/
+    background-position: center;
+    background-size: contain;
+    width: 454px;
+    height: 741px;
+    border-radius: 30px;
+}
+
+.recipe-button {
+    width: 454px;
+    height: 741px;
+    border-radius: 30px;
+    background-color: transparent;
+    border-color: gainsboro;
+    border-style: none;
+    cursor: pointer;
+}
+
+.recipe-button:hover span {
+    display: none;
+}
+
+.recipe-button:hover:before {
+    content:"Rezepte";
+}
+
+.recipe-button:hover {
+    background-color: rgba(60, 50, 70, 0.7);
+    color: white;
+    font-size: xxx-large;
+    font-family: 'Oswald', sans-serif;
+}
+
+.ingredient-button {
+    width: 454px;
+    height: 741px;
+    border-radius: 30px;
+    background-color: transparent;
+    border-color: gainsboro;
+    border-style: none;
+    cursor: pointer;
+}
+
+.ingredient-button:hover span {
+    display: none;
+}
+
+.ingredient-button:hover:before {
+    content:"Zutaten";
+}
+
+.ingredient-button:hover {
+    background-color: rgba(60, 50, 70, 0.7);
+    color: white;
+    font-size: xxx-large;
+    font-family: 'Oswald', sans-serif;
+}
+
+/* Profile Settings */
+
+.profile-settings-main-div {
+    border-color: white;
+    border-style: solid;
+    display: flex;
+    height: 800px;
+    width: 1200px;
+    margin: auto;
+    margin-top: 45px;
+    border-radius: 30px;
 }
