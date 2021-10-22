@@ -28,44 +28,28 @@
         }
 
         $sql=
-            "SELECT * from
-            (SELECT
+            "SELECT
                 ZUTAT.ZUTATENNR,
                 ZUTAT.BEZEICHNUNG,
-                 ZUTAT.EINHEIT,
-                 ZUTAT.NETTOPREIS,
-                 ZUTAT.BESTAND,
-                 ZUTAT.LIEFERANT,
-                 ZUTAT.KALORIEN,
-                 ZUTAT.KOHLENHYDRATE,
-                 ZUTAT.PROTEIN
+                ZUTAT.EINHEIT,
+                ZUTAT.NETTOPREIS,
+                ZUTAT.BESTAND,
+                ZUTAT.LIEFERANT,
+                ZUTAT.KALORIEN,
+                ZUTAT.KOHLENHYDRATE,
+                ZUTAT.PROTEIN
             FROM ZUTAT
             LEFT JOIN
                 (SELECT DISTINCT ALLERGIEZUTAT.ZUTATENNR
-                 FROM ALLERGIEZUTAT
-                 {$allergieArgs}) AS tTemp
+                FROM ALLERGIEZUTAT
+                {$allergieArgs}) AS tTemp
             ON ZUTAT.ZUTATENNR = tTemp.ZUTATENNR
-            WHERE tTemp.ZUTATENNR IS null) as t2Temp
-        LEFT JOIN
-            (SELECT
-                ZUTAT.ZUTATENNR,
-                ZUTAT.BEZEICHNUNG,
-                 ZUTAT.EINHEIT,
-                 ZUTAT.NETTOPREIS,
-                 ZUTAT.BESTAND,
-                 ZUTAT.LIEFERANT,
-                 ZUTAT.KALORIEN,
-                 ZUTAT.KOHLENHYDRATE,
-                 ZUTAT.PROTEIN
-            FROM ZUTAT
             LEFT JOIN
                 (SELECT DISTINCT DIETZUTAT.ZUTATENNR
-                 FROM DIETZUTAT
-                 {$dietArgs}) AS tTemp
+                FROM DIETZUTAT
+                {$dietArgs}) AS t2Temp
             ON ZUTAT.ZUTATENNR = tTemp.ZUTATENNR
-            WHERE tTemp.ZUTATENNR IS null) as t3Temp
-        ON t2Temp.BEZEICHNUNG = t3Temp.BEZEICHNUNG
-        WHERE t2Temp.BEZEICHNUNG IS NOT null AND t3Temp.BEZEICHNUNG IS NOT null";
+            WHERE tTemp.ZUTATENNR IS null AND t2Temp.ZUTATENNR IS null";
 
         return $sql;
     }
@@ -101,32 +85,22 @@
         }
 
         $sql=
-            "SELECT * from
-            (SELECT
+            "SELECT
                 REZEPTE.REZEPTNR,
                 REZEPTE.REZEPTNAME,
-                 REZEPTE.REZEPTLINK
+                REZEPTE.REZEPTLINK
             FROM REZEPTE
             LEFT JOIN
                 (SELECT DISTINCT ALLERGIEREZEPTE.REZEPTNR
-                 FROM ALLERGIEREZEPTE
-                 {$allergieArgs}) AS tTemp
+                FROM ALLERGIEREZEPTE
+                {$allergieArgs}) AS tTemp
             ON REZEPTE.REZEPTNR = tTemp.REZEPTNR
-            WHERE tTemp.REZEPTNR IS null) as t2Temp
-        LEFT JOIN
-            (SELECT
-                REZEPTE.REZEPTNR,
-                REZEPTE.REZEPTNAME,
-                 REZEPTE.REZEPTLINK
-            FROM REZEPTE
             LEFT JOIN
                 (SELECT DISTINCT DIETREZEPTE.REZEPTNR
-                 FROM DIETREZEPTE
-                 {$dietArgs}) AS tTemp
-            ON REZEPTE.REZEPTNR = tTemp.REZEPTNR
-            WHERE tTemp.REZEPTNR IS null) as t3Temp
-        ON t2Temp.REZEPTNAME = t3Temp.REZEPTNAME
-        WHERE t2Temp.REZEPTNAME IS NOT null AND t3Temp.REZEPTNAME IS NOT null";
+                FROM DIETREZEPTE
+                {$dietArgs}) AS t2Temp
+            ON REZEPTE.REZEPTNR = t2Temp.REZEPTNR
+            WHERE tTemp.REZEPTNR IS null AND t2Temp.REZEPTNR IS null";
 
         return $sql;
     }
