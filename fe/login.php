@@ -9,13 +9,11 @@
     </head>
     <body>
 
-         <div class="main-header">
-             <div class="logo">KRAUT &<br> RÜBEN</div>
+         <div class="index-header">
+             <div class="header-logo">KRAUT &<br> RÜBEN</div>
         </div>
-        <div class="main">
-
-            <div class="header">
-            <div class="register">
+        <div class="index-image">
+            <div class="register-box">
                 <br>Login
                 <br><br>Bitte geben Sie ihre E-mail Adresse<br>und Passwort ein:
                 <form>
@@ -27,7 +25,6 @@
                 <div class="confirm-button">Anmelden</div>
                 <div class="cancel-button">Schließen</div>
             </div>
-        </div>
       </div>
 
         <?php
