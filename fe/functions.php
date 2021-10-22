@@ -207,8 +207,6 @@
 
         $sql = "SELECT * FROM KUNDE WHERE EMAIL = '{$email}' AND PASSWORT = SHA1('{$password}')";
 
-        echo $sql;
-
         $sql=contactDb($db, $sql);
 
         if($sql -> num_rows == 0){
