@@ -1,6 +1,12 @@
 body {
     background-color: #ffff;
     font-family: 'Oswald', sans-serif;
+    margin: 0;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
 }
 
 .button-profile {
@@ -96,11 +102,16 @@ body {
     border-radius: 30px;
 }
 
+.register-box p {
+    width: 90%;
+    margin: 45px auto 0 auto;
+}
+
 .login-button {
     background-color: white;
     width: 180px;
     height: 70px;
-    align-self: center;
+    margin: auto;
     order: 2;
     font-family: 'Oswald', sans-serif;
     font-size: xx-large;
@@ -126,7 +137,7 @@ body {
     background-color: yellowgreen;
     width: 180px;
     height: 70px;
-    align-self: center;
+    margin: auto;
     order: 3;
     font-family: 'Oswald', sans-serif;
     font-size: xx-large;
