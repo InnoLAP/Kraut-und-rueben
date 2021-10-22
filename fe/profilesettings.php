@@ -10,15 +10,15 @@
 </head>
 <body>
 
-<div class="header">
-    <button class="button-profile">Profile Settings</button>
-    <div class="header-logo">KRAUT &<br> RÜBEN</div>
-    <button class="button-profile">Shopping Cart</button>
-</div>
+    <div class="header">
+        <button class="button-profile">Profile Settings</button>
+        <div class="header-logo">KRAUT &<br> RÜBEN</div>
+        <button class="button-profile">Shopping Cart</button>
+    </div>
 
-<div class="profile-settings-main-div">
+    <div class="profile-settings-main-div">
 
-</div>
+    </div>
 
 <?php
 ?>
