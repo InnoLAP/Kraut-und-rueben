@@ -10,7 +10,7 @@ a:hover, a:visited, a:link, a:active
 }
 
 .button-profile {
-    padding: 0;
+    padding: 6px;
     border: none;
     background-color: white;
     width: auto;
@@ -44,6 +44,7 @@ a:hover, a:visited, a:link, a:active
     box-shadow: 0.5px 0.5px 0.5px #ff0000;
     text-shadow: 0.5px 0.5px #ff0000;
     padding-left: 1.5px;
+    margin-top: 1px;
 }
 
 .index-header {
