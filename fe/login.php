@@ -17,14 +17,18 @@
                 <br>Login
                 <br><br>Bitte geben Sie ihre E-mail Adresse<br>und Passwort ein:
                 <form>
-                    <label for "email">E-mail: </label>
-                    <input type="text" id="email" name="EMAIL:"><br>
-                    <label for "passwort">Passwort: </label>
-                    <input type="text" id="passwort" name="Passwort:"><br>
+                  <div class="login">
+                    <label for "email" id="email">E-mail: </label>
+                    <input type="text" name="EMAIL:" placeholder="Max.Mustermann@gmail.com"><br>
+                  </div>
+                  <div class="login">
+                    <label for "passwort" id="passwort">Passwort: </label>
+                    <input type="text" name="Passwort:" placeholder="*********"><br>
+                  </div>
                 </form>
                 <div class="loginbutton">
-                <div class="confirm-button">Anmelden</div>
-                <div class="cancel-button">Schließen</div>
+                <div class="confirm-button" type="submit" >Anmelden</div>
+                <div class="cancel-button"type="reset" >Schließen</div>
               </div>
             </div>
       </div>
