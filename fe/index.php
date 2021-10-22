@@ -15,10 +15,14 @@
     </div>
         <div class="index-image">
             <div class="register-box">
-                <br>Willkommen bei Kraut und Rüben!
-                <br><br>Haben Sie bereits einen Account oder möchten Sie sich neu anmelden?
-                <div class="login-button">Sign in</div>
-                <div class="register-button">Sign up</div>
+				<p>Willkommen bei Kraut und Rüben!<br><br>
+				Haben Sie bereits einen Account oder möchten Sie sich neu anmelden?</p>
+                <a href="login.php">
+            		<div class="login-button">Sign in</div>
+				</a>
+				<a href="register.php">
+                	<div class="register-button">Sign up</div>
+				</a>
             </div>
         </div>
         <?php
