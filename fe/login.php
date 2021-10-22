@@ -30,7 +30,7 @@
                 <div class="confirm-button">
                     <input type="submit" form="loginForm" name="loginBtn" value="Anmelden" class="bacon">
                 </div>
-                <div class="cancel-button" type="reset">Schließen</div>
+                <div class="cancel-button"><a href="index.php">Schließen</a></div>
             </div>
             <?php
                 include "functions.php";
