@@ -261,16 +261,16 @@ a:hover, a:visited, a:link, a:active
 }
 
 
-.email {
-  font-size: 14px;
-  width: 210px;
-  height: 100px;
+#email {
+  font-size: 12px;
+  width: 300px;
+  height: 150px;
   justify-content: flex-start;
 }
-.passwort {
-  font-size: 14px;
-  width: 210px;
-  height: 100px;
+#passwort {
+  font-size: 12px;
+  width: 300px;
+  height: 150px;
   justify-content: flex-start;
 }
 
@@ -278,15 +278,15 @@ a:hover, a:visited, a:link, a:active
     background-color: white;
     width: 180px;
     height: 70px;
-    align-self: center;
-    order: 2;
     font-family: 'Oswald', sans-serif;
     font-size: xx-large;
     color: #F8636C;
     border-radius: 8px;
     text-shadow: 0.5px 0.5px #ff0000;
-    align-self: flex-end;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
 .confirm-button:hover span {
@@ -302,14 +302,15 @@ a:hover, a:visited, a:link, a:active
     background-color: yellowgreen;
     width: 180px;
     height: 70px;
-    align-self: center;
-    order: 3;
     font-family: 'Oswald', sans-serif;
     font-size: xx-large;
     color: white;
     border-radius: 8px;
     text-shadow: 0.5px 0.5px gainsboro;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
 .cancel-button:hover span {
@@ -319,4 +320,13 @@ a:hover, a:visited, a:link, a:active
 .cancel-button:hover {
     background-color: forestgreen;
     color: white;
+}
+.loginbutton {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  width: 360px;
+  height: 80px;
+  margin: auto;
+  gap: 10px;
 }
