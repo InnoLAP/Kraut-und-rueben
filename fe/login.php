@@ -22,8 +22,10 @@
                     <label for "passwort">Passwort: </label>
                     <input type="text" id="passwort" name="Passwort:"><br>
                 </form>
+                <div class="loginbutton">
                 <div class="confirm-button">Anmelden</div>
                 <div class="cancel-button">Schließen</div>
+              </div>
             </div>
       </div>
 
