@@ -16,47 +16,49 @@
             <div class="register-box">
                 <br>Login
                 <br><br>Bitte geben Sie ihre E-mail Adresse<br>und Passwort ein:
-                <form>
+                <form id="loginForm" method="post">
                   <div class="login">
-                    <label for "email" id="email">E-mail: </label>
-                    <input type="text" name="EMAIL:" placeholder="Max.Mustermann@gmail.com"><br>
+                    <label for="email">E-mail: </label>
+                    <input type="text" name="email" placeholder="Email" required><br>
                   </div>
                   <div class="login">
-                    <label for "passwort" id="passwort">Passwort: </label>
-                    <input type="text" name="Passwort:" placeholder="*********"><br>
+                    <label for="password">Passwort: </label>
+                    <input type="text" name="password" placeholder="Passwort" required><br>
                   </div>
                 </form>
-                <div class="loginbutton">
-                <div class="confirm-button" type="submit" >Anmelden</div>
-                <div class="cancel-button"type="reset" >Schließen</div>
-              </div>
+            <div class="loginbutton">
+                <div class="confirm-button">
+                    <input type="submit" form="loginForm" name="loginBtn" value="Anmelden" class="bacon">
+                </div>
+                <div class="cancel-button" type="reset">Schließen</div>
             </div>
+            <?php
+                include "functions.php";
+                include "dbConnect.php";
+
+                if(array_key_exists('loginBtn', $_POST)) {
+                    $loginCheck=CheckLogin($_POST["email"], $_POST["password"], $db);
+
+                    if($loginCheck){
+                        while($row = $loginCheck->fetch_assoc()){
+                            $customerId=$row["KUNDENNR"];
+                            $name=$row["VORNAME"];
+                            $surname=$row["NACHNAME"];
+                        }
+
+                        session_start();
+                        $_SESSION['customerId'] = $customerId;
+                        $_SESSION['name'] = $name;
+                        $_SESSION['surname'] = $surname;
+
+                        header('location: mainpage.php');
+                    } else {
+                        echo('<div class="errorLogin">
+                                <p>Dieser Login ist uns unbekannt<br>Email oder Passwort ist falsch</p>
+                            </div>');
+                    }
+                }
+            ?>
       </div>
-
-        <?php
-            include "functions.php";
-            include "dbConnect.php";
-
-            //$command=ZutatAlle();
-            //$command=RezeptAlle();
-
-            $diets=[1,2];
-            $allergies=[1,2];
-            //$command=ZutatFilter($diets, $allergies);
-            //$command=RezeptFilter($diets, $allergies);
-
-            $zutaten=[5001, 5002];
-            //$command=ZutatenID($zutaten);
-
-            $customerId=2001;
-            //$command=DeleteCustomer($customerId);
-
-            $rezeptId=1;
-            //$command=ZutatenRezept($rezeptId);
-
-            $result=contactDb($db, $command);
-            echo "<br><br><br>";
-            echo $command;
-        ?>
     </body>
 </html>

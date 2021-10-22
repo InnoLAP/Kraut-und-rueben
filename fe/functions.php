@@ -212,7 +212,7 @@
         if($sql -> num_rows == 0){
             return false;
         } else {
-            return true;
+            return $sql;
         }
     }
 
