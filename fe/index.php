@@ -18,10 +18,10 @@
 				<p>Willkommen bei Kraut und Rüben!<br><br>
 				Haben Sie bereits einen Account oder möchten Sie sich neu anmelden?</p>
                 <a href="login.php">
-            		<div class="login-button">Sign in</div>
+            		<div class="login-button">Anmelden</div>
 				</a>
 				<a href="register.php">
-                	<div class="register-button">Sign up</div>
+                	<div class="register-button">Regristrieren</div>
 				</a>
             </div>
         </div>

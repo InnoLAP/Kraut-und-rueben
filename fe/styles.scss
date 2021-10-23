@@ -113,6 +113,25 @@ a, a:hover, a:visited, a:link, a:active
     border-radius: 30px;
 }
 
+.register-box2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    text-shadow: 0.5px 0.5px gainsboro;
+    position: absolute;
+    background-color: #F8636C;
+    box-shadow: 2px 2px 2px gainsboro;
+    height: 650px;
+    width: 500px;
+    margin-left: 700px;
+    margin-top: 50px;
+    gap: 30px;
+    border-radius: 30px;
+}
+
+
+
 .register-box p {
     width: 90%;
     margin: 45px auto 0 auto;
@@ -273,25 +292,6 @@ a, a:hover, a:visited, a:link, a:active
     border-radius: 30px;
 }
 
-#email {
-  font-size: 20px;
-  width: 100px;
-  height: 30px;
-  justify-content: flex-start;
-}
-#passwort {
-  font-size: 20px;
-  width: 100px;
-  height: 30px;
-  justify-content: flex-start;
-}
-
-#input {
-  font-size: 16px;
-  width: auto;
-  height: auto;
-  text-align: left;
-}
 
 .confirm-button {
     background-color: white;
@@ -375,4 +375,9 @@ a, a:hover, a:visited, a:link, a:active
     margin: 0;
     font-size: smaller;
     color: #ff0000;
+}
+.register {
+  font-size: 16px;
+  text-align: inherit;
+
 }
