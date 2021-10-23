@@ -8,11 +8,13 @@
 
     function contactDb($db, $command){
 
-        $send = mysqli_query($db,$command);
-
-        mysqli_close($db);
+        $send = mysqli_query($db, $command);
 
         return $send;
+    }
+
+    function closeDb($db) {
+        mysqli_close($db);
     }
 
 ?>

@@ -46,10 +46,28 @@
                             $surname=$row["NACHNAME"];
                         }
 
+						$data=DietKunde($customerId, $db);
+						$customerDiets=array();
+
+						while($row = $data->fetch_assoc()){
+                            array_push($customerDiets, $row["DIETNR"]);
+                        }
+
+						$data=AllergieKunde($customerId, $db);
+						$customerAllergies=array();
+
+						while($row = $data->fetch_assoc()){
+                            array_push($customerAllergies, $row["ALLERGIENR"]);
+                        }
+
+						closeDb($db);
+
                         session_start();
                         $_SESSION['customerId'] = $customerId;
                         $_SESSION['name'] = $name;
                         $_SESSION['surname'] = $surname;
+						$_SESSION['customerAllergies'] = $customerAllergies;
+						$_SESSION['customerDiets'] = $customerDiets;
 
                         header('location: mainpage.php');
                     } else {

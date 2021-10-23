@@ -204,19 +204,21 @@
 
     //Returns the data of a customer
     function DatenKunde($customerId) {
-        $sql="SELECT * FROM KUNDE WHERE KUNDENNR={$customerId}";
+        $sql = "SELECT * FROM KUNDE WHERE KUNDENNR={$customerId}";
         return $sql;
     }
 
     //Returns the diets of a customer
-    function DietKunde($customerId) {
-        $sql="SELECT * FROM KUNDEDIET WHERE KUNDENNR={$customerId}";
+    function DietKunde($customerId, $db) {
+        $sql = "SELECT * FROM KUNDEDIET WHERE KUNDENNR={$customerId}";
+        $sql=contactDb($db, $sql);
         return $sql;
     }
 
     //Returns the allergies of a customer
-    function AllergieKunde($customerId) {
-        $sql="SELECT * FROM KUNDEALLERGIE WHERE KUNDENNR={$customerId}";
+    function AllergieKunde($customerId, $db) {
+        $sql = "SELECT * FROM KUNDEALLERGIE WHERE KUNDENNR={$customerId}";
+        $sql=contactDb($db, $sql);
         return $sql;
     }
 
