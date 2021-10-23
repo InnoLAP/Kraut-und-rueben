@@ -36,7 +36,11 @@
         $ingredient=$_POST["ingredientId"];
         $amount=$_POST["amount"];
 
-        $cartArray = $_SESSION['cartArray'];
+        if(isset($_SESSION['cartArray'])) {
+            $cartArray = $_SESSION['cartArray'];
+        } else {
+            $cartArray = array();
+        }
         
         $cartArray[$ingredient] = $amount;
         $_SESSION['cartArray']=$cartArray;
