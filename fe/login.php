@@ -23,7 +23,7 @@
                   </div>
                   <div class="login">
                     <label for="password">Passwort: </label>
-                    <input type="text" name="password" placeholder="Passwort" required><br>
+                    <input type="password" name="password" placeholder="Passwort" required><br>
                   </div>
                 </form>
             <div class="loginbutton">
