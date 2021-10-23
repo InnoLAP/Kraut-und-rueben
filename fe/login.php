@@ -17,7 +17,7 @@
                 <br>Login
                 <br><br>Bitte geben Sie ihre E-mail Adresse<br>und Passwort ein:
                 <form id="loginForm" method="post">
-                  <div class="login">
+                    <div class="login">
                     <label for="email">E-mail: </label>
                     <input type="text" name="email" placeholder="Email" required><br>
                   </div>
@@ -28,7 +28,7 @@
                 </form>
             <div class="loginbutton">
                 <div class="confirm-button">
-                    <input type="submit" form="loginForm" name="loginBtn" value="Anmelden" class="bacon">
+                    <input type="submit" form="loginForm" name="loginBtn" value="Anmelden">
                 </div>
                 <div class="cancel-button"><a href="index.php">Schließen</a></div>
             </div>
