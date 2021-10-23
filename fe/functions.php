@@ -2,29 +2,55 @@
     //All passwords for customers are SHA1('123')
 
     //Return every ZUTAT allowed for selected ALLERGIES & DIÄTEN
-    function ZutatFilter($diets, $allergies) {
+    function ZutatFilter($diets, $allergies, $nameString, $id) {
 
         $dietArgs = "";
+        $dietWhere = "";
         $allergieArgs = "";
+        $allergieWhere = "";
+        $idWhere = "";
+        $nameWhere = "";
 
-        for($i=0;$i<count($diets);$i++){
-            if($i!=0){
-                $dietArgs.=' OR ';
-            }
-            else {
-                $dietArgs.='WHERE ';
-            }
-            $dietArgs.="DIETZUTAT.DIETNR = {$diets[$i]}";
+        if($diets){
+            $dietWhere="t2Temp.ZUTATENNR IS null AND ";
         }
 
-        for($i=0;$i<count($allergies);$i++){
-            if($i!=0){
-                $allergieArgs.=' OR ';
+        if($allergies){
+            $allergieWhere="tTemp.ZUTATENNR IS null AND ";
+        }
+
+        if($nameString){
+            $nameWhere="(BEZEICHNUNG REGEXP '{$nameString}') AND ";
+        }
+
+        if($id){
+            $idWhere="ZUTAT.ZUTATENNR = {$id} AND ";
+        }
+
+        if($diets){
+            for($i=0;$i<count($diets);$i++){
+                if($i!=0){
+                    $dietArgs.=' OR ';
+                }
+                else {
+                    $dietArgs.="LEFT JOIN (SELECT DISTINCT DIETZUTAT.ZUTATENNR FROM DIETZUTAT WHERE ";
+                }
+                $dietArgs.="DIETZUTAT.DIETNR = {$diets[$i]}";
             }
-            else {
-                $allergieArgs.='WHERE ';
+            $dietArgs.=") AS t2Temp ON ZUTAT.ZUTATENNR = t2Temp.ZUTATENNR";
+        }
+
+        if($allergies){
+            for($i=0;$i<count($allergies);$i++){
+                if($i!=0){
+                    $allergieArgs.=' OR ';
+                }
+                else {
+                    $allergieArgs.="LEFT JOIN (SELECT DISTINCT ALLERGIEZUTAT.ZUTATENNR FROM ALLERGIEZUTAT WHERE ";
+                }
+                $allergieArgs.="ALLERGIEZUTAT.ALLERGIENR = {$allergies[$i]}";
             }
-            $allergieArgs.="ALLERGIEZUTAT.ALLERGIENR = {$allergies[$i]}";
+            $allergieArgs.=") AS tTemp ON ZUTAT.ZUTATENNR = tTemp.ZUTATENNR";
         }
 
         $sql=
@@ -39,17 +65,9 @@
                 ZUTAT.KOHLENHYDRATE,
                 ZUTAT.PROTEIN
             FROM ZUTAT
-            LEFT JOIN
-                (SELECT DISTINCT ALLERGIEZUTAT.ZUTATENNR
-                FROM ALLERGIEZUTAT
-                {$allergieArgs}) AS tTemp
-            ON ZUTAT.ZUTATENNR = tTemp.ZUTATENNR
-            LEFT JOIN
-                (SELECT DISTINCT DIETZUTAT.ZUTATENNR
-                FROM DIETZUTAT
-                {$dietArgs}) AS t2Temp
-            ON ZUTAT.ZUTATENNR = tTemp.ZUTATENNR
-            WHERE tTemp.ZUTATENNR IS null AND t2Temp.ZUTATENNR IS null";
+            {$allergieArgs}
+            {$dietArgs}
+            WHERE {$dietWhere}{$allergieWhere}{$nameWhere}{$idWhere}1=1";
 
         return $sql;
     }
