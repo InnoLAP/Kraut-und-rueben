@@ -30,8 +30,7 @@
         </style>
     </head>
     <body>
-
-         <div class="index-header">
+        <div class="index-header">
              <div class="header-logo">KRAUT &<br> RÜBEN</div>
         </div>
         <div class="index-image">
@@ -78,37 +77,6 @@
                 <div class="cancel-button"><a href="index.php">Schließen</a></div>
             </div>
             </div>
-
-
-            <?php
-            /*
-                include "functions.php";
-                include "dbConnect.php";
-
-                if(array_key_exists('loginBtn', $_POST)) {
-                    $loginCheck=CheckLogin($_POST["email"], $_POST["password"], $db);
-
-                    if($loginCheck){
-                        while($row = $loginCheck->fetch_assoc()){
-                            $customerId=$row["KUNDENNR"];
-                            $name=$row["VORNAME"];
-                            $surname=$row["NACHNAME"];
-                        }
-
-                        session_start();
-                        $_SESSION['customerId'] = $customerId;
-                        $_SESSION['name'] = $name;
-                        $_SESSION['surname'] = $surname;
-
-                        header('location: mainpage.php');
-                    } else {
-                        echo('<div class="errorLogin">
-                                <p>Dieser Login ist uns unbekannt<br>Email oder Passwort ist falsch</p>
-                            </div>');
-                    }
-                } */
-            ?>
-
       </div>
     </body>
 </html>
