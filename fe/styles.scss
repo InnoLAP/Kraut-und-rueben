@@ -318,8 +318,11 @@ a, a:hover, a:visited, a:link, a:active
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     text-align: center;
-    width: 350px;
+    width: 250px;
+    margin-left: 35px;
+    float: right;
     color: #757575;
+    margin-top: 5px;
 }
 
 #fullName, #email, #pass, #birthday, #firstName, #lastName:focus {
@@ -330,6 +333,7 @@ a, a:hover, a:visited, a:link, a:active
     font-size: 40px;
     color: #F8636C;
     text-shadow: 1px 1px #ff0000;
+    text-align: center;
 }
 
 .col {
@@ -348,6 +352,7 @@ a, a:hover, a:visited, a:link, a:active
     width: 150px;
     font-size: 20px;
     cursor: pointer;
+    margin-bottom: 40px;
 }
 
 .btn-default {
@@ -360,6 +365,7 @@ a, a:hover, a:visited, a:link, a:active
     font-size: 20px;
     cursor: pointer;
     align-self: flex-end;
+    margin-bottom: 40px;
 }
 
 .btn-default:hover span {
@@ -381,6 +387,17 @@ a, a:hover, a:visited, a:link, a:active
 }
 
 /* Login/Register */
+
+.container {
+    margin-left: -25px;
+    text-align: right;
+}
+
+.divider {
+    content:"";
+    border-bottom: 2px dotted #ff0000;
+    margin: 30px 0 15px 0;
+}
 
 .confirm-button {
     background-color: white;
