@@ -236,6 +236,20 @@
         }
     }
 
+    //Checks if the password is correct
+    function CheckPassword($customerId, $password, $db) {
+
+        $sql = "SELECT * FROM KUNDE WHERE KUNDENNR = '{$customerId}' AND PASSWORT = SHA1('{$password}')";
+
+        $sql=contactDb($db, $sql);
+
+        if($sql -> num_rows == 0){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     //Adds a customer to the KUNDE table (returns false if email already exists, birthday HAS to be "YYYY-MM-DD")
     function AddKunde($name, $surname, $birthday, $password, $street, $house, $zip, $city, $phone, $email) {
         $sql=
@@ -253,7 +267,9 @@
 
         $args.="VORNAME='{$name}',";
         $args.="NACHNAME='{$surname}',";
-        $args.="PASSWORT=SHA1('{$password}'),";
+        if(!($password==null)){
+            $args.="PASSWORT=SHA1('{$password}'),";
+        }
         $args.="STRASSE='{$street}',";
         $args.="HAUSNR='{$house}',";
         $args.="PLZ='{$zip}',";
