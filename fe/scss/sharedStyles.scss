@@ -1,0 +1,77 @@
+body {
+    background-color: #ffff;
+    font-family: 'Oswald', sans-serif;
+    margin: 0;
+}
+
+a, a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+    color: white;
+}
+
+.header {
+    width: auto;
+    height: 50px;
+    box-shadow: 0 5px 5px -5px #ff0000;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.header-logo {
+    color: #F8636C;
+    font-family: 'Oswald', sans-serif;
+    font-size: small;
+    border-color: #F8636C;
+    border-style: solid;
+    height: 45px;
+    width: 50px;
+    box-shadow: 0.5px 0.5px 0.5px #ff0000;
+    text-shadow: 0.5px 0.5px #ff0000;
+    padding-left: 1.5px;
+    margin-top: 1px;
+    transition: transform 300ms linear;
+}
+
+.header-logo:hover {
+    transform:scale(1.1);
+}
+
+.index-header {
+    width: auto;
+    height: 50px;
+    box-shadow: 0 5px 5px -5px #ff0000;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.index-image {
+    background-image: url("../images/header_index.jpeg");
+    height: 800px;
+    width: auto;
+    position: relative;
+    margin-top: 3px;
+}
+
+.button-profile {
+    padding: 6px;
+    border: none;
+    background-color: white;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    color: #F8636C;
+    text-shadow: 0.5px 0.5px #ff0000;
+    font-size: x-large;
+}
+
+.button-profile:hover {
+    text-decoration: underline;
+}

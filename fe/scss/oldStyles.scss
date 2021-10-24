@@ -1,4 +1,4 @@
-body {
+/* body {
     background-color: #ffff;
     font-family: 'Oswald', sans-serif;
     margin: 0;
@@ -8,9 +8,9 @@ a, a:hover, a:visited, a:link, a:active
 {
     text-decoration: none;
     color: white;
-}
+} */
 
-.button-profile {
+/* .button-profile {
     padding: 6px;
     border: none;
     background-color: white;
@@ -25,9 +25,9 @@ a, a:hover, a:visited, a:link, a:active
 
 .button-profile:hover {
     text-decoration: underline;
-}
+} */
 
-.header {
+/* .header {
     width: auto;
     height: 50px;
     box-shadow: 0 5px 5px -5px #ff0000;
@@ -66,19 +66,19 @@ a, a:hover, a:visited, a:link, a:active
     justify-content: center;
     margin-left: 4px;
     margin-right: 4px;
-}
+} */
 
 /* Index */
 
-.index-image {
+/* .index-image {
     background-image: url("images/header_index.jpeg");
     height: 800px;
     width: auto;
     position: relative;
     margin-top: 3px;
-}
+} */
 
-.register-box {
+/* .register-box { //also in login.php
     font-family: 'Oswald', sans-serif;
     font-size: 30px;
     color: white;
@@ -95,9 +95,9 @@ a, a:hover, a:visited, a:link, a:active
     flex-direction: column;
     gap: 30px;
     border-radius: 30px;
-}
+} */
 
-.register-box2 {
+/* .register-box2 {
     font-family: 'Oswald', sans-serif;
     font-size: 15px;
     color: white;
@@ -112,16 +112,16 @@ a, a:hover, a:visited, a:link, a:active
     margin-top: 5px;
     gap: 30px;
     border-radius: 30px;
-}
+} */
 
 
 
-.register-box p {
+/* .register-box p { //maybe also in login.php
     width: 90%;
     margin: 45px auto 0 auto;
-}
+} */
 
-.login-button {
+/* .login-button {
     background-color: white;
     width: 180px;
     height: 70px;
@@ -145,9 +145,9 @@ a, a:hover, a:visited, a:link, a:active
 .login-button:hover {
     background-color: lightgray;
     color: #ff0000;
-}
+} */
 
-.register-button {
+/* .register-button {
     background-color: yellowgreen;
     width: 180px;
     height: 70px;
@@ -171,11 +171,11 @@ a, a:hover, a:visited, a:link, a:active
 .register-button:hover {
     background-color: forestgreen;
     color: white;
-}
+} */
 
 /* Main Page */
 
-.mainpage-div {
+/* .mainpage-div {
     background-color: white;
     height: 800px;
     width: auto;
@@ -261,11 +261,11 @@ a, a:hover, a:visited, a:link, a:active
     color: white;
     font-size: xxx-large;
     font-family: 'Oswald', sans-serif;
-}
+} */
 
 /* Profile Settings */
 
-.profile-settings-main-div {
+/* .profile-settings-main-div {
     border-color: white;
     border-style: solid;
     height: 800px;
@@ -347,28 +347,6 @@ a, a:hover, a:visited, a:link, a:active
     margin-bottom: 40px;
 }
 
-.btn-default {
-    background-color: #F8636C;
-    color: white;
-    border: none;
-    border-radius: 15px;
-    height: 50px;
-    width: 150px;
-    font-size: 20px;
-    cursor: pointer;
-    align-self: flex-end;
-    margin-bottom: 40px;
-}
-
-.btn-default:hover span {
-    display: none;
-}
-
-.btn-default:hover {
-    background-color: lightgray;
-    color: #ff0000;
-}
-
 .btn-primary:hover span {
     display: none;
 }
@@ -380,7 +358,7 @@ a, a:hover, a:visited, a:link, a:active
 
 /* Login/Register */
 
-.container {
+/* .container {
     margin-left: -25px;
     text-align: right;
 }
@@ -389,9 +367,9 @@ a, a:hover, a:visited, a:link, a:active
     content:"";
     border-bottom: 2px dotted #ff0000;
     margin: 30px 0 15px 0;
-}
+}  */
 
-.confirm-button {
+/*  .confirm-button { //in register
     background-color: white;
     width: 180px;
     height: 70px;
@@ -428,7 +406,7 @@ a, a:hover, a:visited, a:link, a:active
 .confirm-button:hover {
     background-color: lightgray;
     color: #ff0000;
-}
+} 
 
 .cancel-button {
     background-color: yellowgreen;
@@ -453,6 +431,7 @@ a, a:hover, a:visited, a:link, a:active
     background-color: forestgreen;
     color: white;
 }
+
 .loginbutton {
   display: flex;
   flex-direction: row;
@@ -473,4 +452,4 @@ a, a:hover, a:visited, a:link, a:active
     margin: 0;
     font-size: smaller;
     color: #ff0000;
-}
+} */

@@ -1,0 +1,75 @@
+.register-box {
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    text-shadow: 0.5px 0.5px gainsboro;
+    position: absolute;
+    background-color: #F8636C;
+    box-shadow: 2px 2px 2px gainsboro;
+    height: 470px;
+    width: 500px;
+    margin-left: 700px;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border-radius: 30px;
+}
+
+.register-box p {
+    width: 90%;
+    margin: 45px auto 0 auto;
+}
+
+.login-button {
+    background-color: white;
+    width: 180px;
+    height: 70px;
+    margin: auto;
+    order: 2;
+    font-family: 'Oswald', sans-serif;
+    font-size: xx-large;
+    color: #F8636C;
+    border-radius: 8px;
+    text-shadow: 0.5px 0.5px #ff0000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.login-button:hover span {
+    display:none;
+}
+
+.login-button:hover {
+    background-color: lightgray;
+    color: #ff0000;
+}
+
+.register-button {
+    background-color: yellowgreen;
+    width: 180px;
+    height: 70px;
+    margin: auto;
+    order: 3;
+    font-family: 'Oswald', sans-serif;
+    font-size: xx-large;
+    color: white;
+    border-radius: 8px;
+    text-shadow: 0.5px 0.5px gainsboro;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.register-button:hover span {
+    display:none;
+}
+
+.register-button:hover {
+    background-color: forestgreen;
+    color: white;
+}

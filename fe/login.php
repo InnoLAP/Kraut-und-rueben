@@ -2,7 +2,8 @@
 <html lang="en">
     <head>
         <title>Kraut und Rüben</title>
-        <link rel="stylesheet" href="styles.scss">
+        <link rel="stylesheet" href="scss/sharedStyles.scss">
+        <link rel="stylesheet" href="scss/loginStyles.scss">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">

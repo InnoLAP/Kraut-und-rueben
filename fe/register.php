@@ -2,32 +2,11 @@
 <html lang="en">
     <head>
         <title>Kraut und Rüben</title>
-        <link rel="stylesheet" href="styles.scss">
+        <link rel="stylesheet" href="scss/sharedStyles.scss">
+        <link rel="stylesheet" href="scss/registerStyles.scss">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
-        <style>
-        label{
-          position: relative;
-          width:300px;
-          margin:20px;
-          padding:5px;
-          font-size:20px;
-          }
-          input[type=text], input[type=datetime], input[type=tel], input[type=password] {
-          width: 70%;
-          padding: 4px 30px;
-          margin: 2px 0;
-          box-sizing: content-box;
-          border: none;
-          border-bottom: 2px solid red;
-          }
-          .required:after {
-            content:" *";
-            color: white;
-            text-shadow:0px 0px;
-          }
-        </style>
     </head>
     <body>
         <div class="index-header">

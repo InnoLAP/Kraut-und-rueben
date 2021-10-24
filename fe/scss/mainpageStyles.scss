@@ -1,0 +1,87 @@
+.mainpage-div {
+    background-color: white;
+    height: 800px;
+    width: auto;
+    position: relative;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    column-gap: 50px;
+}
+
+.choose-recipes-ingredients-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: xx-large;
+    color: #F8636C;
+    text-align: center;
+}
+
+.recipes-image {
+    background-image: url("../images/recipe.jpeg");
+    background-position: center;
+    background-size: contain;
+    width: 454px;
+    height: 741px;
+    border-radius: 30px;
+}
+
+.ingredients-image {
+    background-image: url("../images/ingredient.jpeg");
+    background-position: center;
+    background-size: contain;
+    width: 454px;
+    height: 741px;
+    border-radius: 30px;
+}
+
+.recipe-button {
+    width: 454px;
+    height: 741px;
+    border-radius: 30px;
+    background-color: transparent;
+    border-color: gainsboro;
+    border-style: none;
+    cursor: pointer;
+    transition: background-color 200ms linear;
+}
+
+.recipe-button:hover span {
+    display: none;
+}
+
+.recipe-button:hover:before {
+    content:"Rezepte";
+}
+
+.recipe-button:hover {
+    background-color: rgba(60, 50, 70, 0.7);
+    color: white;
+    font-size: xxx-large;
+    font-family: 'Oswald', sans-serif;
+}
+
+.ingredient-button {
+    width: 454px;
+    height: 741px;
+    border-radius: 30px;
+    background-color: transparent;
+    border-color: gainsboro;
+    border-style: none;
+    cursor: pointer;
+    transition: background-color 200ms linear;
+}
+
+.ingredient-button:hover span {
+    display: none;
+}
+
+.ingredient-button:hover:before {
+    content:"Zutaten";
+}
+
+.ingredient-button:hover {
+    background-color: rgba(60, 50, 70, 0.7);
+    color: white;
+    font-size: xxx-large;
+    font-family: 'Oswald', sans-serif;
+}
