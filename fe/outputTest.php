@@ -95,7 +95,6 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
-
     </head>
     <body>
         <div class="pageContent">
@@ -104,7 +103,7 @@
                 <input type="checkbox" checked="true" name="checkAllergies">Check for Allergies?</input>
                 <input type="number" name="idString">Search by id</input>
                 <input type="text" name="nameString">Search by name</input>
-                <input type="submit" name="argBtn" value="Accept">
+                <input type="submit" name="argBtn" value="Accept" />
             </form> 
             <table>
                 <thead>
