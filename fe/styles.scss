@@ -284,14 +284,103 @@ a, a:hover, a:visited, a:link, a:active
 .profile-settings-main-div {
     border-color: white;
     border-style: solid;
-    display: flex;
     height: 800px;
     width: 1200px;
     margin: auto;
     margin-top: 45px;
     border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
 }
 
+.profile-settings-img {
+    background-image: url("images/profilesettingsimg.jpeg");
+    height: 780px;
+    width: 580px;
+    align-self: flex-end;
+    border-radius: 20px;
+}
+
+.form-group {
+    color: #F8636C;
+    padding-top: 10px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
+}
+
+#fullName, #email, #pass, #birthday, #firstName, #lastName {
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: solid;
+    border-bottom-color: #F8636C;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+    width: 350px;
+    color: #757575;
+}
+
+#fullName, #email, #pass, #birthday, #firstName, #lastName:focus {
+    outline: none;
+}
+
+.mt-5 {
+    font-size: 40px;
+    color: #F8636C;
+    text-shadow: 1px 1px #ff0000;
+}
+
+.col {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 40px;
+}
+.btn-primary {
+    background-color: #F8636C;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    height: 50px;
+    width: 150px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.btn-default {
+    background-color: #F8636C;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    height: 50px;
+    width: 150px;
+    font-size: 20px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.btn-default:hover span {
+    display: none;
+}
+
+.btn-default:hover {
+    background-color: lightgray;
+    color: #ff0000;
+}
+
+.btn-primary:hover span {
+    display: none;
+}
+
+.btn-primary:hover {
+    background-color: lightgray;
+    color: #ff0000;
+}
+
+/* Login/Register */
 
 .confirm-button {
     background-color: white;
