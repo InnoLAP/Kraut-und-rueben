@@ -36,10 +36,12 @@
                 include "functions.php";
                 include "dbConnect.php";
 
+				//Check if the login data is correct
                 if(array_key_exists('loginBtn', $_POST)) {
                     $loginCheck=CheckLogin($_POST["email"], $_POST["password"], $db);
 
                     if($loginCheck){
+						//If correct get the user specific Data and store it in session cookies for later use
                         while($row = $loginCheck->fetch_assoc()){
                             $customerId=$row["KUNDENNR"];
                             $name=$row["VORNAME"];
@@ -69,8 +71,10 @@
 						$_SESSION['customerAllergies'] = $customerAllergies;
 						$_SESSION['customerDiets'] = $customerDiets;
 
+						//Redirect
                         header('location: mainpage.php');
                     } else {
+						//If incorrect display an error message
                         echo('<div class="errorLogin">
                                 <p>Dieser Login ist uns unbekannt<br>Email oder Passwort ist falsch</p>
                             </div>');

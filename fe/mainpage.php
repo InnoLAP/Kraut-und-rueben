@@ -24,8 +24,10 @@
             <?php
                 session_start();
                 if(!isset($_SESSION['customerId'])){
-                    //header('location: login.php'); Uncomment when the project is finished
+                    //If no session exists it means that the user never logged in, redirect to the index page
+                    //header('location: index.php'); Uncomment when the project is finished
                 } else {
+                    //If it does exists display a custom greeting
                     $_SESSION['name'];
                     echo("Guten Tag ".$_SESSION['name']." ".$_SESSION['surname']."<br>");
                 }
