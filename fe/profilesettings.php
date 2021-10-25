@@ -13,6 +13,14 @@
         $customerId=$_SESSION['customerId'];
     }
 
+    if(array_key_exists('deleteBtn', $_POST)) {
+        DeleteKunde($customerId, $db);
+        session_destroy();
+
+        //Redirect
+        header('location: index.php');
+    }
+
     $command=DatenKunde($customerId);
 
     $result=contactDb($db, $command);
@@ -165,25 +173,24 @@
             </div>
         <div class="profile-settings-img">
             <div class="more-options">
-                <button type="submit" class="additional-options-btn">Diät und Allergen</button>
+                <button class="additional-options-btn">Diät und Allergen</button>
                 <button onclick="document.getElementById('id01').style.display='block'" class="additional-options-btn">Account Löschen</button>
-                <button type="submit" class="additional-options-btn">Datei herunterladen</button>
+                <button class="additional-options-btn">Datei herunterladen</button>
 
                 <div id="id01" class="modal">
                     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-                    <form class="modal-content" action="/action_page.php">
+                    <form class="modal-content" method="post">
                         <div class="container2">
                             <h1>Account Löschen</h1>
-                            <p>Sind Sie sicher, dass Sie Ihr Konto löschen möchten?</p>
+                            <p>Sind Sie sich sicher, dass Sie Ihr Konto löschen möchten?</p>
 
                             <div class="clearfix">
                                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete</button>
+                                <button type="submit" name="deleteBtn" class="deletebtn">Delete</button>
                             </div>
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>

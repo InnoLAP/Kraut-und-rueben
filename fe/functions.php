@@ -243,9 +243,7 @@
                     WHERE KUNDENNR={$customerId}";
         }
 
-        echo $sql;
-        
-        return $sql;
+        contactDb($db, $sql);
     }
 
     //Returns all DIET
