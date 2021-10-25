@@ -112,7 +112,7 @@
           <div class="header-logo">KRAUT &<br> RÜBEN</div>
      </div>
      <div class="index-image">
-         <div class="register-box">
+
         <div class="pageContent">
             <form method="post" class="argForm">
               <br>
@@ -129,12 +129,8 @@
               <br>
               <input class="acceptbtn" type="submit" name="argBtn" value="Suchen"></input><br>
               <br>
-
             </form>
-
-
             <table>
-
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -145,7 +141,6 @@
                         <th>Anzahl der Portionen</th>
                         <th>Menge</th>
                         <th class="buttonColumn">Zum Warenkorb hinzufügen</th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -165,7 +160,7 @@
                                         <td>'.$row["REZEPTNR"].'<input type="number" name="recipeId" value="'.$row["REZEPTNR"].'" class="hide"</td>
                                         <td>'.$row["REZEPTNAME"].'</td>
                                         <td>'.$row["REZEPTZUTATENANZAHL"].'</td>
-                                        <td><a href="'.$row["REZEPTLINK"].'">Hier klicken!</a></td>
+                                        <td><a href="'.$row["REZEPTLINK"].'">Rezept</a></td>
                                         <td>'.number_format($cost, 2).' €</td>
                                         <td>'.$row["PORTIONENANZAHL"].' x</td>
                                         <td><input type="number" name="count" value="1"></td>
@@ -178,6 +173,7 @@
                 </tbody>
             </table>
         </div>
+
         </div>
     </body>
 </html>
