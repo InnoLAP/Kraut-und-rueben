@@ -29,8 +29,17 @@
         $_SESSION['recipeCartArray']=$recipeArray;
     }
 
-    $ingredientsCart=ZutatenID($ingredientsArray, $db);
-    $recipeCart=RezepteID($recipeArray, $db);
+    if(!empty($ingredientsArray)){
+        $ingredientsCart=ZutatenID($ingredientsArray, $db);
+    } else {
+        $ingredientsCart=null;
+    }
+    
+    if(!empty($recipeArray)) {
+        $recipeCart=RezepteID($recipeArray, $db);
+    } else {
+        $recipeCart=null;
+    }
 ?>
 
 <html>
@@ -153,3 +162,12 @@
         </div>
     </body>
 </html>
+
+<?php
+    if(array_key_exists('buyBtn', $_POST)) {
+        PlaceOrder($customerId, $ingredientsArray, $totalPrice, $db);
+        $_SESSION["recipeCartArray"]=array();
+        $_SESSION["cartArray"]=array();
+        header('Location: mainpage.php');
+    }
+?>

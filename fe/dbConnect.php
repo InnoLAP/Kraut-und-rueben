@@ -10,6 +10,7 @@
 
         $send = mysqli_query($db, $command);
 
+        echo(mysqli_error($db));
         return $send;
     }
 

@@ -323,6 +323,31 @@
         }
     }
 
+    //Adds entries for a order
+    function PlaceOrder($customerId, $idArray, $cost, $db) {
+        $nextOrderId=0;
+        $sql=
+            'SELECT AUTO_INCREMENT AS next
+                FROM information_schema.TABLES
+            WHERE TABLE_SCHEMA = "krautundrueben" AND TABLE_NAME = "BESTELLUNG"'
+        ;
+        $sql=contactDb($db, $sql);
+
+        while($row = $sql->fetch_assoc()){
+            $nextOrderId=$row["next"];
+        }
+
+        $sql='INSERT INTO BESTELLUNG (KUNDENNR, BESTELLDATUM, RECHNUNGSBETRAG) VALUES ('.$customerId.', "'.date('Y-m-d').'", '.$cost.');';
+        
+        $sql=contactDb($db, $sql);
+
+        foreach ($idArray as $key => $value) {
+            $sql='INSERT INTO BESTELLUNGZUTAT(BESTELLNR, ZUTATENNR, MENGE) VALUES ('.$nextOrderId.', '.$key.', '.$value.');';
+            contactDb($db, $sql);
+        }
+
+    }
+
     //Adds a customer to the KUNDE table (returns false if email already exists, birthday HAS to be "YYYY-MM-DD")
     function AddKunde($name, $surname, $birthday, $password, $street, $house, $zip, $city, $phone, $email) {
         $sql=
