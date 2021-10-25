@@ -173,21 +173,33 @@
     }
 
     //Return evry ZUTAT within a REZEPT
-    function ZutatenRezept($rezeptId) {
+    function ZutatenRezept($rezeptId, $db) {
 
         $sql=
             "SELECT
                 ZUTAT.ZUTATENNR,
-                ZUTAT.BEZEICHNUNG,
-                ZUTAT.KALORIEN,
-                ZUTAT.KOHLENHYDRATE,
-                ZUTAT.PROTEIN,
                 REZEPTEZUTAT.MENGE
             FROM ZUTAT
             JOIN REZEPTEZUTAT
                 ON ZUTAT.ZUTATENNR = REZEPTEZUTAT.ZUTATENNR AND REZEPTEZUTAT.REZEPTNR = {$rezeptId}";
 
+        $sql=contactDb($db, $sql);
         return $sql;
+    }
+
+    //Returns the total price of a recipe
+    function RezeptPreis($recipeId, $db) {
+        $sql=
+            "SELECT
+	            SUM(ZUTAT.NETTOPREIS*REZEPTEZUTAT.MENGE) as total
+            FROM ZUTAT
+            JOIN REZEPTEZUTAT
+	            ON ZUTAT.ZUTATENNR = REZEPTEZUTAT.ZUTATENNR AND REZEPTEZUTAT.REZEPTNR = {$recipeId}";
+
+        $sql=contactDb($db, $sql);
+
+        return $sql;
+        
     }
 
     //This will delete everything regarding a costomer except for his name for tax reasons

@@ -151,6 +151,14 @@ JOIN REZEPTEZUTAT
 	ON ZUTAT.ZUTATENNR = REZEPTEZUTAT.ZUTATENNR AND REZEPTEZUTAT.REZEPTNR = 1
 
 ---------------------------------------------------------------------
+<------- Get total price for a REZEPT [WORKS WITH REAL DATA]----->
+SELECT
+	SUM(ZUTAT.NETTOPREIS*REZEPTEZUTAT.MENGE) as total
+FROM ZUTAT
+JOIN REZEPTEZUTAT
+	ON ZUTAT.ZUTATENNR = REZEPTEZUTAT.ZUTATENNR AND REZEPTEZUTAT.REZEPTNR = 6
+
+---------------------------------------------------------------------
 <------- delete from KUNDE ----->
 DELETE FROM KUNDE WHERE KUNDE.KUNDENNR = 2010
 
