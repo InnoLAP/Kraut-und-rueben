@@ -4,13 +4,20 @@ They dont have to be used in the actual design
 */
 
 .pageContent {
-    margin: auto;
-    width: 775px;
-    height: auto;
-    max-height: 550px;
+    margin-left: 440px;
+    width: 1000px;
+    height: 750px;
+    max-height: 750px;
     padding: 15px 10px;
     overflow: scroll;
-    border: 10px solid red;
+    box-shadow: 2px 2px 2px gainsboro;
+    background-color: #b1f0b8;
+    border-radius: 30px;
+}
+
+.argForm {
+  display:inline-block;
+  float: 50%;
 }
 
 table {
@@ -18,33 +25,38 @@ table {
     border-spacing:0;
     text-align: center;
     margin: 0 auto;
+    position: relative;
+    left: 5%;
 }
 
 td {
-    border-color:black;
+    border-color:#1f6331;
     border-style:solid;
-    border-width:1px;
+    border-width:2px;
     font-family:Arial, sans-serif;
     font-size:14px;
     overflow:hidden;
-    padding:10px 5px;
+    padding:10px 10px;
     word-break:normal;
+    background-color: #c5ebcf;
 }
 
 th {
-    border-color:black;
+    border-color:#1f6331;
     border-style:solid;
-    border-width:1px;
+    border-width:2px;
     font-family:Arial, sans-serif;
     font-size:14px;
     font-weight:normal;
     overflow:hidden;
     padding:10px 5px;
     word-break:normal;
+    background-color: #a1c4aa;
+
 }
 
 .buttonColumn {
-    border:none;
+
     margin:0 auto;
     padding-left:20px;
 }
@@ -54,6 +66,7 @@ table input[type="number"] {
     margin-right: 5px;
     margin-left: 15%;
     text-align: center;
+    position: relative;
 }
 
 .inputColumn {
@@ -66,5 +79,38 @@ table input[type="number"] {
 }
 
 label {
-  justify-content: flex-end;
+position: relative;
+left: 10%;
+color: #B4886B;
+font-weight: bold;
+display: block;
+width: 400px;
+float: left;
+}
+
+.inputformat {
+  width: 100%;
+  padding: 4px 30px;
+  margin: 2px 0;
+  box-sizing: content-box;
+  border: none;
+  position: relative;
+  left: 10%;
+  flex-direction: row;
+}
+.cbformat {
+  width: 100%;
+  padding: 4px 30px;
+  margin: 2px 0;
+  box-sizing: content-box;
+  border: none;
+  position: relative;
+  left: 50%;
+}
+.acceptbtn {
+  position: relative;
+  left: 10%;
+  width: 300px;
+  height: 50px;
+  font-size: 30px;
 }

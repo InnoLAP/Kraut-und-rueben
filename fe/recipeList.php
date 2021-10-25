@@ -23,6 +23,7 @@
     //Check if the origin data is from the form button that changes the search arguments
     if(array_key_exists('argBtn', $_POST)) {
         //If so get the entered info and get a according command
+        echo("Search set<br>");
 
         if(!isset($_POST["checkDiets"])){$customerDiets=null;}
 
@@ -35,6 +36,7 @@
         $command=RezeptFilter($customerDiets,$customerAllergies,$nameString,$idString, $ingredientCount);
     }else {
         //If not get the command with the standard parameters
+        echo('New search<br>');
         $command = RezeptFilter($customerDiets, $customerAllergies, null, null, null);
     }
 
@@ -42,7 +44,7 @@
     if(array_key_exists('addBtn', $_POST)) {
         //If so get the selected article & amount
         $recipe=$_POST["recipeId"];
-        $amount=$_POST["count"];
+        $amount=$_POST["amount"];
 
         //Check if a cart already exists in the session
         if(isset($_SESSION['cartArray'])) {
@@ -50,22 +52,9 @@
         } else {
             $cartArray = array();
         }
-        if(isset($_SESSION['recipeCartArray'])) {
-            $recipeCartArray = $_SESSION['recipeCartArray'];
-        } else {
-            $recipeCartArray = array();
-        }
 
         //Store the selected article & amount in the cart
-        $recipeCartArray[$recipe] = $amount;
-        $_SESSION['recipeCartArray']=$recipeCartArray;
-
-        $ingredientResult=ZutatenRezept($recipe, $db);
-
-        while($row = $ingredientResult->fetch_assoc()) {
-            $cartArray[$row["ZUTATENNR"]] =$row["MENGE"]*$amount;
-        }
-
+        $cartArray[$recipe] = $amount;
         $_SESSION['cartArray']=$cartArray;
 
         //If a command was set in this temp variable, retrieve it
@@ -83,12 +72,14 @@
         } else {
             $cartArray = array();
         }
-        if(isset($_SESSION['recipeCartArray'])) {
-            $recipeCartArray = $_SESSION['recipeCartArray'];
-        } else {
-            $recipeCartArray = array();
-        }
     }
+
+    //Display the current shopping cart (debugging)
+    echo("Cart consists of:<br>");
+    foreach ($cartArray as $key => $value){
+        echo "Key: $key; Value: $value<br />\n";
+    }
+    echo '<pre>'; print_r($cartArray); echo '</pre>';
 
     //Stash the current command in a temp variable
     $_SESSION['lastRezeptCommand'] = $command;
@@ -99,66 +90,53 @@
 
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
-    <title>Kraut und Rüben</title>
-    <link rel="stylesheet" href="scss/recipeListTemplateStyles.scss">
-    <link rel="stylesheet" href="scss/sharedStyles.scss">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
-</head>
+    <head>
+        <title>Kraut und Rüben</title>
+        <link rel="stylesheet" href="scss/recipeListTemplateStyles.scss">
+        <link rel="stylesheet" href="scss/sharedStyles.scss">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+    </head>
     <body>
-      <div class="index-header">
+      <div class="header">
+          <form action="profilesettings.php">
+              <button type="submit" class="button-profile" >Profile Settings</button>
+          </form>
           <div class="header-logo">KRAUT &<br> RÜBEN</div>
-     </div>
-     <div class="index-image">
-         <div class="register-box">
+          <form action="warenkorb.php">
+              <button class="button-profile">Shopping Cart</button>
+          </form>
+      </div>
         <div class="pageContent">
-            <form method="post" class="argForm">
-              <br>
-              <label for="checkDiets">Sollen Ihre gespeicherten Ernährungskategorie mit berücksichtig werden:</label><br>
-              <input class="cbformat" type="checkbox" checked="true" name="checkDiets"></input><br>
-              <label for="checkAllergies">Sollen Ihre gespeicherten Allergien mit berücksichtig werden:</label><br>
-              <input class="cbformat" type="checkbox" checked="true" name="checkAllergies"></input><br>
-              <label for="ingredientCount">Wählen Sie die maximale Anzahl der Zutaten für ein Rezept aus:</label><br>
-              <input class="inputformat" type="number" name="ingredientCount"></input><br>
-              <label for="idString">Suchen Sie Rezepte nach Rezept Nummer aus:</label><br>
-              <input class="inputformat" type="number" name="idString"></input><br>
-              <label for="nameString">Suchen Sie Rezepte nach Namen raus:</label><br>
-              <input class="inputformat" type="text" name="nameString"></input><br>
-              <br>
-              <input class="acceptbtn" type="submit" name="argBtn" value="Suchen"></input><br>
-              <br>
-
+            <form method="post">
+                <input type="checkbox" checked="true" name="checkDiets"></input><br>
+                <label for="checkDiets">Wählen Sie ihre Ernährungskategorie aus:</label>
+                <input type="checkbox" checked="true" name="checkAllergies"></input><br>
+                <label for="checkAllergies">Bitte geben Sie ihre  ALlergien an:</label>
+                <input type="text" name="ingredientCount">Search by ingredients</input><br>
+                <label for="ingredientCount">Suche nach Zutat:</label>
+                <input type="number" name="idString">Search by id</input><br>
+                <label for="idString">Geben Sie die Zutat Id:</label>
+                <input type="text" name="nameString">Search by name</input><br>
+                <label for="checkDiets">Wählen Sie ihre Ernährungskategorie aus:</label>
+                <input type="submit" name="argBtn" value="Accept"/>
             </form>
-
-
             <table>
-
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Bezeichnung</th>
                         <th>Anzahl der Zutaten</th>
                         <th>Link zum Rezept</th>
-                        <th>Gesamt Preis</th>
                         <th>Anzahl der Portionen</th>
-                        <th>Menge</th>
-                        <th class="buttonColumn">Zum Warenkorb hinzufügen</th>
-
+                        <th class="buttonColumn"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                         //Loop through every row of the retrieved result and make a table row with the data
                         while($row = $result->fetch_assoc()){
-                            $total=RezeptPreis($row["REZEPTNR"], $db);
-                            $cost=0;
-                            while($row2 = $total->fetch_assoc()){
-                                $cost=$row2["total"];
-                                $cost=round($cost, 2);
-                            }
-
                             echo('
                                 <tr>
                                     <form method="post">
@@ -166,10 +144,8 @@
                                         <td>'.$row["REZEPTNAME"].'</td>
                                         <td>'.$row["REZEPTZUTATENANZAHL"].'</td>
                                         <td><a href="'.$row["REZEPTLINK"].'">Hier klicken!</a></td>
-                                        <td>'.number_format($cost, 2).' €</td>
                                         <td>'.$row["PORTIONENANZAHL"].' x</td>
-                                        <td><input type="number" name="count" value="1"></td>
-                                        <td class="buttonColumn"> <input type="submit" name="addBtn" value="hinzufügen"></td>
+                                        <td class="buttonColumn"><input type="submit" name="addBtn" value="Kaufen"></td>
                                     </form>
                                 </tr>'
                             );
@@ -177,7 +153,6 @@
                     ?>
                 </tbody>
             </table>
-        </div>
         </div>
     </body>
 </html>
