@@ -1,5 +1,5 @@
 <?php
-    //Every echo() in this top <?php part can be removed in the design since they only serve debugging purposes 
+    //Every echo() in this top <?php part can be removed in the design since they only serve debugging purposes
     include "functions.php";
     include "dbConnect.php";
 
@@ -39,7 +39,7 @@
         echo('New search<br>');
         $command = RezeptFilter($customerDiets, $customerAllergies, null, null, null);
     }
-    
+
     //Check if the origin data is from one of the form buttons that add an article to the cart
     if(array_key_exists('addBtn', $_POST)) {
         //If so get the selected article & amount
@@ -56,7 +56,7 @@
         //Store the selected article & amount in the cart
         $cartArray[$recipe] = $amount;
         $_SESSION['cartArray']=$cartArray;
-        
+
         //If a command was set in this temp variable, retrieve it
         if(isset($_SESSION['lastRezeptCommand'])){
             $command=$_SESSION['lastRezeptCommand'];
@@ -73,7 +73,7 @@
             $cartArray = array();
         }
     }
-    
+
     //Display the current shopping cart (debugging)
     echo("Cart consists of:<br>");
     foreach ($cartArray as $key => $value){
@@ -92,21 +92,32 @@
 <html lang="en">
     <head>
         <title>Kraut und Rüben</title>
-        <link rel="stylesheet" href="scss/testStyles01.scss">
+        <link rel="stylesheet" href="scss/recipeListTemplateStyles.scss">
+        <link rel="stylesheet" href="scss/sharedStyles.scss">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
     </head>
     <body>
+      <div class="header">
+          <form action="profilesettings.php">
+              <button type="submit" class="button-profile" >Profile Settings</button>
+          </form>
+          <div class="header-logo">KRAUT &<br> RÜBEN</div>
+          <form action="warenkorb.php">
+              <button class="button-profile">Shopping Cart</button>
+          </form>
+      </div>
         <div class="pageContent">
             <form method="post">
+
                 <input type="checkbox" checked="true" name="checkDiets">Check for diet?</input><br>
                 <input type="checkbox" checked="true" name="checkAllergies">Check for Allergies?</input><br>
                 <input type="number" name="ingredientCount">Search by ingredients</input><br>
                 <input type="number" name="idString">Search by id</input><br>
                 <input type="text" name="nameString">Search by name</input><br>
                 <input type="submit" name="argBtn" value="Accept" />
-            </form> 
+            </form>
             <table>
                 <thead>
                     <tr>
