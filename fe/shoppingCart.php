@@ -40,6 +40,29 @@
     } else {
         $recipeCart=null;
     }
+
+    $totalPrice=0;
+    $totalProtein=0;
+    $totalKohlenhydrate=0;
+    $totalKalorien=0;
+    $totalAmount=0;
+    //Loop through every row of the retrieved result and make a table row with the data
+    if($ingredientsCart){
+        while($row = $ingredientsCart->fetch_assoc()){
+            $totalPrice += $row["NETTOPREIS"] * $ingredientsArray[$row["ZUTATENNR"]];
+            $totalProtein += $row["PROTEIN"];
+            $totalKohlenhydrate += $row["KOHLENHYDRATE"];
+            $totalKalorien += $row["KALORIEN"];
+            $totalAmount += $ingredientsArray[$row["ZUTATENNR"]];
+        }
+    }
+
+    if(array_key_exists('buyBtn', $_POST)) {
+        PlaceOrder($customerId, $ingredientsArray, $totalPrice, $db);
+        $_SESSION["recipeCartArray"]=array();
+        $_SESSION["cartArray"]=array();
+        header('Location: mainpage.php');
+    }
 ?>
 
 <html>
@@ -67,20 +90,9 @@
                 </thead>
                 <tbody>
                     <?php
-                        $totalPrice=0;
-                        $totalProtein=0;
-                        $totalKohlenhydrate=0;
-                        $totalKalorien=0;
-                        $totalAmount=0;
                         //Loop through every row of the retrieved result and make a table row with the data
                         if($ingredientsCart){
                             while($row = $ingredientsCart->fetch_assoc()){
-                                $totalPrice += $row["NETTOPREIS"] * $ingredientsArray[$row["ZUTATENNR"]];
-                                $totalProtein += $row["PROTEIN"];
-                                $totalKohlenhydrate += $row["KOHLENHYDRATE"];
-                                $totalKalorien += $row["KALORIEN"];
-                                $totalAmount += $ingredientsArray[$row["ZUTATENNR"]];
-    
                                 echo('
                                     <form method="post">
                                         <tr>
@@ -162,12 +174,3 @@
         </div>
     </body>
 </html>
-
-<?php
-    if(array_key_exists('buyBtn', $_POST)) {
-        PlaceOrder($customerId, $ingredientsArray, $totalPrice, $db);
-        $_SESSION["recipeCartArray"]=array();
-        $_SESSION["cartArray"]=array();
-        header('Location: mainpage.php');
-    }
-?>
