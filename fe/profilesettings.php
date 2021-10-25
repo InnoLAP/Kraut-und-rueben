@@ -32,35 +32,40 @@
         $oldPassword=$_POST["oldPassword"];
 
         if(CheckPassword($customerId, $oldPassword, $db)){
-            $name=$_POST["name"];
-            $surname=$_POST["surname"];
-            $city=$_POST["city"];
-            $zip=$_POST["zip"];
-            $telephone=$_POST["telephone"];
             $email=$_POST["email"];
-            $houseNr=$_POST["houseNr"];
-            $street=$_POST["street"];
-            $newPassword=$_POST["newPassword"];
-
-            $changeCommand=UpdateKunde($customerId, $name, $surname, $newPassword, $street, $houseNr, $zip, $city, $telephone, $email);
-            $changeResult=contactDb($db, $changeCommand);
-
-            $command=DatenKunde($customerId);
-
-            $result=contactDb($db, $command);
-
-            while($row = $result->fetch_assoc()){
-                $name=$row["VORNAME"];
-                $surname=$row["NACHNAME"];
-                $city=$row["ORT"];
-                $zip=$row["PLZ"];
-                $telephone=$row["TELEFON"];
-                $email=$row["EMAIL"];
-                $houseNr=$row["HAUSNR"];
-                $street=$row["STRASSE"];
+            if(CheckEmail($customerId, $email, $db)) {
+                $name=$_POST["name"];
+                $surname=$_POST["surname"];
+                $city=$_POST["city"];
+                $zip=$_POST["zip"];
+                $telephone=$_POST["telephone"];
+                $houseNr=$_POST["houseNr"];
+                $street=$_POST["street"];
+                $newPassword=$_POST["newPassword"];
+    
+    
+                $changeCommand=UpdateKunde($customerId, $name, $surname, $newPassword, $street, $houseNr, $zip, $city, $telephone, $email);
+                $changeResult=contactDb($db, $changeCommand);
+    
+                $command=DatenKunde($customerId);
+    
+                $result=contactDb($db, $command);
+    
+                while($row = $result->fetch_assoc()){
+                    $name=$row["VORNAME"];
+                    $surname=$row["NACHNAME"];
+                    $city=$row["ORT"];
+                    $zip=$row["PLZ"];
+                    $telephone=$row["TELEFON"];
+                    $email=$row["EMAIL"];
+                    $houseNr=$row["HAUSNR"];
+                    $street=$row["STRASSE"];
+                }
+    
+                $errorMsg='<p class="errorMsg">Erfolgreich geändert!</p>';
+            } else {
+                $errorMsg='<p class="errorMsg">Email ist schon vergeben!</p>';
             }
-
-            $errorMsg='<p class="errorMsg">Erfolgreich geändert!</p>';
         } else{
             if(!($_POST["name"] == null)){$name=$_POST["name"];}
             if(!($_POST["surname"] == null)){$surname=$_POST["surname"];}

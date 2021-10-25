@@ -275,6 +275,19 @@
         }
     }
 
+    //Checks if a Email is already in use
+    function CheckEmail($customerId, $email, $db) {
+        $sql = "SELECT * FROM KUNDE WHERE KUNDENNR != '{$customerId}' AND EMAIL = '{$email}'";
+
+        $sql=contactDb($db, $sql);
+
+        if(!$sql or $sql -> num_rows == 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //Adds a customer to the KUNDE table (returns false if email already exists, birthday HAS to be "YYYY-MM-DD")
     function AddKunde($name, $surname, $birthday, $password, $street, $house, $zip, $city, $phone, $email) {
         $sql=
