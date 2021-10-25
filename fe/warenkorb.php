@@ -1,3 +1,38 @@
+<?php
+//Every echo() in this top <?php part can be removed in the design since they only serve debugging purposes
+include "functions.php";
+include "dbConnect.php";
+
+session_start();
+
+$customerId=2008;
+
+if(!isset($_SESSION['cartArray'])){
+    //If no session exists it means that the user never logged in, redirect to the index page
+    //header('location: login.php'); <-- Uncomment when the project is finished
+} else {
+    //Get the actual customer data if a session exists
+    //$customerId=$_SESSION['customerId']; <-- Uncomment when the project is finished
+    $recipeArray=$_SESSION['recipeCartArray'];
+    $ingredientsArray=$_SESSION['cartArray'];
+}
+
+if(array_key_exists('deleteIngredientBtn', $_POST)) {
+    $ingredientId=$_POST["ingredientId"];
+    unset($ingredientsArray[$ingredientId]);
+    $_SESSION['cartArray']=$ingredientsArray;
+}
+
+if(array_key_exists('deleteRecipeBtn', $_POST)) {
+    $recipeId=$_POST["recipeId"];
+    unset($recipeArray[$recipeId]);
+    $_SESSION['recipeCartArray']=$recipeArray;
+}
+
+$ingredientsCart=ZutatenID($ingredientsArray, $db);
+$recipeCart=RezepteID($recipeArray, $db);
+?>
+
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -37,17 +72,59 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <form method="post">
-                            <td>test</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="delete-ingredient-btn"><button class="delete-ingredient-btn">Entfernen</button></td>
-                        </form>
-                    </tr>
+
+                    <?php
+                        $totalPrice=0;
+                        $totalProtein=0;
+                        $totalKohlenhydrate=0;
+                        $totalKalorien=0;
+                        $totalAmount=0;
+                        //Loop through every row of the retrieved result and make a table row with the data
+                        if($ingredientsCart){
+                            while($row = $ingredientsCart->fetch_assoc()){
+                                $totalPrice += $row["NETTOPREIS"] * $ingredientsArray[$row["ZUTATENNR"]];
+                                $totalProtein += $row["PROTEIN"];
+                                $totalKohlenhydrate += $row["KOHLENHYDRATE"];
+                                $totalKalorien += $row["KALORIEN"];
+                                $totalAmount += $ingredientsArray[$row["ZUTATENNR"]];
+
+                                echo('
+                                   <form method="post">
+                                      <tr>
+                                            <td>'.$row["BEZEICHNUNG"].'<input type="text" class="hide" name="ingredientId" value="'.$row["ZUTATENNR"].'"></td>
+                                            <td>'.$row["NETTOPREIS"]*$ingredientsArray[$row["ZUTATENNR"]].'€</td>
+                                            <td>'.$row["KALORIEN"].'</td>
+                                            <td>'.$row["KOHLENHYDRATE"].'</td>
+                                            <td>'.$row["PROTEIN"].'</td>
+                                            <td>'.$ingredientsArray[$row["ZUTATENNR"]].'</td>
+                                            <td class="delete-ingredient-btn"><input type="submit" name="deleteIngredientBtn" Value="Entfernen"><button class="delete-ingredient-btn">Entfernen</button></input></td>
+                                      </tr>
+                                   </form>
+                               ');
+                            }
+                        }
+                    echo('
+                            <tr>
+                                <td class="buttonColumn"></td>
+                                <td class="buttonColumn"></td>
+                                <td class="buttonColumn"></td>
+                                <td class="buttonColumn"></td>
+                                <td class="buttonColumn"></td>
+                                <td class="buttonColumn"></td>
+                                <td class="buttonColumn"></td>
+                            </tr>
+                        ');
+                    echo('
+                            <tr>
+                                <td>Gesamt:</td>
+                                <td>'.$totalPrice.'€</td>
+                                <td>'.$totalKalorien.'</td>
+                                <td>'.$totalKohlenhydrate.'</td>
+                                <td>'.$totalProtein.'</td>
+                                <td>'.$totalAmount.'</td>
+                            </tr>
+                        ');
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -63,19 +140,30 @@
                 </thead>
 
                 <tbody>
-                <tr>
-                    <form method="post">
-                        <td>salada de alface com molho</td>
-                        <td></td>
-                        <td><a>hier</a></td>
-                        <td class="delete-ingredient-btn"><button class="delete-ingredient-btn">Entfernen</button></td>
-                    </form>
-                </tr>
+
+                    <?php
+                        //Loop through every row of the retrieved result and make a table row with the data
+                        if($recipeCart){
+                            while($row = $recipeCart->fetch_assoc()){
+                                echo('
+                                    <form method="post">
+                                        <tr>
+                                            <td>'.$row["REZEPTNAME"].'<input type="text" class="hide" name="recipeId" value="'.$row["REZEPTNR"].'"></td>
+                                            <td>'.$row["PORTIONENANZAHL"].'x</td>
+                                            <td><a href="'.$row["REZEPTLINK"].'">Hier klicken!</a></td>
+                                            <td class="buttonColumn"><input type="submit" name="deleteRecipeBtn" Value="Entfernen"></td>
+                                        </tr>
+                                    </form>
+                                ');
+                            }
+                        }
+                    ?>
+
                 </tbody>
             </table>
         </div>
 
-        <button class="cta-buy-btn">Jetzt kaufen</button>
+        <input class="cta-buy-btn"  type="submit" name="buyBtn" value="Jetzt Kaufen">
     </div>
 
 </body>
