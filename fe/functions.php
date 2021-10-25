@@ -154,21 +154,44 @@
     }
 
     //Return every ZUTAT with these ID's
-    function ZutatenID($idArray) {
+    function ZutatenID($idArray, $db) {
 
-        $zutatArgs = "";
+        $zutatArgs = "WHERE ";
+        $firstBool=true;
 
-        for($i=0;$i<count($idArray);$i++){
-            if($i!=0){
+        foreach ($idArray as $key => $value) {
+            if(!$firstBool) {
                 $zutatArgs.=' OR ';
             }
-            else {
-                $zutatArgs.='WHERE ';
-            }
-            $zutatArgs.="ZUTAT.ZUTATENNR = {$idArray[$i]}";
+
+            $firstBool=false;
+            $zutatArgs.="ZUTAT.ZUTATENNR = {$key}";
         }
 
         $sql="SELECT * FROM ZUTAT {$zutatArgs}";
+
+        $sql=contactDb($db, $sql);
+        return $sql;
+    }
+
+    //Return every REZEPT with these ID's
+    function RezepteID($idArray, $db) {
+
+        $rezeptArgs = "WHERE ";
+        $firstBool=true;
+
+        foreach ($idArray as $key => $value) {
+            if(!$firstBool) {
+                $rezeptArgs.=' OR ';
+            }
+
+            $firstBool=false;
+            $rezeptArgs.="REZEPTE.REZEPTNR = {$key}";
+        }
+
+        $sql="SELECT * FROM REZEPTE {$rezeptArgs}";
+
+        $sql=contactDb($db, $sql);
         return $sql;
     }
 
