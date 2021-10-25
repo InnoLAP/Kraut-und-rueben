@@ -349,13 +349,13 @@
     }
 
     //Adds a customer to the KUNDE table (returns false if email already exists, birthday HAS to be "YYYY-MM-DD")
-    function AddKunde($name, $surname, $birthday, $password, $street, $house, $zip, $city, $phone, $email) {
+    function AddKunde($name, $surname, $birthday, $password, $street, $house, $zip, $city, $phone, $email, $db) {
         $sql=
             "INSERT INTO KUNDE
                 (NACHNAME, VORNAME, GEBURTSDATUM, PASSWORT, STRASSE, HAUSNR, PLZ, ORT, TELEFON, EMAIL) VALUE
                 ('{$surname}', '{$name}', '{$birthday}', SHA1('{$password}'), '{$street}', '{$house}', '{$zip}', '{$city}', '{$phone}', '{$email}')";
         
-        return $sql;
+        $sql=contactDb($db, $sql);
     }
 
     //Updates a customer in the KUNDE table (returns false if the KUNDENNR doesnt exist or the new email already exists)
