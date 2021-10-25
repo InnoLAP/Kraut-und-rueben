@@ -11,14 +11,6 @@
     gap: 100px;
 }
 
-.profile-settings-img {
-    background-image: url("../images/profilesettingsimg.jpeg");
-    height: 780px;
-    width: 580px;
-    align-self: flex-end;
-    border-radius: 20px;
-}
-
 .form-group {
     color: #F8636C;
     padding-top: 10px;
@@ -98,4 +90,149 @@
     content:"";
     border-bottom: 2px dotted #ff0000;
     margin: 30px 0 15px 0;
+}
+
+.profile-settings-img {
+    background-image: url("../images/profilesettingsimg.jpeg");
+    height: 780px;
+    width: 660px;
+    align-self: flex-end;
+    border-radius: 20px;
+}
+
+.more-options {
+    margin-top: 50px;
+    margin-left: 50px;
+    height: 680px;
+    width: 560px;
+    background-color: white;
+    border-radius: 20px;
+    opacity: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.additional-options-btn {
+    background-color: #F8636C;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    border: none;
+    border-radius: 10px;
+    height: 100px;
+    width: 180px;
+    font-size: 30px;
+    margin-top: 100px;
+    cursor: pointer;
+}
+
+.additional-options-btn:hover span {
+    display: none;
+}
+
+.additional-options-btn:hover {
+    background-color: lightgray;
+    color: #ff0000;
+}
+
+.cancelbtn {
+    background-color: darkgrey;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+    width: 100px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
+    margin-left: 70px;
+    cursor: pointer;
+}
+
+.deletebtn {
+    background-color: #ff0000;
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+    width: 100px;
+    color: black;
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.cancelbtn:hover span {
+    display: none;
+}
+
+.cancelbtn:hover {
+    background-color: lightgray;
+    color: #ff0000;
+}
+
+.deletebtn:hover span {
+    display: none;
+}
+
+.deletebtn:hover {
+    background-color: black;
+    color: red;
+}
+
+/* Add padding and center-align text to the container */
+.container2 {
+    padding: 16px;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #474e5d;
+    padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+/* The Modal Close Button (x) */
+.close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+    color: #f44336;
+    cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
 }

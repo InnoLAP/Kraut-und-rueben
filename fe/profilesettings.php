@@ -42,15 +42,15 @@
                 $houseNr=$_POST["houseNr"];
                 $street=$_POST["street"];
                 $newPassword=$_POST["newPassword"];
-    
-    
+
+
                 $changeCommand=UpdateKunde($customerId, $name, $surname, $newPassword, $street, $houseNr, $zip, $city, $telephone, $email);
                 $changeResult=contactDb($db, $changeCommand);
-    
+
                 $command=DatenKunde($customerId);
-    
+
                 $result=contactDb($db, $command);
-    
+
                 while($row = $result->fetch_assoc()){
                     $name=$row["VORNAME"];
                     $surname=$row["NACHNAME"];
@@ -61,7 +61,7 @@
                     $houseNr=$row["HAUSNR"];
                     $street=$row["STRASSE"];
                 }
-    
+
                 $errorMsg='<p class="errorMsg">Erfolgreich geändert!</p>';
             } else {
                 $errorMsg='<p class="errorMsg">Email ist schon vergeben!</p>';
@@ -163,7 +163,29 @@
                     </div>
                 </div>
             </div>
-        <div class="profile-settings-img"></div>
+        <div class="profile-settings-img">
+            <div class="more-options">
+                <button type="submit" class="additional-options-btn">Diät und Allergen</button>
+                <button onclick="document.getElementById('id01').style.display='block'" class="additional-options-btn">Account Löschen</button>
+                <button type="submit" class="additional-options-btn">Datei herunterladen</button>
+
+                <div id="id01" class="modal">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+                    <form class="modal-content" action="/action_page.php">
+                        <div class="container2">
+                            <h1>Account Löschen</h1>
+                            <p>Sind Sie sicher, dass Sie Ihr Konto löschen möchten?</p>
+
+                            <div class="clearfix">
+                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
     </div>
 </body>
 </html>

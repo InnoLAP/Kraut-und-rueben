@@ -1,0 +1,107 @@
+.order-boxes {
+  display: flex;
+  width: auto;
+  margin: auto;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+h1 {
+  align-self: center;
+  color: #F8636C;
+  text-shadow: 1px 1px #ff0000;
+}
+.ingredients-box {
+  margin: auto;
+  background-color: #F8636C;
+  height: auto;
+  max-height: 550px;
+  width: 1050px;
+  margin-top: 50px;
+  color: white;
+  border-radius: 20px;
+  align-self: flex-start;
+}
+
+.recipes-box {
+  margin: auto;
+  background-color: #F8636C;
+  height: auto;
+  max-height: 550px;
+  width: 675px;
+  margin-top: 50px;
+  color: white;
+  border-radius: 20px;
+  align-self: flex-end;
+}
+
+table {
+  border-collapse:collapse;
+  border-spacing:0;
+  text-align: center;
+  margin: 0 auto;
+}
+
+td {
+  border-style: solid;
+  border-color: #F8636C;
+  font-family: 'Oswald', sans-serif;
+  font-size:15px;
+  overflow:hidden;
+  padding:10px 40px;
+  word-break:normal;
+  color: #F8636C;
+}
+
+ tbody {
+   background-color: white;
+   border-radius: 5px;
+ }
+
+th {
+  border: none;
+  font-family: 'Oswald', sans-serif;
+  font-size:20px;
+  font-weight:normal;
+  overflow:hidden;
+  padding:10px 40px;
+  word-break:normal;
+}
+
+a, a:hover, a:visited, a:link, a:active {
+  color: #F8636C;
+  cursor: pointer;
+}
+
+.delete-ingredient-btn {
+  border: none;
+  background-color: #F8636C;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.delete-ingredient-btn:hover {
+  color: #ff0000;
+}
+
+.cta-buy-btn {
+  background-color: yellowgreen;
+  color: white;
+  font-size: 30px;
+  width: 180px;
+  height: 80px;
+  border-radius: 10px;
+  border: none;
+  align-self: center;
+  margin-top: 50px;
+  cursor: pointer;
+}
+
+.cta-buy-btn:hover span {
+  display: none;
+}
+
+.cta-buy-btn:hover {
+  background-color: forestgreen;
+}
