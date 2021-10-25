@@ -44,7 +44,7 @@
     if(array_key_exists('addBtn', $_POST)) {
         //If so get the selected article & amount
         $recipe=$_POST["recipeId"];
-        $amount=$_POST["amount"];
+        $amount=$_POST["count"];
 
         //Check if a cart already exists in the session
         if(isset($_SESSION['cartArray'])) {
@@ -52,9 +52,22 @@
         } else {
             $cartArray = array();
         }
+        if(isset($_SESSION['recipeCartArray'])) {
+            $recipeCartArray = $_SESSION['recipeCartArray'];
+        } else {
+            $recipeCartArray = array();
+        }
 
         //Store the selected article & amount in the cart
-        $cartArray[$recipe] = $amount;
+        $recipeCartArray[$recipe] = $amount;
+        $_SESSION['recipeCartArray']=$recipeCartArray;
+
+        $ingredientResult=ZutatenRezept($recipe, $db);
+
+        while($row = $ingredientResult->fetch_assoc()) {
+            $cartArray[$row["ZUTATENNR"]] =$row["MENGE"]*$amount;
+        }
+
         $_SESSION['cartArray']=$cartArray;
         
         //If a command was set in this temp variable, retrieve it
@@ -72,14 +85,26 @@
         } else {
             $cartArray = array();
         }
+        if(isset($_SESSION['recipeCartArray'])) {
+            $recipeCartArray = $_SESSION['recipeCartArray'];
+        } else {
+            $recipeCartArray = array();
+        }
     }
     
-    //Display the current shopping cart (debugging)
-    echo("Cart consists of:<br>");
+    //Display the current ingredient shopping cart (debugging)
+    echo("Ingredient Cart consists of:<br>");
     foreach ($cartArray as $key => $value){
         echo "Key: $key; Value: $value<br />\n";
     }
     echo '<pre>'; print_r($cartArray); echo '</pre>';
+    echo("<br><br>");
+    //Display the current recipe shopping cart
+    echo("Recipe Cart consists of:<br>");
+    foreach ($recipeCartArray as $key => $value){
+        echo "Key: $key; Value: $value<br />\n";
+    }
+    echo '<pre>'; print_r($recipeCartArray); echo '</pre>';
 
     //Stash the current command in a temp variable
     $_SESSION['lastRezeptCommand'] = $command;
@@ -114,7 +139,9 @@
                         <th>Bezeichnung</th>
                         <th>Anzahl der Zutaten</th>
                         <th>Link zum Rezept</th>
+                        <th>Gesamt Preis</th>
                         <th>Anzahl der Portionen</th>
+                        <th>Menge</th>
                         <th class="buttonColumn"></th>
                     </tr>
                 </thead>
@@ -122,6 +149,13 @@
                     <?php
                         //Loop through every row of the retrieved result and make a table row with the data
                         while($row = $result->fetch_assoc()){
+                            $total=RezeptPreis($row["REZEPTNR"], $db);
+                            $cost=0;
+                            while($row2 = $total->fetch_assoc()){
+                                $cost=$row2["total"];
+                                $cost=round($cost, 2);
+                            }
+
                             echo('
                                 <tr>
                                     <form method="post">
@@ -129,7 +163,9 @@
                                         <td>'.$row["REZEPTNAME"].'</td>
                                         <td>'.$row["REZEPTZUTATENANZAHL"].'</td>
                                         <td><a href="'.$row["REZEPTLINK"].'">Hier klicken!</a></td>
+                                        <td>'.number_format($cost, 2).' €</td>
                                         <td>'.$row["PORTIONENANZAHL"].' x</td>
+                                        <td><input type="number" name="count" value="1"></td>
                                         <td class="buttonColumn"><input type="submit" name="addBtn" value="Kaufen"></td>
                                     </form>
                                 </tr>'
