@@ -132,3 +132,17 @@ p {
     margin-bottom: 20px;
     font-size: large;
 }
+
+.agbLink{
+    color:blue !important;
+}
+
+.agbLink:hover{
+    text-decoration: underline;
+}
+
+input[type="checkbox"]{
+    width: auto;
+    margin:0 5px 25px 0;
+    float:unset;
+}

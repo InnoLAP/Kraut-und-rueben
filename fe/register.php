@@ -85,8 +85,10 @@
                     <label class="required" for="GEBURTSDATUM">Geburtsdatum:</label>
                     <input type="date" name="birthday" <?php echo('value="'.$birthday.'"')?> placeholder="dd.mm.yyyy" required><br>
 
+                    
                 </form>
                 <br><br>
+                <input type="checkbox" form="regForm" required>Ich habe die <a class="agbLink" href="agb.html">AGB</a> gelesen und erkläre mich einverstanden *</input>
                 <div class="loginbutton">
                     <div class="confirm-button">
                         <input type="submit" form="regForm" name="regBtn" value="Regristrieren" class="bacon">
