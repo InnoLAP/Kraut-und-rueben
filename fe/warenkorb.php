@@ -64,7 +64,7 @@
                       <td>'.$row["KOHLENHYDRATE"].'</td>
                       <td>'.$row["PROTEIN"].'</td>
                       <td>'.$ingredientsArray[$row["ZUTATENNR"]].'</td>
-                      <td class="delete-ingredient-btn"><input type="submit" name="deleteIngredientBtn" Value="Entfernen"></input></td>
+                      <td class="delete-ingredient-btn"><input class="deleteBtn" type="submit" name="deleteIngredientBtn" Value="Entfernen"></input></td>
                     </tr>
                 </form>'
             ;
@@ -72,10 +72,14 @@
     }
 
     if(array_key_exists('buyBtn', $_POST)) {
-        PlaceOrder($customerId, $ingredientsArray, $totalPrice, $db);
-        $_SESSION["recipeCartArray"]=array();
-        $_SESSION["cartArray"]=array();
-        header('Location: mainpage.php');
+        if($ingredientsArray != null){
+            PlaceOrder($customerId, $ingredientsArray, $totalPrice, $db);
+            $_SESSION["recipeCartArray"]=array();
+            $_SESSION["cartArray"]=array();
+            header('Location: mainpage.php');
+        } else {
+            echo("shopping cart empty");
+        }
     }
 ?>
 
@@ -168,7 +172,7 @@
                                             <td>'.$row["REZEPTNAME"].'<input type="text" class="hide" name="recipeId" value="'.$row["REZEPTNR"].'"></td>
                                             <td>'.$row["PORTIONENANZAHL"].'x</td>
                                             <td><a href="'.$row["REZEPTLINK"].'">Hier klicken!</a></td>
-                                            <td class="buttonColumn"><input type="submit" name="deleteRecipeBtn" Value="Entfernen"></td>
+                                            <td class="delete-ingredient-btn lastField"><input type="submit" class="deleteBtn" name="deleteRecipeBtn" Value="Entfernen"></td>
                                         </tr>
                                     </form>
                                 ');
@@ -179,8 +183,8 @@
                 </tbody>
             </table>
         </div>
-        <form method="post">
-            <input class="cta-buy-btn" type="submit" name="buyBtn" value="Jetzt Kaufen">
+        <form method="post" class="buyForm">
+            <input class="cta-buy-btn" type="submit" name="buyBtn" value="Jetzt Kaufen" <?php if(!$ingredientsArray) {echo('disabled="disabled"');}?>>
         </form>
     </div>
 

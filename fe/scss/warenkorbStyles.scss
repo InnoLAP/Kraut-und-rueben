@@ -15,9 +15,7 @@ h1 {
   margin: auto;
   background-color: #F8636C;
   height: auto;
-  max-height: 550px;
-  width: 1050px;
-  margin-top: 50px;
+  margin-top: 25px;
   color: white;
   border-radius: 20px;
   align-self: flex-start;
@@ -78,11 +76,6 @@ a, a:hover, a:visited, a:link, a:active {
   background-color: #F8636C;
   color: white;
   font-size: 15px;
-  cursor: pointer;
-}
-
-.delete-ingredient-btn:hover {
-  color: #ff0000;
 }
 
 .cta-buy-btn {
@@ -104,4 +97,48 @@ a, a:hover, a:visited, a:link, a:active {
 
 .cta-buy-btn:hover {
   background-color: forestgreen;
+}
+
+.deleteBtn {
+  background-color: firebrick;
+  color: white;
+  font-size: 15px;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 2px 2px 3px black;
+  cursor: pointer;
+}
+
+.deleteBtn:hover span {
+  display: none;
+}
+
+.deleteBtn:hover {
+  background-color: red;
+}
+
+.buttonColumn {
+  border:unset;
+  border-top: solid #F8636C;
+  border-bottom: solid #F8636C;
+}
+
+.hide{
+  display:none;
+}
+
+.lastField {
+  border-bottom-right-radius: 13px;
+}
+
+a:hover {
+  text-decoration: underline !important;
+}
+
+.buyForm{
+  width: auto;
+  margin: auto;
+  margin-bottom: 50px;
 }
