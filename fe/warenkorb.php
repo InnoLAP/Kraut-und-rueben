@@ -93,13 +93,11 @@
 <body>
 
     <div class="header">
-        <form action="profilesettings.php">
-            <button type="submit" class="button-profile">Profile Settings</button>
+        <form action="mainpage.php">
+            <button type="submit" class="button-profile">Zurück</button>
         </form>
         <div class="header-logo">KRAUT &<br> RÜBEN</div>
-        <form action="warenkorb.php">
-            <button class="button-profile">Shopping Cart</button>
-        </form>
+        <button class="button-profile noHover">Warenkorb</button>
     </div>
 
     <div class="order-boxes">

@@ -13,11 +13,11 @@
 
     <div class="header">
         <form action="profilesettings.php">
-            <button type="submit" class="button-profile" >Profile Settings</button>
+            <button type="submit" class="button-profile" >Einstellungen</button>
         </form>
         <div class="header-logo">KRAUT &<br> RÜBEN</div>
         <form action="warenkorb.php">
-            <button class="button-profile">Shopping Cart</button>
+            <button class="button-profile">Warenkorb</button>
         </form>
     </div>
         <div class="choose-recipes-ingredients-text">
@@ -34,17 +34,17 @@
                 }
                 
             ?>
-            Hier bei Kraut und Rüben können Sie entweder einzelne <br> Zutaten kaufen oder, wenn Sie Inspiration brauchen, ganze Rezepte!
+            Hier bei Kraut und Rüben können Sie entweder einzelne <br> Zutaten kaufen, oder gleich ganze Rezepte!
             <br><br>Was wünschen Sie sich heute?<br>
         </div>
     <div class="mainpage-div">
         <div class="recipes-image">
-            <form action="rezepte.php">
+            <form action="Rezepte.php">
                 <button class="recipe-button"></button>
             </form>
         </div>
         <div class="ingredients-image">
-            <form action="zutaten.php">
+            <form action="Zutaten.php">
                 <button class="ingredient-button"></button>
             </form>
         </div>

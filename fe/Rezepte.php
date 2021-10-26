@@ -1,5 +1,5 @@
 <?php
-    //Every echo() in this top <?php part can be removed in the design since they only serve debugging purposes 
+    //Every echo() in this top <?php part can be removed in the design since they only serve debugging purposes
     include "functions.php";
     include "dbConnect.php";
 
@@ -23,7 +23,6 @@
     //Check if the origin data is from the form button that changes the search arguments
     if(array_key_exists('argBtn', $_POST)) {
         //If so get the entered info and get a according command
-        echo("Search set<br>");
 
         if(!isset($_POST["checkDiets"])){$customerDiets=null;}
 
@@ -36,10 +35,9 @@
         $command=RezeptFilter($customerDiets,$customerAllergies,$nameString,$idString, $ingredientCount);
     }else {
         //If not get the command with the standard parameters
-        echo('New search<br>');
         $command = RezeptFilter($customerDiets, $customerAllergies, null, null, null);
     }
-    
+
     //Check if the origin data is from one of the form buttons that add an article to the cart
     if(array_key_exists('addBtn', $_POST)) {
         //If so get the selected article & amount
@@ -69,7 +67,7 @@
         }
 
         $_SESSION['cartArray']=$cartArray;
-        
+
         //If a command was set in this temp variable, retrieve it
         if(isset($_SESSION['lastRezeptCommand'])){
             $command=$_SESSION['lastRezeptCommand'];
@@ -91,20 +89,6 @@
             $recipeCartArray = array();
         }
     }
-    
-    //Display the current ingredient shopping cart (debugging)
-    echo("Ingredient Cart consists of:<br>");
-    foreach ($cartArray as $key => $value){
-        echo "Key: $key; Value: $value<br />\n";
-    }
-    echo '<pre>'; print_r($cartArray); echo '</pre>';
-    echo("<br><br>");
-    //Display the current recipe shopping cart
-    echo("Recipe Cart consists of:<br>");
-    foreach ($recipeCartArray as $key => $value){
-        echo "Key: $key; Value: $value<br />\n";
-    }
-    echo '<pre>'; print_r($recipeCartArray); echo '</pre>';
 
     //Stash the current command in a temp variable
     $_SESSION['lastRezeptCommand'] = $command;
@@ -115,23 +99,43 @@
 
 <!DOCTYPE HTML>
 <html lang="en">
-    <head>
-        <title>Kraut und Rüben</title>
-        <link rel="stylesheet" href="scss/testStyles01.scss">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
-    </head>
+<head>
+    <title>Kraut und Rüben</title>
+    <link rel="stylesheet" href="scss/rezepteStyles.scss">
+    <link rel="stylesheet" href="scss/sharedStyles.scss">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+</head>
     <body>
+        <div class="header">
+            <form action="mainpage.php">
+                <button type="submit" class="button-profile" >Zurück</button>
+            </form>
+            <div class="header-logo">KRAUT &<br> RÜBEN</div>
+            <form action="warenkorb.php">
+                <button class="button-profile">Warenkorb</button>
+            </form>
+        </div>
+     <div class="index-image">
+
         <div class="pageContent">
-            <form method="post">
-                <input type="checkbox" checked="true" name="checkDiets">Check for diet?</input><br>
-                <input type="checkbox" checked="true" name="checkAllergies">Check for Allergies?</input><br>
-                <input type="number" name="ingredientCount">Search by ingredients</input><br>
-                <input type="number" name="idString">Search by id</input><br>
-                <input type="text" name="nameString">Search by name</input><br>
-                <input type="submit" name="argBtn" value="Accept" />
-            </form> 
+            <form method="post" class="argForm">
+              <br>
+              <label for="checkDiets">Sollen Ihre gespeicherten Ernährungskategorie mit berücksichtig werden:</label><br>
+              <input class="cbformat" type="checkbox" checked="true" name="checkDiets"></input><br>
+              <label for="checkAllergies">Sollen Ihre gespeicherten Allergien mit berücksichtig werden:</label><br>
+              <input class="cbformat" type="checkbox" checked="true" name="checkAllergies"></input><br>
+              <label for="ingredientCount">Wählen Sie die maximale Anzahl der Zutaten für ein Rezept aus:</label><br>
+              <input class="inputformat" type="number" name="ingredientCount"></input><br>
+              <label for="idString">Suchen Sie Rezepte nach Rezept Nummer aus:</label><br>
+              <input class="inputformat" type="number" name="idString"></input><br>
+              <label for="nameString">Suchen Sie Rezepte nach Namen raus:</label><br>
+              <input class="inputformat" type="text" name="nameString"></input><br>
+              <br>
+              <input class="acceptbtn" type="submit" name="argBtn" value="Suchen"></input><br>
+              <br>
+            </form>
             <table>
                 <thead>
                     <tr>
@@ -142,7 +146,7 @@
                         <th>Gesamt Preis</th>
                         <th>Anzahl der Portionen</th>
                         <th>Menge</th>
-                        <th class="buttonColumn"></th>
+                        <th class="buttonColumn">Zum Warenkorb hinzufügen</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -162,11 +166,11 @@
                                         <td>'.$row["REZEPTNR"].'<input type="number" name="recipeId" value="'.$row["REZEPTNR"].'" class="hide"</td>
                                         <td>'.$row["REZEPTNAME"].'</td>
                                         <td>'.$row["REZEPTZUTATENANZAHL"].'</td>
-                                        <td><a href="'.$row["REZEPTLINK"].'">Hier klicken!</a></td>
+                                        <td><a href="'.$row["REZEPTLINK"].'">Rezept</a></td>
                                         <td>'.number_format($cost, 2).' €</td>
                                         <td>'.$row["PORTIONENANZAHL"].' x</td>
                                         <td><input type="number" name="count" value="1"></td>
-                                        <td class="buttonColumn"><input type="submit" name="addBtn" value="Kaufen"></td>
+                                        <td class="buttonColumn"> <input type="submit" name="addBtn" value="hinzufügen"></td>
                                     </form>
                                 </tr>'
                             );
@@ -174,6 +178,8 @@
                     ?>
                 </tbody>
             </table>
+        </div>
+
         </div>
     </body>
 </html>

@@ -1,3 +1,27 @@
+<?php
+    include "functions.php";
+    include "dbConnect.php";
+
+    $customerId=2008;
+    $errorMsg="";
+
+    session_start();
+    if(!isset($_SESSION['customerId'])){
+        //If no session exists it means that the user never logged in, redirect to the index page
+        //header('location: index.php'); Uncomment when the project is finished
+    } else {
+        $customerId=$_SESSION['customerId'];
+    }
+
+    if(array_key_exists('deleteBtn', $_POST)) {
+        DeleteKunde($customerId, $db);
+        session_destroy();
+
+        //Redirect
+        header('location: index.php');
+    }
+?>
+
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -10,13 +34,11 @@
 </head>
 <body>
     <div class="header">
-        <form action="mainpage.php">
+        <form action="profilesettings.php">
             <button type="submit" class="button-profile" >Zurück</button>
         </form>
         <div class="header-logo">KRAUT &<br> RÜBEN</div>
-        <form action="warenkorb.php">
-            <button class="button-profile">Shopping Cart</button>
-        </form>
+        <button class="button-profile noHover">Diäten & Allergien</button>
     </div>
     <div class="profile-settings-main-div">
         <div class="col-md-9">
@@ -87,21 +109,21 @@
     <div class="profile-settings-img">
         <div class="more-options">
             <form action="profilesettings.php">
-                <button type="submit" class="additional-options-btn">Profile Settings</button>
+                <button class="additional-options-btn">Profile Settings</button>
             </form>
             <button onclick="document.getElementById('id01').style.display='block'" class="additional-options-btn">Account Löschen</button>
-            <button type="submit" class="additional-options-btn">Datei herunterladen</button>
+            <button class="additional-options-btn">Datei herunterladen</button>
 
                 <div id="id01" class="modal">
                     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-                    <form class="modal-content" action="/action_page.php">
+                    <form class="modal-content" method="post">
                         <div class="container2">
                             <h1>Account Löschen</h1>
                             <p>Sind Sie sicher, dass Sie Ihr Konto löschen möchten?</p>
 
                             <div class="clearfix">
                                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete</button>
+                                <button type="submit" name="deleteBtn" class="deletebtn">Delete</button>
                             </div>
                         </div>
                     </form>

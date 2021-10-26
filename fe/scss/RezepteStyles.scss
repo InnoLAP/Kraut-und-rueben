@@ -1,0 +1,145 @@
+.pageContent {
+    margin-left: 450px;
+    width: 950px;
+    height: 750px;
+    max-height: 750px;
+    padding: 15px 50px;
+    overflow: scroll;
+    box-shadow: 2px 2px 2px gainsboro;
+    background-color: #F8636C;
+    opacity: .85;
+    border-radius: 35px;
+}
+
+.argForm {
+  display:inline-block;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+}
+
+td {
+    border-color:#F8636C;
+    border-style:solid;
+    border-width:2px;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    overflow:hidden;
+    padding:10px 10px;
+    word-break:normal;
+    background-color: #ffffff;
+    opacity: .75;
+
+}
+
+th {
+    border-color:#F8636C;
+    border-style:solid;
+    border-width:2px;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    font-weight:normal;
+    overflow:hidden;
+    padding:10px 5px;
+    word-break:normal;
+    background-color: #630830;
+    opacity: .8;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.buttonColumn {
+
+    margin:0 auto;
+    padding-left:20px;
+}
+
+table input[type="number"] {
+    width: 50px;
+    margin-right: 5px;
+    margin-left: 15%;
+    text-align: center;
+    position: relative;
+    color: #5b2f6b;
+
+}
+
+form input[type=checkbox] {
+    transform: scale(2);
+}
+
+.inputColumn {
+    text-align: left;
+    width: 160px;
+}
+
+.hide {
+    display: none;
+}
+
+label {
+position: relative;
+left: 10%;
+color: white;
+font-weight: bold;
+display: block;
+width: 600px;
+float: left;
+opacity: 1.0;
+font-size: 20px;
+}
+
+.inputformat {
+  width: 100%;
+  padding: 4px 30px;
+  margin: 2px 0;
+  box-sizing: content-box;
+  border: none;
+  position: relative;
+  left: 10%;
+  flex-direction: row;
+}
+.cbformat {
+  width: 100%;
+  padding: 4px 30px;
+  margin: 2px 0;
+  box-sizing: content-box;
+  border: none;
+  position: relative;
+  left: -35%;
+
+}
+.acceptbtn {
+  position: relative;
+  left: 10%;
+  width: 100px;
+  height: 25px;
+  font-size: 16px;
+  box-shadow:3px 3px 2px 1px rgba(0, 0, 255, .2);
+  color: #533747;
+  border-color: #49B265;
+  border-radius: 8px;
+  opacity: 1;
+  background-color: yellowgreen;
+  color: white;
+  border: none;
+}
+
+a:link, a:visited {
+  background-color: #36e336;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+}
+
+a:hover, a:active {
+  background-color: #630830;
+}
