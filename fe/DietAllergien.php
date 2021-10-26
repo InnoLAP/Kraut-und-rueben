@@ -50,48 +50,48 @@
                             <form method="post">
                                 <div class="form-group">
                                     <label for=firstName>Pescatarian:</label>
-                                    <input type="checkbox" class="form-control" value="<?php echo($name)?>" name="name" id="firstName">
+                                    <input type="checkbox" class="form-control checker" value="<?php echo($name)?>" name="name" id="firstName">
                                 </div>
                                 <div class="form-group">
                                     <label for=lastName>Vegan:</label>
-                                    <input type="checkbox" class="form-control" value="<?php echo($surname)?>" name="surname" id="lastName">
+                                    <input type="checkbox" class="form-control checker" value="<?php echo($surname)?>" name="surname" id="lastName">
                                 </div>
                                 <div class="form-group">
                                     <label for=email>Low Carb:</label>
-                                    <input type="checkbox" value="<?php echo($email)?>" class="form-control" name="email" id="email">
+                                    <input type="checkbox" value="<?php echo($email)?>" class="form-control checker" name="email" id="email">
                                 </div>
                                 <div class="form-group">
                                     <label for=address>Fleisch&Gemüse:</label>
-                                    <input type="checkbox" class="form-control" value="<?php echo($street)?>" name="street" id="fullName">
+                                    <input type="checkbox" class="form-control checker" value="<?php echo($street)?>" name="street" id="fullName">
                                 </div>
                                 <div class="form-group">
                                     <label for=hausnr>Vegetarisch:</label>
-                                    <input type="checkbox" class="form-control" value="<?php echo($houseNr)?>" name="houseNr" id="fullName">
+                                    <input type="checkbox" class="form-control checker" value="<?php echo($houseNr)?>" name="houseNr" id="fullName">
                                 </div>
                                 <h2 class="mt-5 mb-5">Allergen Präferenz</h2>
                                 <div class="form-group">
                                     <label for=plz>Milch:</label>
-                                    <input type="checkbox" maxlength="5" class="form-control" value="<?php echo($zip)?>" name="zip" id="fullName">
+                                    <input type="checkbox" maxlength="5" class="form-control checker" value="<?php echo($zip)?>" name="zip" id="fullName">
                                 </div>
                                 <div class="form-group">
                                     <label for=ort>Fisch:</label>
-                                    <input type="checkbox" class="form-control" value="<?php echo($city)?>" name="city" id="fullName">
+                                    <input type="checkbox" class="form-control checker" value="<?php echo($city)?>" name="city" id="fullName">
                                 </div>
                                 <div class="form-group">
                                     <label for=telefon>Gluten:</label>
-                                    <input type="checkbox" class="form-control" value="<?php echo($telephone)?>" name="telephone" id="fullName">
+                                    <input type="checkbox" class="form-control checker" value="<?php echo($telephone)?>" name="telephone" id="fullName">
                                 </div>
                                 <div class="form-group">
                                     <label for=pass>Erdnüsse:</label>
-                                    <input type="checkbox" class="form-control"  name="newPassword" id="pass">
+                                    <input type="checkbox" class="form-control checker"  name="newPassword" id="pass">
                                 </div>
                                     <div class="form-group">
                                         <label for=pass>Eier:</label>
-                                        <input type="checkbox" class="form-control" placeholder="Benötigt" name="oldPassword" id="pass" required>
+                                        <input type="checkbox" class="form-control checker" placeholder="Benötigt" name="oldPassword" id="pass" required>
                                     </div>
                                 <div class="form-group">
                                     <label for=pass>Sellerie:</label>
-                                    <input type="checkbox" class="form-control" placeholder="Benötigt" name="oldPassword" id="pass" required>
+                                    <input type="checkbox" class="form-control checker" placeholder="Benötigt" name="oldPassword" id="pass" required>
                                 </div>
                                     <div class="row mt-5">
                                         <div class="col">
