@@ -118,23 +118,28 @@
             </form>
         </div>
      <div class="index-image">
-
+        <h1>Rezepte</h1>
         <div class="pageContent">
             <form method="post" class="argForm">
-              <br>
-              <label for="checkDiets">Sollen Ihre gespeicherten Ernährungskategorie mit berücksichtig werden:</label><br>
-              <input class="cbformat" type="checkbox" checked="true" name="checkDiets"></input><br>
-              <label for="checkAllergies">Sollen Ihre gespeicherten Allergien mit berücksichtig werden:</label><br>
-              <input class="cbformat" type="checkbox" checked="true" name="checkAllergies"></input><br>
-              <label for="ingredientCount">Wählen Sie die maximale Anzahl der Zutaten für ein Rezept aus:</label><br>
-              <input class="inputformat" type="number" name="ingredientCount"></input><br>
-              <label for="idString">Suchen Sie Rezepte nach Rezept Nummer aus:</label><br>
-              <input class="inputformat" type="number" name="idString"></input><br>
-              <label for="nameString">Suchen Sie Rezepte nach Namen raus:</label><br>
-              <input class="inputformat" type="text" name="nameString"></input><br>
-              <br>
-              <input class="acceptbtn" type="submit" name="argBtn" value="Suchen"></input><br>
-              <br>
+                <div class="checkboxes">
+                    <input class="cbformat" type="checkbox" checked="true" name="checkDiets">Sollen Ihre Diäten berücksichtig werden?</input>
+                </div>
+                <div class="checkboxes">
+                    <input class="cbformat" type="checkbox" checked="true" name="checkAllergies">Sollen Ihre Allergien berücksichtig werden?</input>
+                </div>
+                <div>
+                    <p>Wählen Sie die maximale Anzahl der Zutaten für ein Rezept aus:</p>
+                    <input class="inputformat" type="number" placeholder="Anzahl" name="ingredientCount"></input>
+                </div>
+                <div>
+                    <p>Suchen Sie Rezepte nach Rezept Nummer aus:</p>
+                    <input class="inputformat" type="number" placeholder="ID" name="idString"></input>
+                </div>
+                <div>
+                    <p>Suchen Sie Rezepte nach Namen raus:</p>
+                    <input class="inputformat" type="text"  placeholder="Zutaten name" name="nameString"></input>
+                </div>
+              <input class="acceptbtn" type="submit" name="argBtn" value="Suchen"></input>
             </form>
             <table>
                 <thead>

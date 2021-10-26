@@ -1,19 +1,25 @@
 .pageContent {
-    margin-left: 450px;
-    width: 950px;
-    height: 750px;
-    max-height: 750px;
-    padding: 15px 50px;
+	margin-left: 425px;
+    margin-right: 25px;
+    width: auto;
+    height: auto;
+    max-height: 650px;
+    padding: 0px 15px 15px 15px;
     overflow: scroll;
     box-shadow: 2px 2px 2px gainsboro;
     background-color: #F8636C;
     opacity: .85;
     border-radius: 35px;
+	min-width: 700px;
 }
 
 .argForm {
-  display:inline-block;
-  float: 50%;
+	display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    align-items: center;
+    text-align: center;
+	margin: 25px 0;
 }
 
 table {
@@ -31,6 +37,8 @@ td {
     font-family:Arial, sans-serif;
     font-size:14px;
     overflow:hidden;
+	width: auto;
+	min-width: 47px;
     padding:10px 10px;
     word-break:normal;
     background-color: #ffffff;
@@ -62,8 +70,6 @@ th {
 
 table input[type="number"] {
     width: 50px;
-    margin-right: 5px;
-    margin-left: 15%;
     text-align: center;
     position: relative;
     color: #5b2f6b;
@@ -72,6 +78,7 @@ table input[type="number"] {
 
 form input[type=checkbox] {
     transform: scale(2);
+	margin-right: 15px;
 }
 
 .inputColumn {
@@ -84,40 +91,27 @@ form input[type=checkbox] {
 }
 
 label {
-position: relative;
-left: 10%;
-color: white;
-font-weight: bold;
-display: block;
-width: 600px;
-float: left;
-opacity: 1.0;
-font-size: 20px;
+	position: relative;
+	left: 10%;
+	color: white;
+	font-weight: bold;
+	display: block;
+	width: 600px;
+	float: left;
+	opacity: 1.0;
+	font-size: 20px;
 }
 
 .inputformat {
-  width: 100%;
-  padding: 4px 30px;
-  margin: 2px 0;
-  box-sizing: content-box;
-  border: none;
-  position: relative;
-  left: 10%;
-  flex-direction: row;
+	padding: 5px 15px;
+    margin: 2px 0;
+    border: none;
+	border-radius: 10px;
+	text-align: center;
+	width: 200px;
 }
-.cbformat {
-  width: 100%;
-  padding: 4px 30px;
-  margin: 2px 0;
-  box-sizing: content-box;
-  border: none;
-  position: relative;
-  left: -35%;
 
-}
 .acceptbtn {
-  position: relative;
-  left: 10%;
   width: 100px;
   height: 25px;
   font-size: 16px;
@@ -125,7 +119,6 @@ font-size: 20px;
   color: #533747;
   border-color: #49B265;
   border-radius: 8px;
-  opacity: 1;
   background-color: yellowgreen;
   color: white;
   border: none;
@@ -143,4 +136,65 @@ a:link, a:visited {
 
 a:hover, a:active {
   background-color: #630830;
+}
+
+p {
+	color: white;
+    font-weight: bold;
+    margin: unset;
+    font-size: 1.2em;
+}
+
+.checkboxes {
+	color: white;
+    font-weight: bold;
+    margin: unset;
+    font-size: 1.2em;
+}
+
+h1 {
+	margin: unset;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    text-align: center;
+    margin-left: 425px;
+    color: #F8636C;
+}
+
+input[type="number"] {
+	width:70px;
+}
+
+input:focus, input:focus-visible {
+    outline-width: 0;
+}
+
+@media screen and (max-width:1200px){
+	.pageContent {
+		width: 70%;
+		margin: auto;
+		margin-left:22%;
+	}
+
+	h1 {
+		width: 70%;
+		margin-left:22%;
+	}
+}
+
+@media screen and (max-width:970px){
+	.pageContent {
+		width: 80%;
+		margin: auto;
+	}
+
+	h1 {
+		width: 100%;
+		margin:unset;
+	}
+
+	.index-image {
+		background-image: unset !important;
+		background-color: white !important;
+	}
 }
