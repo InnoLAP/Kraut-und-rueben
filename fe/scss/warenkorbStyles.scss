@@ -26,7 +26,7 @@ h1 {
   background-color: #F8636C;
   height: auto;
   max-height: 550px;
-  width: 675px;
+  width: auto;
   margin-top: 50px;
   color: white;
   border-radius: 20px;
@@ -46,9 +46,13 @@ td {
   font-family: 'Oswald', sans-serif;
   font-size:15px;
   overflow:hidden;
-  padding:10px 40px;
+  padding:10px 30px;
   word-break:normal;
   color: #F8636C;
+}
+
+td:not(.delete-ingredient-btn) {
+  padding:10px 5px;
 }
 
  tbody {
@@ -62,7 +66,7 @@ th {
   font-size:20px;
   font-weight:normal;
   overflow:hidden;
-  padding:10px 40px;
+  padding:10px 30px;
   word-break:normal;
 }
 
@@ -141,4 +145,19 @@ a:hover {
   width: auto;
   margin: auto;
   margin-bottom: 50px;
+}
+
+@media screen and (max-width:1000px){
+	th {
+    padding: 10px 10px;
+  }
+
+  td {
+    padding: 10px 15px;
+  }
+
+  .deleteBtn {
+    font-size: 12px;
+    width: 70px;
+  }
 }
