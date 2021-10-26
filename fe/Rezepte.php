@@ -175,7 +175,7 @@
                                         <td>'.number_format($cost, 2).' €</td>
                                         <td>'.$row["PORTIONENANZAHL"].' x</td>
                                         <td><input type="number" name="count" value="1"></td>
-                                        <td class="buttonColumn"> <input type="submit" name="addBtn" value="hinzufügen"></td>
+                                        <td class="buttonColumn"> <input class="buyBtn" type="submit" name="addBtn" value="Kaufen"></td>
                                     </form>
                                 </tr>'
                             );

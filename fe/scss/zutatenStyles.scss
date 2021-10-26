@@ -80,8 +80,8 @@ form input[type=checkbox] {
 }
 
 .inputColumn {
+    min-width: 128px;
     text-align: left;
-    width: 160px;
 }
 
 .hide {
@@ -203,7 +203,7 @@ input:focus, input:focus-visible {
 	}
 }
 
-@media screen and (max-width:970px){
+@media screen and (max-width:1040px){
 	.pageContent {
 		width: 80%;
 		margin: auto;

@@ -23,7 +23,6 @@
     //Check if the origin data is from the form button that changes the search arguments
     if(array_key_exists('argBtn', $_POST)) {
         //If so get the entered info and get a according command
-        echo("Search set<br>");
 
         if(!isset($_POST["checkDiets"])){$customerDiets=null;}
 
@@ -35,7 +34,6 @@
         $command=ZutatFilter($customerDiets,$customerAllergies,$nameString,$idString);
     }else {
         //If not get the command with the standard parameters
-        echo('New search<br>');
         $command = ZutatFilter($customerDiets, $customerAllergies, null, null);
     }
     
@@ -59,10 +57,8 @@
         //If a command was set in this temp variable, retrieve it
         if(isset($_SESSION['lastZutatCommand'])){
             $command=$_SESSION['lastZutatCommand'];
-            echo('Using last command<br>');
         } else {
             $command = ZutatFilter(null, null, null, null);
-            echo('Using new command<br>');
         }
     } else {
         //If not check if a cart exists
@@ -72,13 +68,6 @@
             $cartArray = array();
         }
     }
-    
-    //Display the current shopping cart (debugging)
-    echo("Cart consists of:<br>");
-    foreach ($cartArray as $key => $value){
-        echo "Key: $key; Value: $value<br />\n";
-    }
-    echo '<pre>'; print_r($cartArray); echo '</pre>';
 
     //Stash the current command in a temp variable
     $_SESSION['lastZutatCommand'] = $command;
@@ -91,55 +80,78 @@
 <html lang="en">
     <head>
         <title>Kraut und Rüben</title>
-        <link rel="stylesheet" href="scss/testStyles01.scss">
+        <link rel="stylesheet" href="scss/zutatenStyles.scss">
+        <link rel="stylesheet" href="scss/sharedStyles.scss">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div class="pageContent">
-            <form method="post">
-                <input type="checkbox" checked="true" name="checkDiets">Check for diet?</input>
-                <input type="checkbox" checked="true" name="checkAllergies">Check for Allergies?</input>
-                <input type="number" name="idString">Search by id</input>
-                <input type="text" name="nameString">Search by name</input>
-                <input type="submit" name="argBtn" value="Accept" />
-            </form> 
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Bezeichnung</th>
-                        <th>Preis</th>
-                        <th>Kalorien</th>
-                        <th>Kohlenhydrate</th>
-                        <th>Proteine</th>
-                        <th>Anzahl</th>
-                        <th class="buttonColumn"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        //Loop through every row of the retrieved result and make a table row with the data
-                        while($row = $result->fetch_assoc()){
-                            echo('
-                                <tr>
-                                    <form method="post">
-                                        <td>'.$row["ZUTATENNR"].'<input type="number" name="ingredientId" value="'.$row["ZUTATENNR"].'" class="hide"</td>
-                                        <td>'.$row["BEZEICHNUNG"].'</td>
-                                        <td>'.$row["NETTOPREIS"].' €</td>
-                                        <td>'.$row["KALORIEN"].'</td>
-                                        <td>'.$row["KOHLENHYDRATE"].'</td>
-                                        <td>'.$row["PROTEIN"].'</td>
-                                        <td class="inputColumn"><input type="number" value="1" min="1" max="999" name="amount">x '.$row["EINHEIT"].'</td>
-                                        <td class="buttonColumn"><input type="submit" name="addBtn" value="Kaufen"></td>
-                                    </form>
-                                </tr>'
-                            );
-                        }
-                    ?>
-                </tbody>
-            </table>
+    <div class="header">
+            <form action="mainpage.php">
+                <button type="submit" class="button-profile" >Zurück</button>
+            </form>
+            <div class="header-logo">KRAUT &<br> RÜBEN</div>
+            <form action="warenkorb.php">
+                <button class="button-profile">Warenkorb</button>
+            </form>
+        </div>
+        <div class="index-image">
+            <h1>Rezepte</h1>
+            <div class="pageContent">
+                <form method="post" class="argForm">
+                    <div class="checkboxes">
+                        <input class="cbformat" type="checkbox" checked="true" name="checkDiets">Sollen Ihre Diäten berücksichtig werden?</input>
+                    </div>
+                    <div class="checkboxes">
+                        <input class="cbformat" type="checkbox" checked="true" name="checkAllergies">Sollen Ihre Allergien berücksichtig werden?</input>
+                    </div>
+                    <div>
+                        <p>Suchen Sie Zutaten durch ihre ID:</p>
+                        <input class="inputformat" type="number" placeholder="ID" name="idString"></input>
+                    </div>
+                    <div>
+                        <p>Suchen Sie Zutaten nach Namen raus:</p>
+                        <input class="inputformat" type="text"  placeholder="Zutaten name" name="nameString"></input>
+                    </div>
+                    <input class="acceptbtn" type="submit" name="argBtn" value="Suchen"></input>
+                </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Bezeichnung</th>
+                            <th>Preis</th>
+                            <th>Kalorien</th>
+                            <th>Kohlenhydrate</th>
+                            <th>Proteine</th>
+                            <th>Menge</th>
+                            <th class="buttonColumn">Zum Warenkorb hinzufügen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            //Loop through every row of the retrieved result and make a table row with the data
+                            while($row = $result->fetch_assoc()){
+                                echo('
+                                    <tr>
+                                        <form method="post">
+                                            <td>'.$row["ZUTATENNR"].'<input type="number" name="ingredientId" value="'.$row["ZUTATENNR"].'" class="hide"</td>
+                                            <td>'.$row["BEZEICHNUNG"].'</td>
+                                            <td>'.$row["NETTOPREIS"].' €</td>
+                                            <td>'.$row["KALORIEN"].'</td>
+                                            <td>'.$row["KOHLENHYDRATE"].'</td>
+                                            <td>'.$row["PROTEIN"].'</td>
+                                            <td class="inputColumn"><input type="number" value="1" min="1" max="999" name="amount"> x '.$row["EINHEIT"].'</td>
+                                            <td class="buttonColumn"><input class="buyBtn" type="submit" name="addBtn" value="Kaufen"></td>
+                                        </form>
+                                    </tr>'
+                                );
+                            }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </body>
 </html>
