@@ -107,7 +107,7 @@
             <button type="submit" class="button-profile" >Zurück</button>
         </form>
         <div class="header-logo">KRAUT &<br> RÜBEN</div>
-        <button class="button-profile">Shopping Cart</button>
+        <button class="button-profile noHover">Einstellungen</button>
     </div>
     <div class="profile-settings-main-div">
             <div class="col-md-9">
@@ -173,7 +173,9 @@
             </div>
         <div class="profile-settings-img">
             <div class="more-options">
-                <button class="additional-options-btn">Diät und Allergen</button>
+                <form action="DietAllergien.php">
+                    <button type="submit" class="additional-options-btn">Diät und Allergen</button>
+                </form>
                 <button onclick="document.getElementById('id01').style.display='block'" class="additional-options-btn">Account Löschen</button>
                 <button class="additional-options-btn">Datei herunterladen</button>
 
