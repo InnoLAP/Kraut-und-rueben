@@ -1,36 +1,82 @@
 <?php
-//Every echo() in this top <?php part can be removed in the design since they only serve debugging purposes
-include "functions.php";
-include "dbConnect.php";
+    //Every echo() in this top <?php part can be removed in the design since they only serve debugging purposes 
+    include "functions.php";
+    include "dbConnect.php";
 
-session_start();
+    session_start();
 
-$customerId=2008;
+    $customerId=2008;
 
-if(!isset($_SESSION['cartArray'])){
-    //If no session exists it means that the user never logged in, redirect to the index page
-    //header('location: login.php'); <-- Uncomment when the project is finished
-} else {
-    //Get the actual customer data if a session exists
-    //$customerId=$_SESSION['customerId']; <-- Uncomment when the project is finished
-    $recipeArray=$_SESSION['recipeCartArray'];
-    $ingredientsArray=$_SESSION['cartArray'];
-}
+    if(!isset($_SESSION['cartArray'])){
+        //If no session exists it means that the user never logged in, redirect to the index page
+        //header('location: login.php'); <-- Uncomment when the project is finished
+    } else {
+        //Get the actual customer data if a session exists
+        //$customerId=$_SESSION['customerId']; <-- Uncomment when the project is finished
+        $recipeArray=$_SESSION['recipeCartArray'];
+        $ingredientsArray=$_SESSION['cartArray'];
+    }
 
-if(array_key_exists('deleteIngredientBtn', $_POST)) {
-    $ingredientId=$_POST["ingredientId"];
-    unset($ingredientsArray[$ingredientId]);
-    $_SESSION['cartArray']=$ingredientsArray;
-}
+    if(array_key_exists('deleteIngredientBtn', $_POST)) {
+        $ingredientId=$_POST["ingredientId"];
+        unset($ingredientsArray[$ingredientId]);
+        $_SESSION['cartArray']=$ingredientsArray;
+    }
 
-if(array_key_exists('deleteRecipeBtn', $_POST)) {
-    $recipeId=$_POST["recipeId"];
-    unset($recipeArray[$recipeId]);
-    $_SESSION['recipeCartArray']=$recipeArray;
-}
+    if(array_key_exists('deleteRecipeBtn', $_POST)) {
+        $recipeId=$_POST["recipeId"];
+        unset($recipeArray[$recipeId]);
+        $_SESSION['recipeCartArray']=$recipeArray;
+    }
 
-$ingredientsCart=ZutatenID($ingredientsArray, $db);
-$recipeCart=RezepteID($recipeArray, $db);
+    if(!empty($ingredientsArray)){
+        $ingredientsCart=ZutatenID($ingredientsArray, $db);
+    } else {
+        $ingredientsCart=null;
+    }
+    
+    if(!empty($recipeArray)) {
+        $recipeCart=RezepteID($recipeArray, $db);
+    } else {
+        $recipeCart=null;
+    }
+
+    $totalPrice=0;
+    $totalProtein=0;
+    $totalKohlenhydrate=0;
+    $totalKalorien=0;
+    $totalAmount=0;
+    $tabelIngredients="";
+
+    if($ingredientsCart){
+        while($row = $ingredientsCart->fetch_assoc()){
+            $totalPrice += $row["NETTOPREIS"] * $ingredientsArray[$row["ZUTATENNR"]];
+            $totalProtein += $row["PROTEIN"];
+            $totalKohlenhydrate += $row["KOHLENHYDRATE"];
+            $totalKalorien += $row["KALORIEN"];
+            $totalAmount += $ingredientsArray[$row["ZUTATENNR"]];
+            $tabelIngredients.=
+                '<form method="post">
+                    <tr>
+                      <td>'.$row["BEZEICHNUNG"].'<input type="text" class="hide" name="ingredientId" value="'.$row["ZUTATENNR"].'"></td>
+                      <td>'.$row["NETTOPREIS"]*$ingredientsArray[$row["ZUTATENNR"]].'€</td>
+                      <td>'.$row["KALORIEN"].'</td>
+                      <td>'.$row["KOHLENHYDRATE"].'</td>
+                      <td>'.$row["PROTEIN"].'</td>
+                      <td>'.$ingredientsArray[$row["ZUTATENNR"]].'</td>
+                      <td class="delete-ingredient-btn"><input type="submit" name="deleteIngredientBtn" Value="Entfernen"></input></td>
+                    </tr>
+                </form>'
+            ;
+        }
+    }
+
+    if(array_key_exists('buyBtn', $_POST)) {
+        PlaceOrder($customerId, $ingredientsArray, $totalPrice, $db);
+        $_SESSION["recipeCartArray"]=array();
+        $_SESSION["cartArray"]=array();
+        header('Location: mainpage.php');
+    }
 ?>
 
 <!DOCTYPE HTML>
@@ -74,36 +120,9 @@ $recipeCart=RezepteID($recipeArray, $db);
                 <tbody>
 
                     <?php
-                        $totalPrice=0;
-                        $totalProtein=0;
-                        $totalKohlenhydrate=0;
-                        $totalKalorien=0;
-                        $totalAmount=0;
                         //Loop through every row of the retrieved result and make a table row with the data
-                        if($ingredientsCart){
-                            while($row = $ingredientsCart->fetch_assoc()){
-                                $totalPrice += $row["NETTOPREIS"] * $ingredientsArray[$row["ZUTATENNR"]];
-                                $totalProtein += $row["PROTEIN"];
-                                $totalKohlenhydrate += $row["KOHLENHYDRATE"];
-                                $totalKalorien += $row["KALORIEN"];
-                                $totalAmount += $ingredientsArray[$row["ZUTATENNR"]];
-
-                                echo('
-                                   <form method="post">
-                                      <tr>
-                                            <td>'.$row["BEZEICHNUNG"].'<input type="text" class="hide" name="ingredientId" value="'.$row["ZUTATENNR"].'"></td>
-                                            <td>'.$row["NETTOPREIS"]*$ingredientsArray[$row["ZUTATENNR"]].'€</td>
-                                            <td>'.$row["KALORIEN"].'</td>
-                                            <td>'.$row["KOHLENHYDRATE"].'</td>
-                                            <td>'.$row["PROTEIN"].'</td>
-                                            <td>'.$ingredientsArray[$row["ZUTATENNR"]].'</td>
-                                            <td class="delete-ingredient-btn"><input type="submit" name="deleteIngredientBtn" Value="Entfernen"><button class="delete-ingredient-btn">Entfernen</button></input></td>
-                                      </tr>
-                                   </form>
-                               ');
-                            }
-                        }
-                    echo('
+                        echo($tabelIngredients);
+                        echo('
                             <tr>
                                 <td class="buttonColumn"></td>
                                 <td class="buttonColumn"></td>
@@ -162,8 +181,9 @@ $recipeCart=RezepteID($recipeArray, $db);
                 </tbody>
             </table>
         </div>
-
-        <input class="cta-buy-btn"  type="submit" name="buyBtn" value="Jetzt Kaufen">
+        <form method="post">
+            <input class="cta-buy-btn" type="submit" name="buyBtn" value="Jetzt Kaufen">
+        </form>
     </div>
 
 </body>

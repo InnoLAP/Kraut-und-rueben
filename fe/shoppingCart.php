@@ -46,7 +46,8 @@
     $totalKohlenhydrate=0;
     $totalKalorien=0;
     $totalAmount=0;
-    //Loop through every row of the retrieved result and make a table row with the data
+    $tabelIngredients="";
+
     if($ingredientsCart){
         while($row = $ingredientsCart->fetch_assoc()){
             $totalPrice += $row["NETTOPREIS"] * $ingredientsArray[$row["ZUTATENNR"]];
@@ -54,6 +55,19 @@
             $totalKohlenhydrate += $row["KOHLENHYDRATE"];
             $totalKalorien += $row["KALORIEN"];
             $totalAmount += $ingredientsArray[$row["ZUTATENNR"]];
+            $tabelIngredients.=
+                '<form method="post">
+                    <tr>
+                        <td>'.$row["BEZEICHNUNG"].'<input type="text" class="hide" name="ingredientId" value="'.$row["ZUTATENNR"].'"></td>
+                        <td>'.$row["NETTOPREIS"]*$ingredientsArray[$row["ZUTATENNR"]].'€</td>
+                        <td>'.$row["KALORIEN"].'</td>
+                        <td>'.$row["KOHLENHYDRATE"].'</td>
+                        <td>'.$row["PROTEIN"].'</td>
+                        <td>'.$ingredientsArray[$row["ZUTATENNR"]].'</td>
+                        <td class="buttonColumn"><input type="submit" name="deleteIngredientBtn" Value="Entfernen"></td>
+                    </tr>
+                </form>'
+            ;
         }
     }
 
@@ -91,23 +105,7 @@
                 <tbody>
                     <?php
                         //Loop through every row of the retrieved result and make a table row with the data
-                        if($ingredientsCart){
-                            while($row = $ingredientsCart->fetch_assoc()){
-                                echo('
-                                    <form method="post">
-                                        <tr>
-                                            <td>'.$row["BEZEICHNUNG"].'<input type="text" class="hide" name="ingredientId" value="'.$row["ZUTATENNR"].'"></td>
-                                            <td>'.$row["NETTOPREIS"]*$ingredientsArray[$row["ZUTATENNR"]].'€</td>
-                                            <td>'.$row["KALORIEN"].'</td>
-                                            <td>'.$row["KOHLENHYDRATE"].'</td>
-                                            <td>'.$row["PROTEIN"].'</td>
-                                            <td>'.$ingredientsArray[$row["ZUTATENNR"]].'</td>
-                                            <td class="buttonColumn"><input type="submit" name="deleteIngredientBtn" Value="Entfernen"></td>
-                                        </tr>
-                                    </form>
-                                ');
-                            }
-                        }
+                        echo($tabelIngredients);
                         echo('
                             <tr>
                                 <td class="buttonColumn"></td>
