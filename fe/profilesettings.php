@@ -173,7 +173,9 @@
             </div>
         <div class="profile-settings-img">
             <div class="more-options">
-                <button class="additional-options-btn">Diät und Allergen</button>
+                <form action="dietsandallergies.php">
+                    <button class="additional-options-btn">Diät und Allergen</button>
+                </form>
                 <button onclick="document.getElementById('id01').style.display='block'" class="additional-options-btn">Account Löschen</button>
                 <button class="additional-options-btn">Datei herunterladen</button>
 
