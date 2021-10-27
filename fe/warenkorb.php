@@ -6,6 +6,7 @@
     session_start();
 
     $customerId=2008;
+    $ingredientsArray=array();
 
     if(!isset($_SESSION['cartArray'])){
         //If no session exists it means that the user never logged in, redirect to the index page
@@ -182,7 +183,7 @@
             </table>
         </div>
         <form method="post" class="buyForm">
-            <input class="cta-buy-btn" type="submit" name="buyBtn" value="Jetzt Kaufen" <?php if(!$ingredientsArray) {echo('disabled="disabled"');}?>>
+            <input class="cta-buy-btn <?php if(!$ingredientsArray) {echo('greyed');}?>" type="submit" name="buyBtn" value="Jetzt Kaufen" <?php if(!$ingredientsArray) {echo('disabled="disabled"');}?>>
         </form>
     </div>
 </body>

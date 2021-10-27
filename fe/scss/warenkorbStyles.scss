@@ -103,6 +103,15 @@ a, a:hover, a:visited, a:link, a:active {
   background-color: forestgreen;
 }
 
+.greyed {
+  background-color: grey;
+}
+
+.greyed:hover {
+  background-color: grey;
+  cursor: unset;
+}
+
 .deleteBtn {
   background-color: firebrick;
   color: white;

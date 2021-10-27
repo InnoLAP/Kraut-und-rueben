@@ -22,7 +22,7 @@
             		<div class="login-button">Anmelden</div>
 				</a>
 				<a href="register.php">
-                	<div class="register-button">Regristrieren</div>
+                	<div class="register-button">Registrieren</div>
 				</a>
             </div>
         </div>
