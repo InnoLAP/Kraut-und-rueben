@@ -1,0 +1,97 @@
+<-- SQL query: -->
+SELECT
+	REZEPTE.REZEPTNR,
+	REZEPTE.REZEPTNAME,
+	REZEPTE.REZEPTLINK,
+	REZEPTE.REZEPTZUTATENANZAHL,
+	REZEPTE.PORTIONENANZAHL
+FROM REZEPTE
+LEFT JOIN
+	(SELECT DISTINCT ALLERGIEREZEPTE.REZEPTNR
+     FROM ALLERGIEREZEPTE
+     WHERE ALLERGIEREZEPTE.ALLERGIENR = 3) AS tTemp
+ON REZEPTE.REZEPTNR = tTemp.REZEPTNR
+LEFT JOIN
+	(SELECT DISTINCT DIETREZEPTE.REZEPTNR
+     FROM DIETREZEPTE
+     WHERE DIETREZEPTE.DIETNR = 2) AS t2Temp
+ON REZEPTE.REZEPTNR = t2Temp.REZEPTNR
+WHERE 
+	tTemp.REZEPTNR IS null AND 
+	t2Temp.REZEPTNR IS null AND
+	(REZEPTNAME REGEXP 'a') AND 
+	REZEPTE.REZEPTNR = 3 AND
+	REZEPTE.REZEPTZUTATENANZAHL <= 10
+
+-------------------------------------------------------------------
+<-- PHP fuction: -->
+    //Return every REZEPT allowed for selected ALLERGIES & DIÄTEN
+    function RezeptFilter($diets, $allergies, $nameString, $id, $count) {
+        $dietArgs = "";
+        $dietWhere = "";
+        $allergieArgs = "";
+        $allergieWhere = "";
+        $idWhere = "";
+        $nameWhere = "";
+        $countWhere = "";
+
+        if($diets){
+            $dietWhere="t2Temp.REZEPTNR IS null AND ";
+        }
+
+        if($allergies){
+            $allergieWhere="tTemp.REZEPTNR IS null AND ";
+        }
+
+        if($nameString){
+            $nameWhere="(REZEPTNAME REGEXP '{$nameString}') AND ";
+        }
+
+        if($id){
+            $idWhere="REZEPTE.REZEPTNR = {$id} AND ";
+        }
+
+        if($count){
+            $countWhere="REZEPTE.REZEPTZUTATENANZAHL <= {$count} AND ";
+        }
+
+        if($diets){
+            for($i=0;$i<count($diets);$i++){
+                if($i!=0){
+                    $dietArgs.=' OR ';
+                }
+                else {
+                    $dietArgs.="LEFT JOIN (SELECT DISTINCT DIETREZEPTE.REZEPTNR FROM DIETREZEPTE WHERE ";
+                }
+                $dietArgs.="DIETREZEPTE.DIETNR = {$diets[$i]}";
+            }
+            $dietArgs.=") AS t2Temp ON REZEPTE.REZEPTNR = t2Temp.REZEPTNR";
+        }
+
+        if($allergies){
+            for($i=0;$i<count($allergies);$i++){
+                if($i!=0){
+                    $allergieArgs.=' OR ';
+                }
+                else {
+                    $allergieArgs.="LEFT JOIN (SELECT DISTINCT ALLERGIEREZEPTE.REZEPTNR FROM ALLERGIEREZEPTE WHERE ";
+                }
+                $allergieArgs.="ALLERGIEREZEPTE.ALLERGIENR = {$allergies[$i]}";
+            }
+            $allergieArgs.=") AS tTemp ON REZEPTE.REZEPTNR = tTemp.REZEPTNR";
+        }
+
+        $sql=
+            "SELECT
+                REZEPTE.REZEPTNR,
+                REZEPTE.REZEPTNAME,
+                REZEPTE.REZEPTLINK,
+                REZEPTE.REZEPTZUTATENANZAHL,
+                REZEPTE.PORTIONENANZAHL
+            FROM REZEPTE
+            {$allergieArgs}
+            {$dietArgs}
+            WHERE {$dietWhere}{$allergieWhere}{$nameWhere}{$idWhere}{$countWhere}1=1";
+
+        return $sql;
+    }
