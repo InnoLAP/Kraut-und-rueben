@@ -20,6 +20,11 @@
             <button class="button-profile">Warenkorb</button>
         </form>
     </div>
+    <p></p>
+
+    <form action="logout.php">
+        <button class="button-profile">Abmelden</button>
+    </form>
         <div class="choose-recipes-ingredients-text">
             <br>
             <?php
@@ -32,11 +37,12 @@
                     $_SESSION['name'];
                     echo("Guten Tag ".$_SESSION['name']." ".$_SESSION['surname']."<br>");
                 }
-                
+
             ?>
             Hier bei Kraut und Rüben können Sie entweder einzelne <br> Zutaten kaufen, oder gleich ganze Rezepte!
             <br><br>Was wünschen Sie sich heute?<br>
         </div>
+
     <div class="mainpage-div">
         <div class="recipes-image">
             <form action="Rezepte.php">
@@ -48,6 +54,8 @@
                 <button class="ingredient-button"></button>
             </form>
         </div>
+
     </div>
+
 </body>
 </html>
