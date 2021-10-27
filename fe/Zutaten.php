@@ -138,7 +138,7 @@
                                         <form method="post">
                                             <td>'.$row["ZUTATENNR"].'<input type="number" name="ingredientId" value="'.$row["ZUTATENNR"].'" class="hide"</td>
                                             <td>'.$row["BEZEICHNUNG"].'</td>
-                                            <td>'.$row["NETTOPREIS"].' €</td>
+                                            <td>'.number_format((float)$row["NETTOPREIS"], 2, '.', '').' €</td>
                                             <td>'.$row["KALORIEN"].'</td>
                                             <td>'.$row["KOHLENHYDRATE"].'</td>
                                             <td>'.$row["PROTEIN"].'</td>

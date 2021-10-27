@@ -59,7 +59,7 @@
                 '<form method="post">
                     <tr>
                       <td>'.$row["BEZEICHNUNG"].'<input type="text" class="hide" name="ingredientId" value="'.$row["ZUTATENNR"].'"></td>
-                      <td>'.$row["NETTOPREIS"]*$ingredientsArray[$row["ZUTATENNR"]].'€</td>
+                      <td>'.number_format((float)$row["NETTOPREIS"]*$ingredientsArray[$row["ZUTATENNR"]], 2, '.', '').'€</td>
                       <td>'.$row["KALORIEN"].'</td>
                       <td>'.$row["KOHLENHYDRATE"].'</td>
                       <td>'.$row["PROTEIN"].'</td>
@@ -136,7 +136,7 @@
                     echo('
                             <tr>
                                 <td>Gesamt:</td>
-                                <td>'.$totalPrice.'€</td>
+                                <td>'.number_format((float)$totalPrice, 2, '.', '').'€</td>
                                 <td>'.$totalKalorien.'</td>
                                 <td>'.$totalKohlenhydrate.'</td>
                                 <td>'.$totalProtein.'</td>
