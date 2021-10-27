@@ -71,10 +71,8 @@
         //If a command was set in this temp variable, retrieve it
         if(isset($_SESSION['lastRezeptCommand'])){
             $command=$_SESSION['lastRezeptCommand'];
-            echo('Using last command<br>');
         } else {
             $command = RezeptFilter(null, null, null, null);
-            echo('Using new command<br>');
         }
     } else {
         //If not check if a cart exists
