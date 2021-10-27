@@ -5,12 +5,12 @@
     text-align: center;
     text-shadow: 0.5px 0.5px gainsboro;
     position: absolute;
+    right: 20%;
+    top: 15%;
     background-color: #F8636C;
     box-shadow: 2px 2px 2px gainsboro;
     height: 470px;
     width: 500px;
-    margin-left: 700px;
-    margin-top: 150px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -72,4 +72,21 @@
 .register-button:hover {
     background-color: forestgreen;
     color: white;
+}
+
+@media screen and (max-width:1300px){
+    .register-box {
+        right: 10%;
+    }
+}
+
+@media screen and (max-width:600px){
+    .register-box {
+        position: relative;
+        margin: auto;
+        right: unset;
+        width: auto;
+        min-width: 90%;
+        max-width: 95%;
+    }
 }

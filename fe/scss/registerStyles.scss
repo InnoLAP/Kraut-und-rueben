@@ -94,10 +94,9 @@
     box-shadow: 2px 2px 2px gainsboro;
     height: auto;
     width: 500px;
-    margin-left: 700px;
-    margin-top: 100px;
-    gap: 30px;
     border-radius: 30px;
+    right: 20%;
+    top: 15%;
 }
 
 label{
@@ -145,4 +144,21 @@ input[type="checkbox"]{
     width: auto;
     margin:0 5px 25px 0;
     float:unset;
+}
+
+@media screen and (max-width:1300px){
+    .register-box2 {
+        right: 10%;
+    }
+}
+
+@media screen and (max-width:600px){
+    .register-box2 {
+        position: relative;
+        margin: auto;
+        right: unset;
+        width: auto;
+        min-width: 90%;
+        max-width: 95%;
+    }
 }

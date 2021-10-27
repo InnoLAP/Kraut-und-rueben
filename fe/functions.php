@@ -244,6 +244,11 @@
         }
 
         contactDb($db, $sql);
+
+        $sql="DELETE * FROM KUNDEALLERGIE WHERE KUNDENNR = {$customerId}";
+        contactDb($db, $sqlCheck);
+        $sql="DELETE * FROM KUNDEDIET WHERE KUNDENNR = {$customerId}";
+        contactDb($db, $sqlCheck);
     }
 
     //Returns all DIET
