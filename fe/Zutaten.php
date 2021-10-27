@@ -97,7 +97,7 @@
             </form>
         </div>
         <div class="index-image">
-            <h1>Rezepte</h1>
+            <h1>Zutaten</h1>
             <div class="pageContent">
                 <form method="post" class="argForm">
                     <div class="checkboxes">

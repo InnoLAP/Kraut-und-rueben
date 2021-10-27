@@ -102,91 +102,88 @@
         <div class="header-logo">KRAUT &<br> RÜBEN</div>
         <button class="button-profile noHover">Warenkorb</button>
     </div>
-    <div class="index-image">
-        <div class="order-boxes">
-            <h1>Warenkorb</h1>
-            <div class="ingredients-box">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Bezeichnung</th>
-                            <th>Preis</th>
-                            <th>Kalorien</th>
-                            <th>Kohlenhydrate</th>
-                            <th>Proteine</th>
-                            <th>Anzahl</th>
-                        </tr>
-                    </thead>
-    
-                    <tbody>
-    
-                        <?php
-                            //Loop through every row of the retrieved result and make a table row with the data
-                            echo($tabelIngredients);
-                            echo('
-                                <tr>
-                                    <td class="buttonColumn"></td>
-                                    <td class="buttonColumn"></td>
-                                    <td class="buttonColumn"></td>
-                                    <td class="buttonColumn"></td>
-                                    <td class="buttonColumn"></td>
-                                    <td class="buttonColumn"></td>
-                                    <td class="buttonColumn"></td>
-                                </tr>
-                            ');
-                        echo('
-                                <tr>
-                                    <td>Gesamt:</td>
-                                    <td>'.$totalPrice.'€</td>
-                                    <td>'.$totalKalorien.'</td>
-                                    <td>'.$totalKohlenhydrate.'</td>
-                                    <td>'.$totalProtein.'</td>
-                                    <td>'.$totalAmount.'</td>
-                                </tr>
-                            ');
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-    
-            <div class="recipes-box">
-                <table>
-                    <thead>
+    <div class="order-boxes">
+        <h1>Warenkorb</h1>
+        <div class="ingredients-box">
+            <table>
+                <thead>
                     <tr>
-                        <th>Rezepte</th>
-                        <th>Portionen</th>
-                        <th>Link</th>
+                        <th>Bezeichnung</th>
+                        <th>Preis</th>
+                        <th>Kalorien</th>
+                        <th>Kohlenhydrate</th>
+                        <th>Proteine</th>
+                        <th>Anzahl</th>
                     </tr>
-                    </thead>
-    
-                    <tbody>
-    
-                        <?php
-                            //Loop through every row of the retrieved result and make a table row with the data
-                            if($recipeCart){
-                                while($row = $recipeCart->fetch_assoc()){
-                                    echo('
-                                        <form method="post">
-                                            <tr>
-                                                <td>'.$row["REZEPTNAME"].'<input type="text" class="hide" name="recipeId" value="'.$row["REZEPTNR"].'"></td>
-                                                <td>'.$row["PORTIONENANZAHL"].'x</td>
-                                                <td><a href="'.$row["REZEPTLINK"].'">Hier klicken!</a></td>
-                                                <td class="delete-ingredient-btn lastField"><input type="submit" class="deleteBtn" name="deleteRecipeBtn" Value="Entfernen"></td>
-                                            </tr>
-                                        </form>
-                                    ');
-                                }
-                            }
-                        ?>
-    
-                    </tbody>
-                </table>
-            </div>
-            <form method="post" class="buyForm">
-                <input class="cta-buy-btn" type="submit" name="buyBtn" value="Jetzt Kaufen" <?php if(!$ingredientsArray) {echo('disabled="disabled"');}?>>
-            </form>
-        </div>
-    </div>
+                </thead>
 
+                <tbody>
+
+                    <?php
+                        //Loop through every row of the retrieved result and make a table row with the data
+                        echo($tabelIngredients);
+                        echo('
+                            <tr>
+                                <td class="buttonColumn"></td>
+                                <td class="buttonColumn"></td>
+                                <td class="buttonColumn"></td>
+                                <td class="buttonColumn"></td>
+                                <td class="buttonColumn"></td>
+                                <td class="buttonColumn"></td>
+                                <td class="buttonColumn"></td>
+                            </tr>
+                        ');
+                    echo('
+                            <tr>
+                                <td>Gesamt:</td>
+                                <td>'.$totalPrice.'€</td>
+                                <td>'.$totalKalorien.'</td>
+                                <td>'.$totalKohlenhydrate.'</td>
+                                <td>'.$totalProtein.'</td>
+                                <td>'.$totalAmount.'</td>
+                            </tr>
+                        ');
+                    ?>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="recipes-box">
+            <table>
+                <thead>
+                <tr>
+                    <th>Rezepte</th>
+                    <th>Portionen</th>
+                    <th>Link</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                    <?php
+                        //Loop through every row of the retrieved result and make a table row with the data
+                        if($recipeCart){
+                            while($row = $recipeCart->fetch_assoc()){
+                                echo('
+                                    <form method="post">
+                                        <tr>
+                                            <td>'.$row["REZEPTNAME"].'<input type="text" class="hide" name="recipeId" value="'.$row["REZEPTNR"].'"></td>
+                                            <td>'.$row["PORTIONENANZAHL"].'x</td>
+                                            <td><a href="'.$row["REZEPTLINK"].'">Hier klicken!</a></td>
+                                            <td class="delete-ingredient-btn lastField"><input type="submit" class="deleteBtn" name="deleteRecipeBtn" Value="Entfernen"></td>
+                                        </tr>
+                                    </form>
+                                ');
+                            }
+                        }
+                    ?>
+
+                </tbody>
+            </table>
+        </div>
+        <form method="post" class="buyForm">
+            <input class="cta-buy-btn" type="submit" name="buyBtn" value="Jetzt Kaufen" <?php if(!$ingredientsArray) {echo('disabled="disabled"');}?>>
+        </form>
+    </div>
 </body>
 </html>
