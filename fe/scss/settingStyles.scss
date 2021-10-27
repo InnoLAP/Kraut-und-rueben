@@ -8,7 +8,7 @@
     border-radius: 30px;
     display: flex;
     flex-direction: row;
-    gap: 100px;
+    gap: 25px;
 }
 
 .form-group {
@@ -240,3 +240,29 @@ hr {
     clear: both;
     display: table;
 }
+
+@media screen and (max-width:1350px){
+    .profile-settings-main-div {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width:1250px){
+    .profile-settings-img {
+        background-image: unset;
+        align-self: unset;
+    }
+
+    .profile-settings-main-div {
+        width: auto;
+        margin: auto;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .more-options {
+        background-color: darkgray;
+    }
+}
+
