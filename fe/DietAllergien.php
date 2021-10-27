@@ -2,15 +2,54 @@
     include "functions.php";
     include "dbConnect.php";
 
-    $customerId=2008;
     $errorMsg="";
+
+    $i=0;
+    $allergieEcho="";
+    $dietEcho="";
 
     session_start();
     if(!isset($_SESSION['customerId'])){
         //If no session exists it means that the user never logged in, redirect to the index page
-        //header('location: index.php'); Uncomment when the project is finished
+        header('location: index.php');
     } else {
         $customerId=$_SESSION['customerId'];
+    }
+
+    if(array_key_exists('saveBtn', $_POST)) {
+        $allergieArray=array();
+        $dietArray=array();
+
+        if(isset($_POST["allergieArray"])){
+            $allergieArrayResult = $_POST["allergieArray"];
+
+            foreach ($allergieArrayResult as $key => $value) {
+                array_push($allergieArray, $key);
+            }
+
+            AddAllergie($customerId, $allergieArray, $db);
+
+        } else {
+            AddAllergie($customerId, $allergieArray, $db);
+        }
+
+        if(isset($_POST["dietArray"])){
+            $dietArrayResult = $_POST["dietArray"];
+
+            foreach ($dietArrayResult as $key => $value) {
+                array_push($dietArray, $key);
+            }
+
+            AddDiet($customerId, $dietArray, $db);
+
+        } else {
+            AddDiet($customerId, $dietArray, $db);
+        }
+
+        $_SESSION['customerAllergies'] = $allergieArray;
+		$_SESSION['customerDiets'] = $dietArray;
+
+        $errorMsg='<p class="saved">Gespeichert!</p>';
     }
 
     if(array_key_exists('deleteBtn', $_POST)) {
@@ -19,6 +58,29 @@
 
         //Redirect
         header('location: index.php');
+    }
+
+    $allergies=AllergieAlle($db);
+
+    while($row = $allergies->fetch_assoc()){
+        $allergieEcho.=
+            '<div class="form-group">
+                <label for=plz>'.$row["ALLERGIENAME"].':</label>
+                <input type="checkbox" maxlength="5" class="form-control checker" name="allergieArray['.$row["ALLERGIENR"].']" id="fullName">
+            </div>'
+        ;
+    }
+
+    $i=0;
+    $diets=DietAlle($db);
+
+    while($row = $diets->fetch_assoc()){
+        $dietEcho.=
+            '<div class="form-group">
+                <label for=plz>'.$row["DIETNAME"].':</label>
+                <input type="checkbox" maxlength="5" class="form-control checker" value="false" name="dietArray['.$row["DIETNR"].']" id="fullName">
+            </div>'
+        ;
     }
 ?>
 
@@ -48,51 +110,13 @@
                     <div class="col-md-9">
                         <div class="container">
                             <form method="post">
-                                <div class="form-group">
-                                    <label for=firstName>Pescatarian:</label>
-                                    <input type="checkbox" class="form-control checker" value="<?php echo($name)?>" name="name" id="firstName">
-                                </div>
-                                <div class="form-group">
-                                    <label for=lastName>Vegan:</label>
-                                    <input type="checkbox" class="form-control checker" value="<?php echo($surname)?>" name="surname" id="lastName">
-                                </div>
-                                <div class="form-group">
-                                    <label for=email>Low Carb:</label>
-                                    <input type="checkbox" value="<?php echo($email)?>" class="form-control checker" name="email" id="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for=address>Fleisch&Gemüse:</label>
-                                    <input type="checkbox" class="form-control checker" value="<?php echo($street)?>" name="street" id="fullName">
-                                </div>
-                                <div class="form-group">
-                                    <label for=hausnr>Vegetarisch:</label>
-                                    <input type="checkbox" class="form-control checker" value="<?php echo($houseNr)?>" name="houseNr" id="fullName">
-                                </div>
+                                <?php
+                                    echo($dietEcho);
+                                ?>
                                 <h2 class="mt-5 mb-5">Allergen Präferenz</h2>
-                                <div class="form-group">
-                                    <label for=plz>Milch:</label>
-                                    <input type="checkbox" maxlength="5" class="form-control checker" value="<?php echo($zip)?>" name="zip" id="fullName">
-                                </div>
-                                <div class="form-group">
-                                    <label for=ort>Fisch:</label>
-                                    <input type="checkbox" class="form-control checker" value="<?php echo($city)?>" name="city" id="fullName">
-                                </div>
-                                <div class="form-group">
-                                    <label for=telefon>Gluten:</label>
-                                    <input type="checkbox" class="form-control checker" value="<?php echo($telephone)?>" name="telephone" id="fullName">
-                                </div>
-                                <div class="form-group">
-                                    <label for=pass>Erdnüsse:</label>
-                                    <input type="checkbox" class="form-control checker"  name="newPassword" id="pass">
-                                </div>
-                                    <div class="form-group">
-                                        <label for=pass>Eier:</label>
-                                        <input type="checkbox" class="form-control checker" placeholder="Benötigt" name="oldPassword" id="pass" required>
-                                    </div>
-                                <div class="form-group">
-                                    <label for=pass>Sellerie:</label>
-                                    <input type="checkbox" class="form-control checker" placeholder="Benötigt" name="oldPassword" id="pass" required>
-                                </div>
+                                <?php
+                                    echo($allergieEcho);
+                                ?>
                                     <div class="row mt-5">
                                         <div class="col">
                                             <button type="submit" class="btn btn-primary btn-block" name="saveBtn">Speichern</button>

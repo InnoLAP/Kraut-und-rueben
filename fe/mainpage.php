@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if(array_key_exists('logoutBtn', $_POST)) {
+        session_destroy();
+        header("location:index.php");
+    }
+?>
+
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -21,20 +29,14 @@
         </form>
     </div>
     <p></p>
-
-    <form action="logout.php">
-        <button class="button-profile">Abmelden</button>
-    </form>
         <div class="choose-recipes-ingredients-text">
             <br>
             <?php
-                session_start();
                 if(!isset($_SESSION['customerId'])){
                     //If no session exists it means that the user never logged in, redirect to the index page
-                    //header('location: index.php'); Uncomment when the project is finished
+                    header('location: index.php');
                 } else {
                     //If it does exists display a custom greeting
-                    $_SESSION['name'];
                     echo("Guten Tag ".$_SESSION['name']." ".$_SESSION['surname']."<br>");
                 }
 
@@ -54,8 +56,9 @@
                 <button class="ingredient-button"></button>
             </form>
         </div>
-
     </div>
-
+    <form method="post" class="logoutBtnWrapper">
+        <input type="submit" class="logoutBtn" value="Abmelden" name="logoutBtn">
+    </form>
 </body>
 </html>

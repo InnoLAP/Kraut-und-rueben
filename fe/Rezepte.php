@@ -3,16 +3,11 @@
     include "functions.php";
     include "dbConnect.php";
 
-    //These variables are not needed in the final version but are currently
-    $customerId = 2008;
-    $customerDiets=[1,2];
-    $customerAllergies=[1,2];
-
     session_start();
 
     if(!isset($_SESSION['customerId'])){
         //If no session exists it means that the user never logged in, redirect to the index page
-        //header('location: login.php'); <-- Uncomment when the project is finished
+        header('location: index.php');
     } else {
         //Get the actual customer data if a session exists
         $customerId=$_SESSION['customerId'];

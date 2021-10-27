@@ -2,13 +2,12 @@
     include "functions.php";
     include "dbConnect.php";
 
-    $customerId=2008;
     $errorMsg="";
 
     session_start();
     if(!isset($_SESSION['customerId'])){
         //If no session exists it means that the user never logged in, redirect to the index page
-        //header('location: index.php'); Uncomment when the project is finished
+        header('location: index.php');
     } else {
         $customerId=$_SESSION['customerId'];
     }

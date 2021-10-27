@@ -253,17 +253,17 @@
     }
 
     //Returns all DIET
-    function DietAlle() {
+    function DietAlle($db) {
         $sql="SELECT * FROM DIET";
 
-        return $sql;
+        return contactDb($db, $sql);
     }
 
     //Returns all ALLERGIE
-    function AllergieAlle() {
+    function AllergieAlle($db) {
         $sql="SELECT * FROM ALLERGIE";
 
-        return $sql;
+        return contactDb($db, $sql);
     }
 
     //Returns the data of a customer
@@ -393,12 +393,10 @@
 
         contactDb($db, $sql);
 
-        $sql="";
-
         for($i=0;$i<count($arrayDiet);$i++){
-            $sql .= "INSERT IGNORE INTO KUNDEDIET (KUNDENNR, DIETNR) VALUES ({$customerId}, {$arrayDiet[$i]});";
+            $sql = "INSERT INTO KUNDEDIET (KUNDENNR, DIETNR) VALUES ({$customerId}, {$arrayDiet[$i]})";
+            contactDb($db, $sql);
         }
-        return $sql;
     }
 
     //Update the selected allergies for a customer
@@ -407,12 +405,10 @@
 
         contactDb($db, $sql);
 
-        $sql="";
-
         for($i=0;$i<count($arrayAllergie);$i++){
-            $sql .= "INSERT IGNORE INTO KUNDEALLERGIE (KUNDENNR, ALLERGIENR) VALUES ({$customerId}, {$arrayAllergie[$i]});";
+            $sql = "INSERT INTO KUNDEALLERGIE (KUNDENNR, ALLERGIENR) VALUES ({$customerId}, {$arrayAllergie[$i]})";
+            contactDb($db, $sql);
         }
-        return $sql;
     }
 
     //Returns all REZEPTE where there is X or less ZUTATEN needed

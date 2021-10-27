@@ -5,15 +5,14 @@
 
     session_start();
 
-    $customerId=2008;
     $ingredientsArray=array();
 
     if(!isset($_SESSION['cartArray'])){
         //If no session exists it means that the user never logged in, redirect to the index page
-        //header('location: login.php'); <-- Uncomment when the project is finished
+        header('location: index.php');
     } else {
         //Get the actual customer data if a session exists
-        //$customerId=$_SESSION['customerId']; <-- Uncomment when the project is finished
+        $customerId=$_SESSION['customerId'];
         $recipeArray=$_SESSION['recipeCartArray'];
         $ingredientsArray=$_SESSION['cartArray'];
     }
