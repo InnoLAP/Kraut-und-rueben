@@ -13,12 +13,8 @@
     } else {
         //Get the actual customer data if a session exists
         $customerId=$_SESSION['customerId'];
-        if(isset($_SESSION['recipeCartArray'])) {
-            $recipeArray=$_SESSION['recipeCartArray'];
-        }
-        if(isset($_SESSION['cartArray'])) {
-            $ingredientsArray=$_SESSION['cartArray'];
-        }
+        $recipeArray=$_SESSION['recipeCartArray'];
+        $ingredientsArray=$_SESSION['cartArray'];
     }
 
     if(array_key_exists('deleteIngredientBtn', $_POST)) {

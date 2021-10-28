@@ -71,6 +71,8 @@
                         $_SESSION['surname'] = $surname;
 						$_SESSION['customerAllergies'] = $customerAllergies;
 						$_SESSION['customerDiets'] = $customerDiets;
+                        $_SESSION['recipeCartArray']= array();
+                        $_SESSION['cartArray']= array();
 
 						//Redirect
                         header('location: mainpage.php');
