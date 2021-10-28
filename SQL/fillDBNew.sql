@@ -22,6 +22,8 @@ INSERT INTO KUNDE (KUNDENNR, NACHNAME, VORNAME, GEBURTSDATUM, PASSWORT, STRASSE,
 
 INSERT INTO KUNDE (KUNDENNR, NACHNAME, VORNAME, GEBURTSDATUM, PASSWORT, STRASSE, HAUSNR, PLZ, ORT, TELEFON, EMAIL) VALUES (2009, 'Urocki','Eric','1999-12-04', SHA1('123'), 'Elbchaussee', '228', '22605','Hamburg','0152-96701390','urocki@outlook.de');
 
+INSERT INTO KUNDE (KUNDENNR, NACHNAME, VORNAME, GEBURTSDATUM, PASSWORT, STRASSE, HAUSNR, PLZ, ORT, TELEFON, EMAIL) VALUES (2009, 'Sohns','Paul','2001-02-01', SHA1('123'), 'Krausestraße', '46', '22049','Hamburg','0171-1185322','paul.sohns@web.de');
+
 /* ------------------------------------ */
 /* LIEFERANTEN */
 /* ------------------------------------ */
