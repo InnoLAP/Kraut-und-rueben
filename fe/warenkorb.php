@@ -7,14 +7,18 @@
 
     $ingredientsArray=array();
 
-    if(!isset($_SESSION['cartArray'])){
+    if(!isset($_SESSION['customerId'])){
         //If no session exists it means that the user never logged in, redirect to the index page
         header('location: index.php');
     } else {
         //Get the actual customer data if a session exists
         $customerId=$_SESSION['customerId'];
-        $recipeArray=$_SESSION['recipeCartArray'];
-        $ingredientsArray=$_SESSION['cartArray'];
+        if(isset($_SESSION['recipeCartArray'])) {
+            $recipeArray=$_SESSION['recipeCartArray'];
+        }
+        if(isset($_SESSION['cartArray'])) {
+            $ingredientsArray=$_SESSION['cartArray'];
+        }
     }
 
     if(array_key_exists('deleteIngredientBtn', $_POST)) {
